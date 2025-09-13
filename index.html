@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Definitivo - Regulamentação do Aeronauta</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f4f8;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #quiz-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        #quiz-header {
+            background-color: #003366;
+            color: white;
+            padding: 20px 25px;
+            text-align: center;
+        }
+
+        #quiz-header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        #progress-container {
+            width: 100%;
+            background-color: #e0e0e0;
+        }
+
+        #progress-bar {
+            height: 8px;
+            width: 0%;
+            background-color: #4caf50;
+            transition: width 0.3s ease-in-out;
+        }
+
+        .question-block {
+            padding: 25px 30px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .question-block h3 {
+            margin-top: 0;
+            font-size: 1.2em;
+            color: #003366;
+        }
+
+        .options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .options li {
+            background-color: #f8f9fa;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            padding: 12px 15px;
+            cursor: pointer;
+            transition: background-color 0.2s, border-color 0.2s;
+        }
+
+        .options li:hover {
+            background-color: #e9ecef;
+        }
+
+        .options li.selected {
+            background-color: #d4e3ff;
+            border-color: #0056b3;
+            font-weight: 500;
+        }
+
+        .options.disabled {
+            pointer-events: none;
+        }
+
+        .options li.correct-feedback, .options li.actual-answer {
+            border-color: #28a745;
+            background-color: #e9f7ef;
+            font-weight: 500;
+        }
+
+        .options li.incorrect-feedback {
+            border-color: #dc3545;
+            background-color: #fce8e6;
+            font-weight: 500;
+        }
+
+        .options input[type="radio"] {
+            display: none;
+        }
+
+        #navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+        }
+
+        .nav-btn, .action-btn {
+            background-color: #0056b3;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .nav-btn:hover, .action-btn:hover {
+            background-color: #004494;
+        }
+        
+        #prev-btn {
+            background-color: #6c757d;
+        }
+        
+        #reset-btn {
+            background-color: #dc3545;
+            margin-left: 10px;
+        }
+
+        #results {
+            padding: 30px;
+            text-align: center;
+        }
+        
+        #results h2 {
+            color: #003366;
+        }
+        
+        #results p {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        #results p.low-score {
+            color: #dc3545;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #question-counter {
+            font-size: 0.9em;
+            color: #555;
+            font-weight: 500;
+        }
+        
+        /* ESTILOS PARA A REVISÃO FINAL */
+        #review-container {
+            margin-top: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+            border-top: 1px solid #ccc;
+            padding-top: 20px;
+        }
+
+        .review-question {
+            text-align: left;
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #f8f9fa;
+        }
+
+        .review-question.correct {
+            border-left: 5px solid #28a745;
+        }
+        
+        .review-question.incorrect {
+            border-left: 5px solid #dc3545;
+        }
+
+        .review-question p {
+            font-size: 1em;
+            margin: 0 0 10px 0;
+            font-weight: 500;
+        }
+        
+        .review-answer {
+            font-style: italic;
+        }
+        
+        .review-answer .correct-answer {
+             color: #28a745;
+             font-weight: bold;
+        }
+        
+        .review-answer .wrong-answer {
+             color: #dc3545;
+             text-decoration: line-through;
+        }
+
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div id="quiz-header">
+        <h1>Regulamentação do Aeronauta</h1>
+    </div>
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+    
+    <div id="quiz-body">
+        </div>
+    
+    <div id="navigation">
+        <button id="prev-btn" class="nav-btn" onclick="prevQuestion()">Anterior</button>
+        <span id="question-counter"></span>
+        <button id="next-btn" class="nav-btn" onclick="nextQuestion()">Próximo</button>
+    </div>
+
+    <div id="results" class="hidden">
+        <h2>Quiz Finalizado!</h2>
+        <p id="score-text"></p>
+        <div id="action-buttons">
+             <button class="action-btn" onclick="location.reload()">Refazer Quiz</button>
+             <button id="reset-btn" class="action-btn" onclick="resetQuiz()">Resetar Tudo</button>
+        </div>
+        <div id="review-container"></div>
+    </div>
+</div>
+
+<script>
+const quizData = [
+    {
+        question: "De acordo com a Lei Nº 13.475/2017, quem é considerado aeronauta?",
+        options: ["Apenas pilotos de aeronave e comissários de voo.","Profissionais que trabalham no aeroporto em funções de solo.","Piloto de aeronave, comissário de voo e mecânico de voo.","Qualquer pessoa a bordo de uma aeronave civil nacional."],
+        answer: "Piloto de aeronave, comissário de voo e mecânico de voo."
+    },
+    {
+        question: "O que é a 'tripulação mínima'?",
+        options: ["A tripulação necessária para voos internacionais longos.","A determinada na certificação de tipo da aeronave, permitida em voos de instrução, experiência, vistoria e traslado.","A tripulação simples acrescida de um comandante.","Qualquer tripulação com menos de 3 membros."],
+        answer: "A determinada na certificação de tipo da aeronave, permitida em voos de instrução, experiência, vistoria e traslado."
+    },
+    {
+        question: "Qual é a composição de uma 'tripulação composta'?",
+        options: ["Tripulação simples + 1 piloto + 50% de comissários.","Tripulação simples + 1 comandante + 1 mecânico de voo (se necessário) + 25% do número de comissários.","Tripulação mínima + 2 comandantes.","Tripulação simples + 1 comissário extra para cada 50 passageiros."],
+        answer: "Tripulação simples + 1 comandante + 1 mecânico de voo (se necessário) + 25% do número de comissários."
+    },
+    {
+        question: "A 'tripulação de revezamento' pode ser empregada em quais tipos de voos?",
+        options: ["Apenas em voos domésticos com mais de 12 horas.","Em qualquer voo, desde que autorizado pela ANAC.","Apenas em voos internacionais.","Em voos de táxi aéreo e serviços especializados."],
+        answer: "Apenas em voos internacionais."
+    },
+    {
+        question: "O que é definido como 'hora de voo' ou 'tempo de voo'?",
+        options: ["O período desde a decolagem até o pouso da aeronave.","O tempo em que a aeronave está acima de 10.000 pés.","O período 'calço a calço': do início do deslocamento até a imobilização total da aeronave.","A duração total da jornada de trabalho do tripulante."],
+        answer: "O período 'calço a calço': do início do deslocamento até a imobilização total da aeronave."
+    },
+    {
+        question: "Qual o limite de horas de voo e pousos para um integrante de tripulação simples em serviço de transporte aéreo público regular (RBAC 121)?",
+        options: ["11 horas de voo e 5 pousos.","9 horas de voo e 6 pousos.","8 horas de voo e 4 pousos.","10 horas de voo e sem limite de pousos."],
+        answer: "8 horas de voo e 4 pousos."
+    },
+    {
+        question: "A jornada de trabalho de um tripulante é contada a partir de qual momento?",
+        options: ["Da partida dos motores.","Do fechamento das portas da aeronave.","Da hora da apresentação no local de trabalho.","Do início do briefing de pré-voo."],
+        answer: "Da hora da apresentação no local de trabalho."
+    },
+    {
+        question: "Qual o limite máximo de jornada de trabalho para uma tripulação composta em serviços de táxi aéreo (RBAC 135)?",
+        options: ["12 horas.","16 horas.","11 horas.","14 horas."],
+        answer: "14 horas."
+    },
+    {
+        question: "O que é 'sobreaviso'?",
+        options: ["Período em que o tripulante permanece no aeroporto à disposição do empregador.","Período em que o tripulante permanece em local de sua escolha, devendo se apresentar em até 90 minutos após ser comunicado.","O tempo de descanso obrigatório entre jornadas.","Um período de trabalho em simulador."],
+        answer: "Período em que o tripulante permanece em local de sua escolha, devendo se apresentar em até 90 minutos após ser comunicado."
+    },
+    {
+        question: "Como é remunerada a hora de 'reserva'?",
+        options: ["Com 1/3 do valor da hora de voo.","Não é remunerada, mas conta como jornada.","Na mesma base da hora de voo.","Com 50% do valor da hora de voo."],
+        answer: "Na mesma base da hora de voo."
+    },
+    {
+        question: "Qual o tempo mínimo de repouso assegurado a um tripulante após uma jornada de 14 horas?",
+        options: ["12 horas.","24 horas.","16 horas.","20 horas."],
+        answer: "16 horas."
+    },
+    {
+        question: "Um tripulante em serviço de transporte aéreo regular (RBAC 121) tem direito a um número mínimo mensal de quantas folgas?",
+        options: ["8 folgas.","12 folgas.","10 folgas.","6 folgas."],
+        answer: "10 folgas."
+    },
+    {
+        question: "A função de comissário de voo é auxiliar de quem a bordo?",
+        options: ["Do chefe de cabine.","Do copiloto.","Do comandante, encarregado das normas de segurança e atendimento.","Da equipe de solo."],
+        answer: "Do comandante, encarregado das normas de segurança e atendimento."
+    },
+    {
+        question: "De acordo com o RBAC 121, quantos comissários são necessários em um avião com capacidade para 80 passageiros?",
+        options: ["Um comissário.","Dois comissários.","Três comissários.","Quatro comissários."],
+        answer: "Dois comissários."
+    },
+    {
+        question: "O que é um 'tripulante extra a serviço'?",
+        options: ["Um tripulante em treinamento.","Um tripulante que se desloca a serviço do empregador, sem exercer função a bordo.","Um mecânico de voo que não faz parte da tripulação mínima.","Um tripulante de outra companhia aérea pegando carona."],
+        answer: "Um tripulante que se desloca a serviço do empregador, sem exercer função a bordo."
+    },
+    {
+        question: "A jornada de trabalho de um tripulante é considerada encerrada quantos minutos após a parada final dos motores em voos domésticos?",
+        options: ["15 minutos.","45 minutos.","60 minutos.","30 minutos."],
+        answer: "30 minutos."
+    },
+    {
+        question: "Para efeito de jornada, como é computada a hora de trabalho noturno?",
+        options: ["Como 60 minutos.","Como 52 minutos e 30 segundos.","Como 70 minutos.","Não há diferença no cômputo, apenas na remuneração."],
+        answer: "Como 52 minutos e 30 segundos."
+    },
+    {
+        question: "Em quais situações o comandante pode ampliar os limites da jornada de trabalho em até 60 minutos?",
+        options: ["Atraso de passageiros ou tráfego aéreo intenso.","Para chegar mais rápido à base contratual.","Inexistência de acomodações, condições meteorológicas desfavoráveis ou por imperiosa necessidade.","A qualquer momento, a seu critério, para otimizar a operação."],
+        answer: "Inexistência de acomodações, condições meteorológicas desfavoráveis ou por imperiosa necessidade."
+    },
+    {
+        question: "Qual o limite máximo de madrugadas de trabalho consecutivas para um tripulante?",
+        options: ["Uma madrugada.","Duas madrugadas.","Três madrugadas.","Não há limite."],
+        answer: "Duas madrugadas."
+    },
+    {
+        question: "O que é considerado 'madrugada' para fins da lei?",
+        options: ["O período entre 22h e 05h.","O período transcorrido, total ou parcialmente, entre 00h e 06h, no fuso da base contratual.","Qualquer voo que ocorra após a meia-noite local.","O período entre 01h e 05h, no fuso da base contratual."],
+        answer: "O período transcorrido, total ou parcialmente, entre 00h e 06h, no fuso da base contratual."
+    },
+    {
+        question: "A duração da 'reserva' para um tripulante de aviação regular (RBAC 121) tem um máximo de:",
+        options: ["4 horas.","10 horas.","8 horas.","6 horas."],
+        answer: "6 horas."
+    },
+    {
+        question: "Quando um tripulante cruza 4 fusos horários em uma viagem, seu repouso na base contratual será acrescido de quantas horas?",
+        options: ["4 horas (1 por fuso).","Nenhum acréscimo.","8 horas (2 por fuso).","6 horas."],
+        answer: "8 horas (2 por fuso)."
+    },
+    {
+        question: "O que define uma 'transferência permanente'?",
+        options: ["Deslocamento da base por período superior a 30 dias.","Deslocamento da base por período superior a 120 dias, com mudança de domicílio.","Qualquer deslocamento que exija mudança de cidade.","Deslocamento da base por período superior a 180 dias."],
+        answer: "Deslocamento da base por período superior a 120 dias, com mudança de domicílio."
+    },
+    {
+        question: "De quem é a responsabilidade pelo custeio do Certificado Médico Aeronáutico (CMA) e da habilitação técnica (CHT) de um tripulante?",
+        options: ["Do próprio tripulante.","Do sindicato da categoria.","É dividido entre o empregador e o tripulante.","Do empregador."],
+        answer: "Do empregador."
+    },
+    {
+        question: "As férias anuais de um tripulante são de quantos dias consecutivos?",
+        options: ["20 dias.","25 dias.","30 dias.","Depende do tempo de serviço na empresa."],
+        answer: "30 dias."
+    },
+    {
+        question: "Qual a validade de um CMA de 2ª classe para um comissário de voo com 45 anos de idade?",
+        options: ["12 meses.","24 meses.","60 meses.","Não há prazo de validade."],
+        answer: "60 meses."
+    },
+     {
+        question: "Segundo o RBAC 117, o que é uma acomodação para descanso 'Classe 1' a bordo?",
+        options: ["Um assento que reclina 40 graus na cabine de passageiros.","Um assento na cabine de comando.","Uma cama ou superfície horizontal, em local separado da cabine de comando e de passageiros, com controle de temperatura, iluminação e som.","Qualquer assento na primeira classe."],
+        answer: "Uma cama ou superfície horizontal, em local separado da cabine de comando e de passageiros, com controle de temperatura, iluminação e som."
+    },
+    {
+        question: "Empresas brasileiras em serviço aéreo internacional podem utilizar comissários estrangeiros, desde que o número não exceda:",
+        options: ["1/2 (metade) dos comissários a bordo.","1/3 (um terço) dos comissários a bordo.","1/4 (um quarto) dos comissários a bordo.","Não há permissão para comissários estrangeiros."],
+        answer: "1/3 (um terço) dos comissários a bordo."
+    },
+    {
+        question: "O que é o CHT (Certificado de Habilitação Técnica)?",
+        options: ["Um certificado de conclusão do curso de comissário.","O Certificado Médico Aeronáutico.","Um documento emitido pela ANAC que comprova a habilitação do profissional para exercer sua profissão.","Uma permissão para voos internacionais."],
+        answer: "Um documento emitido pela ANAC que comprova a habilitação do profissional para exercer sua profissão."
+    },
+    {
+        question: "Qual o limite de horas de voo anuais para um tripulante em aviões a jato?",
+        options: ["1000 horas.","850 horas.","800 horas.","960 horas."],
+        answer: "800 horas."
+    },
+    {
+        question: "Por quanto tempo, no mínimo, um tripulante deve permanecer em sua base após cada transferência provisória?",
+        options: ["30 dias.","90 dias.","120 dias.","180 dias."],
+        answer: "180 dias."
+    },
+    {
+        question: "Em voos no período noturno (22h às 06h), uma refeição deve ser servida se a duração do voo for igual ou superior a:",
+        options: ["1 hora.","2 horas.","3 horas.","4 horas."],
+        answer: "3 horas."
+    },
+    {
+        question: "Qual a duração mínima e máxima do intervalo para alimentação do tripulante quando em terra?",
+        options: ["Mínimo 30 min e máximo 45 min.","Mínimo 45 min e máximo 60 min.","Mínimo 60 min e máximo 90 min.","A duração não é especificada."],
+        answer: "Mínimo 45 min e máximo 60 min."
+    },
+    {
+        question: "O que o empregador deve assegurar ao tripulante em serviço fora da base contratual em casos de urgência médica?",
+        options: ["Apenas o contato de um hospital local.","Reembolso parcial das despesas.","Assistência médica e remoção por via aérea para retorno à base ou tratamento.","Uma licença remunerada para tratamento."],
+        answer: "Assistência médica e remoção por via aérea para retorno à base ou tratamento."
+    },
+    {
+        question: "As peças de uniforme e equipamentos exigidos para o exercício da profissão são custeadas por quem?",
+        options: ["Pelo tripulante, com reembolso de 50%.","Pelo sindicato da categoria.","Pela empresa (empregador), gratuitamente.","Pela ANAC."],
+        answer: "Pela empresa (empregador), gratuitamente."
+    },
+    {
+        question: "Com qual antecedência mínima o empregador deve notificar o tripulante sobre uma transferência permanente?",
+        options: ["15 dias.","30 dias.","60 dias.","90 dias."],
+        answer: "60 dias."
+    },
+    {
+        question: "O pagamento da remuneração das férias do tripulante deve ser realizado até quantos dias antes do seu início?",
+        options: ["No primeiro dia das férias.","Até 2 dias antes.","Até 5 dias antes.","No quinto dia útil do mês das férias."],
+        answer: "Até 2 dias antes."
+    },
+    {
+        question: "Qual o período máximo de trabalho consecutivo permitido a um tripulante de táxi aéreo, contado da saída ao regresso à sua base?",
+        options: ["15 dias.","21 dias.","30 dias.","Não há limite especificado."],
+        answer: "21 dias."
+    },
+    {
+        question: "Quando um tripulante pode cumprir uma combinação de voos passando por sua base contratual sem ser dispensado do serviço?",
+        options: ["Apenas em situações de emergência.","A qualquer momento, a critério do comandante.","Nunca, o tripulante deve ser dispensado ao passar pela base.","Desde que a programação obedeça à escala previamente publicada."],
+        answer: "Desde que a programação obedeça à escala previamente publicada."
+    },
+    {
+        question: "O que acontece se não houver transporte disponível para a tripulação ao término da jornada fora da base contratual?",
+        options: ["A jornada é estendida até o transporte chegar.","A tripulação deve providenciar seu próprio transporte.","O período de repouso será computado a partir da colocação de transporte à disposição.","A empresa paga uma multa para cada tripulante."],
+        answer: "O período de repouso será computado a partir da colocação de transporte à disposição."
+    },
+    {
+        question: "Qual o limite máximo, em horas, que um tipo de tripulação pode ser transformado (ex: simples para composta) na origem do voo?",
+        options: ["1 hora, a partir da apresentação.","2 horas, a partir da apresentação.","3 horas, a partir da apresentação.","Pode ser transformado a qualquer momento antes da decolagem."],
+        answer: "3 horas, a partir da apresentação."
+    },
+    {
+        question: "O que a lei define como 'base contratual' de um tripulante?",
+        options: ["O aeroporto onde o tripulante mais opera.","A cidade onde o tripulante reside.","A matriz ou filial onde o contrato de trabalho do tripulante está registrado.","O principal hub de operações da companhia aérea."],
+        answer: "A matriz ou filial onde o contrato de trabalho do tripulante está registrado."
+    },
+    {
+        question: "A autoridade do comandante sobre a tripulação é exercida durante qual período?",
+        options: ["Apenas durante o voo, do 'calço a calço'.","Desde o momento em que se apresenta para o voo até a entrega da aeronave.","Durante toda a jornada de trabalho, mesmo em solo.","Apenas em situações de emergência a bordo."],
+        answer: "Desde o momento em que se apresenta para o voo até a entrega da aeronave."
+    },
+    {
+        question: "Em que situação um instrutor de voo estrangeiro pode ser admitido por uma empresa brasileira?",
+        options: ["A qualquer momento, se tiver mais experiência.","Apenas em voos internacionais.","Na falta de tripulantes de voo brasileiros, em caráter provisório e restrito ao período de instrução.","A lei não permite a contratação de instrutores estrangeiros."],
+        answer: "Na falta de tripulantes de voo brasileiros, em caráter provisório e restrito ao período de instrução."
+    },
+    {
+        question: "O tempo de deslocamento para um aeroporto de partida a mais de 50km da base contratual é computado na jornada de trabalho?",
+        options: ["Sim, e é remunerado como hora de voo.","Sim, é computado na jornada, mas não é remunerado.","Não, o tempo de deslocamento não faz parte da jornada.","Apenas 50% do tempo de deslocamento é computado."],
+        answer: "Sim, é computado na jornada, mas não é remunerado."
+    },
+    {
+        question: "A escala de serviço mensal para tripulantes da aviação regular (RBAC 121) deve ser divulgada com qual antecedência mínima?",
+        options: ["2 dias.","5 dias.","7 dias.","10 dias."],
+        answer: "5 dias."
+    },
+    {
+        question: "Um tripulante pode exercer, simultaneamente, mais de uma função a bordo, mesmo que seja titular das licenças correspondentes?",
+        options: ["Sim, se o comandante autorizar.","Sim, em voos com menos de 1 hora de duração.","Não, em nenhuma hipótese.","Apenas se for mecânico de voo e copiloto."],
+        answer: "Não, em nenhuma hipótese."
+    },
+    {
+        question: "Para uma transferência provisória, qual é o período mínimo e máximo de deslocamento da base?",
+        options: ["Mínimo 15 dias e máximo 60 dias.","Mínimo 30 dias e máximo 90 dias.","Mínimo 30 dias e máximo 120 dias.","Mínimo 60 dias e máximo 180 dias."],
+        answer: "Mínimo 30 dias e máximo 120 dias."
+    },
+    {
+        question: "Na transferência permanente, a ajuda de custo para despesas de instalação não pode ser inferior a:",
+        options: ["2 vezes o valor do salário mensal.","3 vezes o valor do salário mensal.","4 vezes o valor do salário mensal.","5 vezes o valor do salário mensal."],
+        answer: "4 vezes o valor do salário mensal."
+    },
+    {
+        question: "A quem se aplica a Lei nº 13.475/2017 no caso de aeronautas brasileiros trabalhando em aeronaves estrangeiras?",
+        options: ["A lei brasileira não se aplica nesses casos.","Aplica-se apenas se a aeronave estiver em território brasileiro.","Aplica-se aos que exercem suas funções em virtude de contrato de trabalho regido pela legislação brasileira.","Aplica-se a todos os aeronautas brasileiros, independentemente do contrato."],
+        answer: "Aplica-se aos que exercem suas funções em virtude de contrato de trabalho regido pela legislação brasileira."
+    }
+];
+
+const quizBody = document.getElementById('quiz-body');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const navigation = document.getElementById('navigation');
+const resultsContainer = document.getElementById('results');
+const questionCounter = document.getElementById('question-counter');
+const progressBar = document.getElementById('progress-bar');
+
+let currentQuestion = 0;
+let userAnswers = [];
+
+function loadQuiz() {
+    loadAnswers();
+    showQuestion();
+}
+
+function showQuestion() {
+    const questionData = quizData[currentQuestion];
+    quizBody.innerHTML = '';
+
+    const questionBlock = document.createElement('div');
+    questionBlock.classList.add('question-block');
+
+    const questionText = document.createElement('h3');
+    questionText.innerHTML = `${currentQuestion + 1}. ${questionData.question}`;
+    questionBlock.appendChild(questionText);
+
+    const optionsList = document.createElement('ul');
+    optionsList.classList.add('options');
+    optionsList.classList.remove('disabled');
+
+    questionData.options.forEach(option => {
+        const optionItem = document.createElement('li');
+        optionItem.innerHTML = `<label><input type="radio" name="question${currentQuestion}" value="${option}"> ${option}</label>`;
+        
+        if (userAnswers[currentQuestion] === option) {
+            optionItem.classList.add('selected');
+            optionItem.querySelector('input').checked = true;
+        }
+
+        optionItem.addEventListener('click', () => {
+            document.querySelectorAll(`#quiz-body ul li`).forEach(li => li.classList.remove('selected'));
+            optionItem.classList.add('selected');
+            selectAnswer(option);
+        });
+        
+        optionsList.appendChild(optionItem);
+    });
+
+    questionBlock.appendChild(optionsList);
+    quizBody.appendChild(questionBlock);
+
+    updateNavigation();
+    updateProgress();
+}
+
+function selectAnswer(answer) {
+    userAnswers[currentQuestion] = answer;
+    saveAnswers();
+    updateProgress();
+}
+
+function updateNavigation() {
+    prevBtn.style.visibility = currentQuestion === 0 ? 'hidden' : 'visible';
+    nextBtn.innerText = currentQuestion === quizData.length - 1 ? 'Finalizar' : 'Próximo';
+    questionCounter.innerText = `Questão ${currentQuestion + 1} de ${quizData.length}`;
+}
+
+function updateProgress() {
+    const answeredCount = userAnswers.filter(answer => answer !== undefined && answer !== null).length;
+    const progressPercentage = (answeredCount / quizData.length) * 100;
+    progressBar.style.width = `${progressPercentage}%`;
+}
+
+function nextQuestion() {
+    const buttonText = nextBtn.innerText;
+
+    if (buttonText === 'Continuar') {
+        currentQuestion++;
+        showQuestion();
+        return;
+    }
+
+    if (buttonText === 'Ver Resultados') {
+        showResults();
+        return;
+    }
+
+    const userAnswer = userAnswers[currentQuestion];
+    if (userAnswer === undefined || userAnswer === null) {
+        alert("Por favor, selecione uma resposta para continuar.");
+        return;
+    }
+
+    const optionsList = quizBody.querySelector('.options');
+    optionsList.classList.add('disabled');
+    prevBtn.style.visibility = 'hidden';
+
+    const correctAnswer = quizData[currentQuestion].answer;
+    const liElements = optionsList.querySelectorAll('li');
+
+    liElements.forEach(li => {
+        const radioValue = li.querySelector('input').value;
+        if (radioValue === userAnswer) {
+            if (userAnswer === correctAnswer) {
+                li.classList.add('correct-feedback');
+            } else {
+                li.classList.add('incorrect-feedback');
+                const correctLi = Array.from(liElements).find(el => el.querySelector('input').value === correctAnswer);
+                if (correctLi) correctLi.classList.add('actual-answer');
+            }
+        }
+    });
+
+    if (currentQuestion === quizData.length - 1) {
+        nextBtn.innerText = 'Ver Resultados';
+    } else {
+        nextBtn.innerText = 'Continuar';
+    }
+}
+
+function prevQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+    }
+}
+
+function saveAnswers() {
+    localStorage.setItem('quizUserAnswers', JSON.stringify(userAnswers));
+}
+
+function loadAnswers() {
+    const savedAnswers = localStorage.getItem('quizUserAnswers');
+    if (savedAnswers) {
+        userAnswers = JSON.parse(savedAnswers);
+        if (userAnswers.length < quizData.length) {
+            const diff = quizData.length - userAnswers.length;
+            userAnswers = userAnswers.concat(Array(diff).fill(undefined));
+        }
+    } else {
+        userAnswers = Array(quizData.length).fill(undefined);
+    }
+}
+
+function resetQuiz() {
+    if (confirm('Tem certeza de que deseja resetar todo o seu progresso? Suas respostas serão apagadas.')) {
+        localStorage.removeItem('quizUserAnswers');
+        location.reload();
+    }
+}
+
+function showResults() {
+    quizBody.classList.add('hidden');
+    navigation.classList.add('hidden');
+    resultsContainer.classList.remove('hidden');
+
+    let score = 0;
+    quizData.forEach((question, index) => {
+        if (userAnswers[index] === question.answer) {
+            score++;
+        }
+    });
+
+    const scorePercentage = (score / quizData.length) * 100;
+    const scoreText = document.getElementById('score-text');
+    scoreText.innerText = `Você acertou ${score} de ${quizData.length} questões. (${scorePercentage.toFixed(1)}%)`;
+    
+    if (scorePercentage < 70) {
+        scoreText.classList.add('low-score');
+    }
+
+    // ADICIONANDO A REVISÃO FINAL DE VOLTA
+    const reviewContainer = document.getElementById('review-container');
+    reviewContainer.innerHTML = '<h3>Revisão Completa das Questões</h3>';
+    
+    quizData.forEach((question, index) => {
+        const reviewBlock = document.createElement('div');
+        reviewBlock.classList.add('review-question');
+        const userAnswer = userAnswers[index];
+        const isCorrect = userAnswer === question.answer;
+
+        reviewBlock.classList.add(isCorrect ? 'correct' : 'incorrect');
+        
+        let answerHtml;
+        if (isCorrect) {
+            answerHtml = `<div class="review-answer">Sua resposta: <span class="correct-answer">${userAnswer || 'Não respondida'}</span></div>`;
+        } else {
+            answerHtml = `
+                <div class="review-answer">Sua resposta: <span class="wrong-answer">${userAnswer || 'Não respondida'}</span></div>
+                <div class="review-answer">Resposta correta: <span class="correct-answer">${question.answer}</span></div>
+            `;
+        }
+        
+        reviewBlock.innerHTML = `
+            <p>${index + 1}. ${question.question}</p>
+            ${answerHtml}
+        `;
+        reviewContainer.appendChild(reviewBlock);
+    });
+}
+
+window.onload = loadQuiz;
+</script>
+
+</body>
+</html>
