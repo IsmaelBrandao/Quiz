@@ -21,24 +21,18 @@
 
         .hidden { display: none !important; }
 
-        /* Estilos do Menu de Seleção */
         #menu-container {
             text-align: center;
             background-color: #fff;
             padding: 40px;
             border-radius: 12px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            width: 100%;
         }
 
-        #menu-container h1 {
-            color: #003366;
-            margin-top: 0;
-        }
-
-        #menu-container p {
-            color: #555;
-            margin-bottom: 30px;
-        }
+        #menu-container h1 { color: #003366; margin-top: 0; }
+        #menu-container p { color: #555; margin-bottom: 30px; }
         
         .quiz-selection-btn {
             display: block;
@@ -81,11 +75,15 @@
             color: white;
             padding: 20px 25px;
             text-align: center;
+            display: flex;
+            align-items: center;
+            position: relative;
         }
 
         #quiz-header h1 {
             margin: 0;
             font-size: 1.8em;
+            flex-grow: 1; /* Faz o título ocupar o espaço para centralizar */
         }
         
         #quiz-header h1 span {
@@ -94,41 +92,42 @@
             opacity: 0.8;
             display: block;
         }
-
-        #progress-container {
-            width: 100%;
-            background-color: #e0e0e0;
+        
+        #header-back-to-menu-btn {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            line-height: 1;
+            padding-bottom: 2px; /* Ajuste visual do ícone */
+            transition: background-color 0.2s;
+        }
+        
+        #header-back-to-menu-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
-        #progress-bar {
-            height: 8px;
-            width: 0%;
-            background-color: #4caf50;
-            transition: width 0.3s ease-in-out;
-        }
+        #progress-container { width: 100%; background-color: #e0e0e0; }
+        #progress-bar { height: 8px; width: 0%; background-color: #4caf50; transition: width 0.3s ease-in-out; }
         
         #quiz-header.level-2 { background-color: #1a237e; }
         #progress-bar.level-2 { background-color: #ff9800; }
         .question-block h3.level-2 { color: #1a237e; }
 
-
-        .question-block {
-            padding: 25px 30px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .question-block h3 {
-            margin-top: 0;
-            font-size: 1.2em;
-            color: #003366;
-        }
-
-        .options {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
+        .question-block { padding: 25px 30px; border-bottom: 1px solid #eee; }
+        .question-block h3 { margin-top: 0; font-size: 1.2em; color: #003366; }
+        .options { list-style: none; padding: 0; margin: 0; }
         .options li {
             background-color: #f8f9fa;
             border: 2px solid #ddd;
@@ -138,24 +137,10 @@
             cursor: pointer;
             transition: background-color 0.2s, border-color 0.2s;
         }
-
-        .options li.selected {
-            background-color: #d4e3ff;
-            border-color: #0056b3;
-            font-weight: 500;
-        }
-
+        .options li.selected { background-color: #d4e3ff; border-color: #0056b3; font-weight: 500; }
         .options.disabled { pointer-events: none; }
-        .options li.correct-feedback, .options li.actual-answer {
-            border-color: #28a745;
-            background-color: #e9f7ef;
-            font-weight: 500;
-        }
-        .options li.incorrect-feedback {
-            border-color: #dc3545;
-            background-color: #fce8e6;
-            font-weight: 500;
-        }
+        .options li.correct-feedback, .options li.actual-answer { border-color: #28a745; background-color: #e9f7ef; font-weight: 500; }
+        .options li.incorrect-feedback { border-color: #dc3545; background-color: #fce8e6; font-weight: 500; }
         .options input[type="radio"] { display: none; }
 
         #navigation {
@@ -164,26 +149,12 @@
             align-items: center;
             padding: 20px 30px;
         }
-
-        .nav-btn, .action-btn {
-            background-color: #0056b3;
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1em;
-            font-weight: 500;
-        }
+        .nav-btn, .action-btn { background-color: #0056b3; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; font-size: 1em; font-weight: 500; }
         
-        #prev-btn, #back-to-menu-btn { background-color: #6c757d; }
+        #prev-btn, #back-to-menu-btn-results { background-color: #6c757d; }
         #reset-btn { background-color: #dc3545; margin-left: 10px; }
 
-        #results {
-            padding: 30px;
-            text-align: center;
-        }
-        
+        #results { padding: 30px; text-align: center; }
         #results h2 { color: #003366; }
         #results p { font-size: 1.4em; font-weight: bold; color: #28a745; }
         #results p.low-score { color: #dc3545; }
@@ -194,13 +165,7 @@
             border-top: 1px solid #ccc;
             padding-top: 20px;
         }
-        .review-question {
-            text-align: left;
-            margin-bottom: 20px;
-            padding: 15px;
-            border-radius: 8px;
-            background-color: #f8f9fa;
-        }
+        .review-question { text-align: left; margin-bottom: 20px; padding: 15px; border-radius: 8px; background-color: #f8f9fa; }
         .review-question.correct { border-left: 5px solid #28a745; }
         .review-question.incorrect { border-left: 5px solid #dc3545; }
         .review-question p { font-size: 1em; margin: 0 0 10px 0; font-weight: 500; }
@@ -227,6 +192,7 @@
 
 <div id="quiz-container" class="hidden">
     <div id="quiz-header">
+        <button id="header-back-to-menu-btn" onclick="backToMenu()" title="Voltar ao Menu">☰</button>
         <h1 id="quiz-title"></h1>
     </div>
     <div id="progress-container">
@@ -245,7 +211,7 @@
         <h2 id="results-title"></h2>
         <p id="score-text"></p>
         <div id="action-buttons">
-             <button id="back-to-menu-btn" class="action-btn" onclick="backToMenu()">Voltar ao Menu</button>
+             <button id="back-to-menu-btn-results" class="action-btn" onclick="backToMenu()">Voltar ao Menu</button>
              <button id="reset-btn" class="action-btn" onclick="resetQuiz()">Resetar Quiz</button>
         </div>
         <div id="review-container"></div>
@@ -404,11 +370,12 @@ function startQuiz(level) {
     currentQuestion = 0;
     userAnswers = [];
     
-    loadAnswers();
+    loadProgress();
     showQuestion();
 }
 
 function backToMenu() {
+    saveProgress(); // Salva o progresso antes de voltar
     quizContainer.classList.add('hidden');
     menuContainer.classList.remove('hidden');
 }
@@ -457,7 +424,7 @@ function showQuestion() {
 
 function selectAnswer(answer) {
     userAnswers[currentQuestion] = answer;
-    saveAnswers();
+    saveProgress();
     updateProgress();
 }
 
@@ -478,6 +445,7 @@ function nextQuestion() {
 
     if (buttonText === 'Continuar') {
         currentQuestion++;
+        saveProgress(); // Salva a nova posição
         showQuestion();
         return;
     }
@@ -523,30 +491,41 @@ function nextQuestion() {
 function prevQuestion() {
     if (currentQuestion > 0) {
         currentQuestion--;
+        saveProgress(); // Salva a nova posição
         showQuestion();
     }
 }
 
-function saveAnswers() {
-    localStorage.setItem(`quizUserAnswers_${currentLevel}`, JSON.stringify(userAnswers));
+function saveProgress() {
+    if (!currentLevel) return;
+    const progress = {
+        answers: userAnswers,
+        currentQuestion: currentQuestion
+    };
+    localStorage.setItem(`quizProgress_${currentLevel}`, JSON.stringify(progress));
 }
 
-function loadAnswers() {
-    const savedAnswers = localStorage.getItem(`quizUserAnswers_${currentLevel}`);
-    if (savedAnswers) {
-        userAnswers = JSON.parse(savedAnswers);
+function loadProgress() {
+    const savedProgress = localStorage.getItem(`quizProgress_${currentLevel}`);
+    if (savedProgress) {
+        const progress = JSON.parse(savedProgress);
+        userAnswers = progress.answers || Array(currentQuizData.length).fill(undefined);
+        currentQuestion = progress.currentQuestion || 0;
+
+        // Garante que o array de respostas tenha o tamanho correto
         if (userAnswers.length < currentQuizData.length) {
             const diff = currentQuizData.length - userAnswers.length;
             userAnswers = userAnswers.concat(Array(diff).fill(undefined));
         }
     } else {
         userAnswers = Array(currentQuizData.length).fill(undefined);
+        currentQuestion = 0;
     }
 }
 
 function resetQuiz() {
     if (confirm('Tem certeza de que deseja resetar o progresso deste quiz? Suas respostas serão apagadas.')) {
-        localStorage.removeItem(`quizUserAnswers_${currentLevel}`);
+        localStorage.removeItem(`quizProgress_${currentLevel}`);
         startQuiz(currentLevel); // Reinicia o quiz atual
     }
 }
