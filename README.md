@@ -32,25 +32,26 @@ O projeto foi desenvolvido como uma página única, responsiva e com diversas fu
 As questões cobrem os principais tópicos da Lei do Aeronauta e regulamentações associadas, incluindo:
 
 * **Definições e Classificações:**
-    * [cite_start]O que é um Aeronauta[cite: 17, 19].
-    * [cite_start]Tipos de Tripulação (Mínima, Simples, Composta e de Revezamento)[cite: 134, 140, 153, 190, 218].
-    * [cite_start]Classificação de Tripulantes (Voo, Cabine, Extra a Serviço)[cite: 14, 57, 59, 61].
-    * [cite_start]Tipos de Serviços Aéreos[cite: 67].
+    * O que é um Aeronauta.
+    * Tipos de Tripulação (Mínima, Simples, Composta e de Revezamento).
+    * Classificação de Tripulantes (Voo, Cabine, Extra a Serviço).
+    * Tipos de Serviços Aéreos.
 * **Regime de Trabalho:**
-    * [cite_start]Jornada de Trabalho e seus limites[cite: 408, 413, 418].
-    * [cite_start]Períodos de Repouso e Folga Periódica[cite: 488, 504].
-    * [cite_start]Regras para Sobreaviso e Reserva[cite: 456, 467].
-    * [cite_start]Trabalho Noturno e em Madrugadas[cite: 425, 442].
+    * Jornada de Trabalho e seus Limites.
+    * Períodos de Repouso e Folga Periódica.
+    * Regras para Sobreaviso e Reserva.
+    * Trabalho Noturno e em Madrugadas.
 * **Limites Operacionais:**
-    * [cite_start]Limites de Horas de Voo (diário, mensal e anual)[cite: 364, 391].
-    * [cite_start]Limites de Pousos por jornada[cite: 364].
+    * Limites de Horas de Voo (diário, mensal e anual).
+    * Limites de Pousos por jornada.
 * **Concessões e Direitos:**
-    * [cite_start]Remuneração, Alimentação e Uniforme[cite: 525, 539, 550].
-    * [cite_start]Assistência Médica fora da base contratual[cite: 548].
-    * [cite_start]Regras para Férias e Transferências (Provisória e Permanente)[cite: 553, 585].
+    * Remuneração, Alimentação e Uniforme.
+    * Assistência Médica fora da base contratual.
+    * Regras para Férias e Transferências (Provisória e Permanente).
 * **Documentação e Certificados:**
-    * [cite_start]CHT (Certificado de Habilitação Técnica) e CMA (Certificado Médico Aeronáutico)[cite: 39, 565].
-    * [cite_start]Responsabilidades do empregador e do tripulante[cite: 565, 570].
+    * CHT (Certificado de Habilitação Técnica) e CMA (Certificado Médico Aeronáutico).
+    * Responsabilidades do empregador e do tripulante.
+
 ---
 
 ## 🛠️ Tecnologias Utilizadas
