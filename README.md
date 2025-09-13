@@ -10,7 +10,7 @@ Este repositório contém o código-fonte de um quiz interativo e educacional, d
 
 O quiz está publicado e pode ser acessado diretamente pelo link abaixo:
 
-**[https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/](https://ismaelbrandao.github.io/Quiz)**
+**[https://ismaelbrandao.github.io/Quiz/](https://ismaelbrandao.github.io/Quiz)**
 
 ---
 
