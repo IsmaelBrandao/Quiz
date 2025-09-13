@@ -51,17 +51,6 @@ As questões cobrem os principais tópicos da Lei do Aeronauta e regulamentaçõ
 * **Documentação e Certificados:**
     * [cite_start]CHT (Certificado de Habilitação Técnica) e CMA (Certificado Médico Aeronáutico)[cite: 39, 565].
     * [cite_start]Responsabilidades do empregador e do tripulante[cite: 565, 570].
-
----
-
-## 💻 Como Utilizar Localmente
-
-Se desejar executar o projeto em seu próprio computador:
-
-1.  Faça o download do arquivo `index.html`.
-2.  Abra o arquivo em qualquer navegador de internet moderno (Google Chrome, Firefox, Microsoft Edge, etc.).
-3.  Não é necessária nenhuma instalação ou servidor.
-
 ---
 
 ## 🛠️ Tecnologias Utilizadas
