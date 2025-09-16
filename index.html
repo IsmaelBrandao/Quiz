@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Legislação do Aeronauta</title>
+    <title>Plataforma de Quizzes - Aviação</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
@@ -33,6 +33,12 @@
 
         #menu-container h1 { color: #003366; margin-top: 0; }
         #menu-container p { color: #555; margin-bottom: 30px; }
+        .quiz-topic-divider {
+            border: 0;
+            height: 1px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+            margin: 30px 0;
+        }
         
         .quiz-selection-btn {
             display: block;
@@ -49,10 +55,15 @@
             transition: background-color 0.2s, transform 0.1s;
         }
         
+        .quiz-selection-btn.fisiologia {
+            background-color: #00695c; /* Cor diferente para o novo tema */
+        }
+        
         .quiz-selection-btn:hover {
-            background-color: #004494;
             transform: translateY(-2px);
         }
+        .quiz-selection-btn.fisiologia:hover { background-color: #004d40; }
+
 
         .quiz-selection-btn span {
             display: block;
@@ -83,7 +94,7 @@
         #quiz-header h1 {
             margin: 0;
             font-size: 1.8em;
-            flex-grow: 1; /* Faz o título ocupar o espaço para centralizar */
+            flex-grow: 1;
         }
         
         #quiz-header h1 span {
@@ -110,7 +121,7 @@
             justify-content: center;
             align-items: center;
             line-height: 1;
-            padding-bottom: 2px; /* Ajuste visual do ícone */
+            padding-bottom: 2px;
             transition: background-color 0.2s;
         }
         
@@ -124,6 +135,7 @@
         #quiz-header.level-2 { background-color: #1a237e; }
         #progress-bar.level-2 { background-color: #ff9800; }
         .question-block h3.level-2 { color: #1a237e; }
+
 
         .question-block { padding: 25px 30px; border-bottom: 1px solid #eee; }
         .question-block h3 { margin-top: 0; font-size: 1.2em; color: #003366; }
@@ -178,15 +190,27 @@
 <body>
 
 <div id="menu-container">
-    <h1>✈️ Quiz - Legislação do Aeronauta</h1>
-    <p>Escolha o nível de dificuldade para começar seus estudos.</p>
-    <button class="quiz-selection-btn" onclick="startQuiz('nivel1')">
-        Nível 1
-        <span>50 Questões sobre Conceitos Gerais</span>
+    <h1>✈️ Plataforma de Quizzes</h1>
+    <p>Escolha um tema e o nível de dificuldade para começar.</p>
+    
+    <button class="quiz-selection-btn" onclick="startQuiz('aeronauta_nivel1')">
+        Regulamentação do Aeronauta
+        <span>Nível 1 - Conceitos Gerais (50 Questões)</span>
     </button>
-    <button class="quiz-selection-btn" onclick="startQuiz('nivel2')">
-        Nível 2
-        <span>50 Questões de Conhecimento Aprofundado</span>
+    <button class="quiz-selection-btn" onclick="startQuiz('aeronauta_nivel2')">
+        Regulamentação do Aeronauta
+        <span>Nível 2 - Conhecimento Aprofundado (50 Questões)</span>
+    </button>
+
+    <hr class="quiz-topic-divider">
+
+    <button class="quiz-selection-btn fisiologia" onclick="startQuiz('fisiologia_nivel1')">
+        Aspectos Fisiológicos da Aviação
+        <span>Nível 1 - Fundamentos (50 Questões)</span>
+    </button>
+    <button class="quiz-selection-btn fisiologia" onclick="startQuiz('fisiologia_nivel2')">
+        Aspectos Fisiológicos da Aviação
+        <span>Nível 2 - Detalhes e Aplicações (50 Questões)</span>
     </button>
 </div>
 
@@ -219,8 +243,8 @@
 </div>
 
 <script>
-// NÍVEL 1 - 50 QUESTÕES
-const quizDataNivel1 = [
+// BANCO DE QUESTÕES - REGULAMENTAÇÃO DO AERONAUTA - NÍVEL 1
+const quizDataAeronautaN1 = [
     { question: "De acordo com a Lei Nº 13.475/2017, quem é considerado aeronauta?", options: ["Apenas pilotos de aeronave e comissários de voo.","Profissionais que trabalham no aeroporto em funções de solo.","Piloto de aeronave, comissário de voo e mecânico de voo.","Qualquer pessoa a bordo de uma aeronave civil nacional."], answer: "Piloto de aeronave, comissário de voo e mecânico de voo." },
     { question: "O que é a 'tripulação mínima'?", options: ["A tripulação necessária para voos internacionais longos.","A determinada na certificação de tipo da aeronave, permitida em voos de instrução, experiência, vistoria e traslado.","A tripulação simples acrescida de um comandante.","Qualquer tripulação com menos de 3 membros."], answer: "A determinada na certificação de tipo da aeronave, permitida em voos de instrução, experiência, vistoria e traslado." },
     { question: "Qual é a composição de uma 'tripulação composta'?", options: ["Tripulação simples + 1 piloto + 50% de comissários.","Tripulação simples + 1 comandante + 1 mecânico de voo (se necessário) + 25% do número de comissários.","Tripulação mínima + 2 comandantes.","Tripulação simples + 1 comissário extra para cada 50 passageiros."], answer: "Tripulação simples + 1 comandante + 1 mecânico de voo (se necessário) + 25% do número de comissários." },
@@ -273,8 +297,8 @@ const quizDataNivel1 = [
     { question: "A quem se aplica a Lei nº 13.475/2017 no caso de aeronautas brasileiros trabalhando em aeronaves estrangeiras?", options: ["A lei brasileira não se aplica nesses casos.","Aplica-se apenas se a aeronave estiver em território brasileiro.","Aplica-se aos que exercem suas funções em virtude de contrato de trabalho regido pela legislação brasileira.","Aplica-se a todos os aeronautas brasileiros, independentemente do contrato."], answer: "Aplica-se aos que exercem suas funções em virtude de contrato de trabalho regido pela legislação brasileira." }
 ];
 
-// NÍVEL 2 - 50 QUESTÕES
-const quizDataNivel2 = [
+// BANCO DE QUESTÕES - REGULAMENTAÇÃO DO AERONAUTA - NÍVEL 2
+const quizDataAeronautaN2 = [
     { question: "A Lei do Aeronauta (13.475/2017) se aplica a um comissário de voo brasileiro que trabalha numa aeronave estrangeira se...", options: ["O voo decolar do Brasil.","A empresa estrangeira tiver uma filial no Brasil.","O seu contrato de trabalho for regido pela legislação brasileira.","A lei brasileira nunca se aplica a aeronaves estrangeiras."], answer: "O seu contrato de trabalho for regido pela legislação brasileira." },
     { question: "Qual a porcentagem mínima de comissários de voo que deve ser acrescida a uma tripulação simples para formar uma tripulação de revezamento?", options: ["25%","33%","50%","100%"], answer: "50%" },
     { question: "Além de atrasos por condições meteorológicas, em que outra situação uma tripulação composta pode ser usada em voo doméstico na aviação regular?", options: ["Quando há excesso de passageiros.","Para atender a trabalhos de manutenção não programados.","Em feriados nacionais de grande movimento.","A critério exclusivo do comandante da aeronave."], answer: "Para atender a trabalhos de manutenção não programados." },
@@ -327,7 +351,115 @@ const quizDataNivel2 = [
     { question: "Como é remunerada a hora de sobreaviso?", options: ["Na mesma base da hora de voo.", "À base de 1/3 (um terço) do valor da hora de voo.", "À base de 1/2 (metade) do valor da hora de voo.", "Não é remunerada, apenas o tempo de deslocamento."], answer: "À base de 1/3 (um terço) do valor da hora de voo." }
 ];
 
-// Variáveis Globais de Controle
+// BANCO DE QUESTÕES - ASPECTOS FISIOLÓGICOS - NÍVEL 1
+const quizDataFisiologiaN1 = [
+    { question: "Qual é a principal função do sistema circulatório?", options: ["Produzir hormônios para o corpo.", "Transportar nutrientes, gases e excretas.", "Realizar a digestão dos alimentos.", "Proteger o corpo contra impactos físicos."], answer: "Transportar nutrientes, gases e excretas." },
+    { question: "Quais são os três componentes principais do sistema circulatório?", options: ["Cérebro, pulmões e rins.", "Sangue, vasos sanguíneos e coração.", "Músculos, ossos e pele.", "Estômago, intestino e fígado."], answer: "Sangue, vasos sanguíneos e coração." },
+    { question: "O que caracteriza o sangue arterial?", options: ["É rico em gás carbônico e pobre em oxigênio.", "É rico em oxigênio e pobre em gás carbônico.", "Não possui células sanguíneas.", "É transportado apenas por veias."], answer: "É rico em oxigênio e pobre em gás carbônico." },
+    { question: "Qual tipo de vaso sanguíneo é responsável por levar o sangue DO coração PARA os tecidos do corpo?", options: ["Veias", "Capilares", "Artérias", "Vênulas"], answer: "Artérias" },
+    { question: "Qual tipo de vaso sanguíneo possui válvulas para impedir o refluxo do sangue?", options: ["Artérias", "Capilares", "Arteríolas", "Veias"], answer: "Veias" },
+    { question: "Onde ocorrem as trocas de gases e nutrientes entre o sangue e os tecidos?", options: ["Nas artérias de grosso calibre.", "No interior do coração.", "Nos capilares sanguíneos.", "Nas veias profundas."], answer: "Nos capilares sanguíneos." },
+    { question: "O coração humano é dividido em quantas cavidades?", options: ["Duas: um átrio e um ventrículo.", "Três: dois átrios e um ventrículo.", "Quatro: dois átrios e dois ventrículos.", "Cinco, incluindo a aorta."], answer: "Quatro: dois átrios e dois ventrículos." },
+    { question: "A pequena circulação (ou circulação pulmonar) descreve qual trajeto do sangue?", options: ["Coração -> Corpo -> Coração", "Coração -> Pulmões -> Coração", "Cérebro -> Coração -> Cérebro", "Fígado -> Coração -> Fígado"], answer: "Coração -> Pulmões -> Coração" },
+    { question: "A grande circulação (ou circulação sistêmica) é responsável por:", options: ["Levar sangue venoso aos pulmões.", "Oxigenar o sangue.", "Levar sangue arterial para todos os tecidos do corpo.", "Apenas irrigar o próprio coração."], answer: "Levar sangue arterial para todos os tecidos do corpo." },
+    { question: "Qual a causa mais comum do Infarto Agudo do Miocárdio (IAM)?", options: ["Estresse emocional súbito.", "Oclusão de uma artéria coronária por um trombo.", "Uma infecção viral no coração.", "Exercício físico exagerado."], answer: "Oclusão de uma artéria coronária por um trombo." },
+    { question: "O que é aterosclerose, no contexto do IAM?", options: ["O enfraquecimento do músculo cardíaco.", "Uma arritmia cardíaca.", "A formação de placas de gordura nas artérias.", "A dilatação de uma veia."], answer: "A formação de placas de gordura nas artérias." },
+    { question: "Qual dos seguintes é um fator de risco MODIFICÁVEL para o IAM?", options: ["Idade avançada.", "História familiar de doença cardíaca.", "Sexo masculino.", "Tabagismo."], answer: "Tabagismo." },
+    { question: "Qual é o sintoma mais clássico do infarto?", options: ["Dor de cabeça intensa na nuca.", "Dor no peito tipo aperto, peso ou pressão.", "Cãibras nas pernas.", "Tosse seca e persistente."], answer: "Dor no peito tipo aperto, peso ou pressão." },
+    { question: "A dor do infarto, ao contrário da angina estável, geralmente:", options: ["Melhora com o repouso.", "Dura apenas alguns segundos.", "Não alivia com o repouso e dura vários minutos.", "É aliviada com um copo de água."], answer: "Não alivia com o repouso e dura vários minutos." },
+    { question: "Além da dor no peito, quais outros sintomas podem acompanhar um infarto?", options: ["Aumento de apetite e euforia.", "Suores, falta de ar e náuseas.", "Visão turva e zumbido no ouvido.", "Coceira e manchas na pele."], answer: "Suores, falta de ar e náuseas." },
+    { question: "Qual camada da atmosfera concentra cerca de 80% dos gases e onde ocorre a maioria dos fenômenos meteorológicos?", options: ["Estratosfera", "Mesosfera", "Termosfera", "Troposfera"], answer: "Troposfera" },
+    { question: "Qual o principal gás que compõe a atmosfera terrestre, com aproximadamente 78%?", options: ["Oxigênio", "Dióxido de Carbono", "Argônio", "Nitrogênio"], answer: "Nitrogênio" },
+    { question: "Como a pressão atmosférica se comporta com o aumento da altitude?", options: ["Aumenta.", "Diminui.", "Permanece constante.", "Aumenta até 10.000 pés e depois diminui."], answer: "Diminui." },
+    { question: "O que é hipóxia?", options: ["Excesso de oxigênio nos tecidos.", "Deficiência de oxigênio nos tecidos.", "Excesso de gás carbônico no sangue.", "Formação de bolhas de nitrogênio no sangue."], answer: "Deficiência de oxigênio nos tecidos." },
+    { question: "Qual lei dos gases explica a expansão de gases nas cavidades do corpo com o aumento da altitude?", options: ["Lei de Dalton", "Lei de Henry", "Lei de Boyle-Mariotte", "Lei de Charles"], answer: "Lei de Boyle-Mariotte" },
+    { question: "A formação de bolhas de nitrogênio no sangue devido a uma descompressão rápida é explicada pela:", options: ["Lei de Boyle-Mariotte", "Lei de Henry", "Lei de Dalton", "Lei da Gravidade"], answer: "Lei de Henry" },
+    { question: "O que é Disbarismo ou Aerodilatação?", options: ["É a falta de oxigênio em altitude.", "É a desorientação espacial durante o voo.", "É a expansão de gases presos nas cavidades do corpo.", "É a fadiga causada por longos períodos de voo."], answer: "É a expansão de gases presos nas cavidades do corpo." },
+    { question: "Qual dos seguintes é um exemplo de disbarismo?", options: ["Hipóxia", "Fadiga", "Barotite (dor de ouvido)", "Jet lag"], answer: "Barotite (dor de ouvido)" },
+    { question: "O que significa 'Tempo Útil de Consciência' (TUC)?", options: ["O tempo total de um voo.", "O tempo que a tripulação tem para descansar.", "O tempo disponível para tomar ações corretivas após uma despressurização.", "O tempo que a aeronave leva para atingir a altitude de cruzeiro."], answer: "O tempo disponível para tomar ações corretivas após uma despressurização." },
+    { question: "O que é fadiga em aviação?", options: ["Um estado de euforia causado pela altitude.", "O tédio durante um voo longo.", "Um estado de reduzida capacidade de desempenho mental ou físico.", "Apenas o cansaço muscular após um voo."], answer: "Um estado de reduzida capacidade de desempenho mental ou físico." },
+    { question: "Qual a principal função do sistema linfático?", options: ["Bombear sangue para o corpo.", "Drenar o excesso de líquido dos tecidos e atuar na defesa do organismo.", "Produzir adrenalina.", "Regular a temperatura corporal."], answer: "Drenar o excesso de líquido dos tecidos e atuar na defesa do organismo." },
+    { question: "O que é a linfa?", options: ["O mesmo que sangue venoso.", "Um fluido derivado do sangue, composto por plasma e células de defesa.", "O líquido que preenche as articulações.", "Um hormônio produzido pelo pâncreas."], answer: "Um fluido derivado do sangue, composto por plasma e células de defesa." },
+    { question: "O que são linfonodos (ou gânglios linfáticos)?", options: ["Glândulas que produzem saliva.", "Pequenas estruturas que filtram a linfa e atuam na defesa.", "Células que transportam oxigênio.", "Vasos que conectam o coração ao pulmão."], answer: "Pequenas estruturas que filtram a linfa e atuam na defesa." },
+    { question: "Qual é a principal causa do surgimento de varizes nas pernas?", options: ["Excesso de artérias.", "Mal funcionamento das válvulas venosas.", "Obstrução dos capilares.", "Pressão arterial muito baixa."], answer: "Mal funcionamento das válvulas venosas." },
+    { question: "Qual o nome do movimento de contração do coração?", options: ["Diástole", "Sístole", "Hematose", "Fagocitose"], answer: "Sístole" },
+    { question: "O relaxamento do músculo cardíaco é chamado de:", options: ["Sístole", "Diástole", "Apneia", "Isquemia"], answer: "Diástole" },
+    { question: "O que é o 'sopro cardíaco'?", options: ["Um sinal normal do funcionamento do coração.", "Um ruído causado pela disfunção de uma válvula cardíaca.", "O som da respiração ouvido no peito.", "Um sintoma de pressão alta."], answer: "Um ruído causado pela disfunção de uma válvula cardíaca." },
+    { question: "Qual estrutura é considerada o 'marcapasso natural' do coração, controlando os batimentos?", options: ["Válvula Mitral", "Feixe de His", "Nódulo Sinoatrial", "Ventrículo Esquerdo"], answer: "Nódulo Sinoatrial" },
+    { question: "Qual a principal diferença entre a constituição das paredes de artérias e veias?", options: ["Veias não possuem tecido muscular.", "Artérias possuem paredes mais finas e menos elásticas.", "Artérias possuem paredes mais espessas e elásticas para suportar alta pressão.", "Artérias possuem válvulas e veias não."], answer: "Artérias possuem paredes mais espessas и elásticas para suportar alta pressão." },
+    { question: "O que é hematose?", options: ["A coagulação do sangue.", "A produção de células sanguíneas.", "A troca gasosa que ocorre nos pulmões, onde o sangue se torna arterial.", "O processo de filtragem do sangue pelos rins."], answer: "A troca gasosa que ocorre nos pulmões, onde o sangue se torna arterial." },
+    { question: "Qual dos seguintes alimentos é mais propenso a causar gases (aerodilatação) em altitude?", options: ["Água", "Peito de frango grelhado", "Refrigerantes", "Arroz branco"], answer: "Refrigerantes" },
+    { question: "Qual fator de risco para IAM NÃO pode ser controlado ou mudado?", options: ["Sedentarismo", "Hipertensão arterial", "História familiar", "Colesterol alto"], answer: "História familiar" },
+    { question: "A dor do infarto pode irradiar para quais partes do corpo?", options: ["Apenas para o braço direito.", "Para o braço esquerdo, mandíbula e/ou costas.", "Apenas para as pernas.", "A dor do infarto nunca irradia."], answer: "Para o braço esquerdo, mandíbula e/ou costas." },
+    { question: "Um dos primeiros exames realizados na suspeita de IAM, que pode fechar o diagnóstico em até 50% dos casos, é o:", options: ["Raio-X de tórax", "Exame de urina", "Eletrocardiograma (ECG)", "Tomografia computadorizada"], answer: "Eletrocardiograma (ECG)" },
+    { question: "A deficiência de oxigênio em altitude, explicada pela Lei de Dalton, ocorre porque:", options: ["A porcentagem de oxigênio no ar diminui.", "A pressão parcial do oxigênio diminui, dificultando sua absorção.", "O ar fica mais denso e pesado.", "A temperatura mais baixa congela as moléculas de oxigênio."], answer: "A pressão parcial do oxigênio diminui, dificultando sua absorção." },
+    { question: "O que é o plasma sanguíneo?", options: ["A parte celular do sangue, contendo hemácias.", "A parte líquida do sangue, composta principalmente por água e proteínas.", "São as plaquetas responsáveis pela coagulação.", "É um tipo de glóbulo branco."], answer: "A parte líquida do sangue, composta principalmente por água e proteínas." },
+    { question: "O que é recomendado para a alimentação da tripulação em voo para evitar desconfortos?", options: ["Alimentos ricos em gordura para dar mais energia.", "Muitas bebidas gasificadas para hidratação.", "Alimentos ricos em hidratos de carbono e evitar gases.", "Proteínas de digestão lenta para manter a saciedade."], answer: "Alimentos ricos em hidratos de carbono e evitar gases." },
+    { question: "O que é o ciclo circadiano, frequentemente afetado em voos longos?", options: ["O ciclo menstrual feminino.", "O ciclo de vida de uma célula.", "O ritmo biológico de aproximadamente 24 horas do corpo.", "O ciclo de manutenção da aeronave."], answer: "O ritmo biológico de aproximadamente 24 horas do corpo." },
+    { question: "Qual a principal causa da formação de edema (inchaço) nos membros inferiores?", options: ["Excesso de vasos sanguíneos.", "Disfunção do sistema de drenagem linfática.", "Pressão arterial elevada.", "Falta de vitaminas."], answer: "Disfunção do sistema de drenagem linfática." },
+    { question: "Em um transplante cardíaco, o que é a principal causa de rejeição do órgão?", options: ["O tamanho do coração ser diferente.", "Incompatibilidade do sistema imunológico (ABO e HLA).", "A idade do doador.", "O tempo da cirurgia ser muito longo."], answer: "Incompatibilidade do sistema imunológico (ABO e HLA)." },
+    { question: "Ruídos e vibrações na cabine podem causar quais efeitos nos tripulantes?", options: ["Melhora da concentração.", "Sonolência e relaxamento.", "Diminuição da acuidade visual e auditiva.", "Aumento da força muscular."], answer: "Diminuição da acuidade visual e auditiva." },
+    { question: "Qual o nome da válvula que separa o átrio esquerdo do ventrículo esquerdo?", options: ["Válvula Aórtica", "Válvula Tricúspide", "Válvula Pulmonar", "Válvula Bicúspide (Mitral)"], answer: "Válvula Bicúspide (Mitral)" },
+    { question: "O sangue venoso, vindo do corpo, entra no coração por qual câmara?", options: ["Átrio Esquerdo", "Ventrículo Esquerdo", "Átrio Direito", "Ventrículo Direito"], answer: "Átrio Direito" },
+    { question: "O que são 'elementos figurados' do sangue?", options: ["Apenas o plasma e a água.", "As proteínas e sais minerais.", "As células sanguíneas (hemácias, leucócitos) e as plaquetas.", "Apenas as hemácias."], answer: "As células sanguíneas (hemácias, leucócitos) e as plaquetas." },
+    { question: "Qual a recomendação principal para prevenir um IAM?", options: ["Tomar aspirina diariamente sem prescrição.", "Evitar qualquer tipo de exercício físico.", "Manter uma dieta balanceada e praticar atividades físicas.", "Consumir bebidas alcoólicas moderadamente."], answer: "Manter uma dieta balanceada e praticar atividades físicas." }
+];
+
+// BANCO DE QUESTÕES - ASPECTOS FISIOLÓGICOS - NÍVEL 2
+const quizDataFisiologiaN2 = [
+    { question: "A Lei de Dalton, aplicada à aviação, explica a hipóxia porque com a altitude, a pressão total diminui, e consequentemente...", options: ["A porcentagem de oxigênio no ar diminui.", "A pressão parcial do oxigênio diminui.", "O nitrogênio se torna tóxico.", "A temperatura do ar aumenta."], answer: "A pressão parcial do oxigênio diminui." },
+    { question: "Segundo a Lei de Boyle-Mariotte, se a pressão atmosférica cai pela metade (a 18.000 pés), o que acontece com o volume de um gás preso em uma cavidade corporal?", options: ["Diminui pela metade.", "Permanece o mesmo.", "Dobra de volume.", "Triplica de volume."], answer: "Dobra de volume." },
+    { question: "A doença da descompressão, com formação de bolhas de Nitrogênio no sangue, é um exemplo prático de qual lei dos gases?", options: ["Lei de Dalton", "Lei de Boyle-Mariotte", "Lei de Henry", "Lei de Gay-Lussac"], answer: "Lei de Henry" },
+    { question: "Qual é a pressão atmosférica padrão ao nível do mar em milímetros de mercúrio (mmHg)?", options: ["1013 mmHg", "760 mmHg", "560 mmHg", "380 mmHg"], answer: "760 mmHg" },
+    { question: "Na fase 'Compensatória' da hipóxia (entre 6.000 e 12.000 pés), a saturação de oxigênio (SPO2) do sangue cai para aproximadamente:", options: ["98%", "93%", "83%", "70%"], answer: "83%" },
+    { question: "Na fase 'Crítica' da hipóxia (acima de 20.000 pés), a saturação de oxigênio (SPO2) pode atingir níveis perigosamente baixos, em torno de:", options: ["80%", "75%", "60%", "50%"], answer: "60%" },
+    { question: "A uma altitude de 35.000 pés, qual é o Tempo Útil de Consciência (TUC) aproximado para um indivíduo em repouso?", options: ["120 segundos", "60 segundos", "30 segundos", "15 segundos"], answer: "30 segundos" },
+    { question: "Se um tripulante estiver em atividade física durante uma despressurização a 28.000 pés, seu TUC será de aproximadamente:", options: ["60 segundos", "45 segundos", "30 segundos", "15 segundos"], answer: "30 segundos" },
+    { question: "Qual dos seguintes marcadores de necrose miocárdica é mais específico para o diagnóstico de Infarto Agudo do Miocárdio?", options: ["Mioglobina", "Lactato-desidrogenase (LDH)", "Troponinas (T ou I)", "Aspartato-aminotransferase (AST)"], answer: "Troponinas (T ou I)" },
+    { question: "A dor do IAM é frequentemente desencadeada por esforço físico, estresse ou após uma refeição exagerada. Qual o termo médico para essa dor no peito?", options: ["Dispepsia", "Cefaleia", "Angina pectoris", "Parestesia"], answer: "Angina pectoris" },
+    { question: "Qual fator de risco para IAM é considerado 'não modificável'?", options: ["Sobrepeso e obesidade.", "Diabetes Mellitus.", "Idade acima de 45 anos para homens.", "Sedentarismo."], answer: "Idade acima de 45 anos para homens." },
+    { question: "O risco de doença arterial coronariana aumenta se o pai ou irmão de um indivíduo foi diagnosticado com a doença antes de qual idade?", options: ["45 anos", "55 anos", "65 anos", "70 anos"], answer: "55 anos" },
+    { question: "Qual dos seguintes quadros clínicos NÃO cardíacos pode mimetizar os sintomas de dor no peito de um IAM?", options: ["Fratura de fêmur", "Refluxo gastroesofágico", "Conjutivite", "Cistite"], answer: "Refluxo gastroesofágico" },
+    { question: "A sístole e a diástole correspondem, respectivamente, a quais pressões arteriais em uma medição normal?", options: ["80 mmHg e 120 mmHg", "120 mmHg e 80 mmHg", "100 mmHg e 60 mmHg", "140 mmHg e 90 mmHg"], answer: "120 mmHg e 80 mmHg" },
+    { question: "Qual neurotransmissor, liberado em situações de estresse, aumenta a frequência cardíaca?", options: ["Acetilcolina", "Serotonina", "Dopamina", "Adrenalina"], answer: "Adrenalina" },
+    { question: "Qual neurotransmissor, associado ao sistema parassimpático, diminui a frequência cardíaca?", options: ["Adrenalina", "Noradrenalina", "Acetilcolina", "GABA"], answer: "Acetilcolina" },
+    { question: "Qual a constituição dos capilares sanguíneos, que permite a eficiência nas trocas gasosas?", options: ["Tecido conjuntivo, muscular e endotélio.", "Apenas tecido muscular liso.", "Apenas uma camada de células endoteliais.", "Tecido conjuntivo e endotélio."], answer: "Apenas uma camada de células endoteliais." },
+    { question: "O sangue venoso, pobre em oxigênio, é bombeado do Ventrículo Direito para qual vaso sanguíneo?", options: ["Artéria Aorta", "Veias Cavas", "Artéria Pulmonar", "Veias Pulmonares"], answer: "Artéria Pulmonar" },
+    { question: "O sangue arterial, vindo dos pulmões, entra no coração através das Veias Pulmonares e chega em qual câmara?", options: ["Átrio Direito", "Ventrículo Direito", "Átrio Esquerdo", "Ventrículo Esquerdo"], answer: "Átrio Esquerdo" },
+    { question: "O processo de hematose ocorre por qual mecanismo de transporte através da membrana celular?", options: ["Transporte ativo com gasto de energia.", "Osmose.", "Difusão simples, sem gasto de energia.", "Endocitose."], answer: "Difusão simples, sem gasto de energia." },
+    { question: "Qual o tempo máximo que um coração para transplante pode ser armazenado em solução salina fria até a cirurgia?", options: ["1 hora", "2 horas", "4 horas", "8 horas"], answer: "4 horas" },
+    { question: "No procedimento de transplante, qual substância anticoagulante é injetada antes da secção dos vasos cardíacos?", options: ["Aspirina", "Varfarina", "Heparina", "Clopidogrel"], answer: "Heparina" },
+    { question: "Além da compatibilidade do sistema ABO, qual outro sistema de antígenos é crucial para evitar a rejeição em transplantes cardíacos?", options: ["Sistema Rh", "Sistema MNS", "Sistema HLA (Antígenos Leucocitários Humanos)", "Sistema Duffy"], answer: "Sistema HLA (Antígenos Leucocitários Humanos)" },
+    { question: "A disfunção das válvulas cardíacas que causa refluxo de sangue é chamada de:", options: ["Aterosclerose", "Valvopatia", "Miocardite", "Endocardite"], answer: "Valvopatia" },
+    { question: "Por que a linfa, ao contrário do sangue, é incolor ou ligeiramente rosada?", options: ["Porque não possui plaquetas.", "Porque não possui leucócitos.", "Porque não possui hemácias.", "Porque não possui plasma."], answer: "Porque não possui hemácias." },
+    { question: "O que são 'ínguas' que aparecem durante uma infecção?", options: ["Acúmulo de gordura sob a pele.", "Veias varicosas inflamadas.", "Linfonodos que aumentam de tamanho ao amadurecer células de defesa.", "Pequenos coágulos sanguíneos."], answer: "Linfonodos que aumentam de tamanho ao amadurecer células de defesa." },
+    { question: "Qual é a variação aproximada da temperatura a cada 1000 pés de altitude na troposfera?", options: ["Aumenta 2°C", "Diminui 1°C", "Diminui 2°C", "Permanece constante"], answer: "Diminui 2°C" },
+    { question: "A 'maré barométrica' se refere a uma variação diária da pressão atmosférica. Em quais horários a pressão atinge seus valores máximos?", options: ["04:00 e 16:00", "10:00 e 22:00", "08:00 e 20:00", "Meio-dia e Meia-noite"], answer: "10:00 e 22:00" },
+    { question: "Forças de aceleração linear, como as sentidas na decolagem, podem aumentar o risco de quais complicações em indivíduos predispostos?", options: ["Crise de asma e bronquite.", "AVC Hemorrágico e Insuficiência Cardíaca Congestiva.", "Gastrite e úlcera gástrica.", "Cálculos renais e infecção urinária."], answer: "AVC Hemorrágico e Insuficiência Cardíaca Congestiva." },
+    { question: "Qual a porcentagem aproximada de Oxigênio na composição do ar atmosférico?", options: ["78%", "21%", "1%", "0,03%"], answer: "21%" },
+    { question: "A aerodontia é um tipo de disbarismo que se manifesta como:", options: ["Dor de ouvido.", "Dor nos seios da face.", "Dor de dente.", "Distensão abdominal."], answer: "Dor de dente." },
+    { question: "Qual o principal motivo para recomendar uma dieta mais rica em hidratos de carbono do que em proteínas para a tripulação?", options: ["Hidratos de carbono são mais saborosos.", "A digestão de proteínas requer mais oxigênio.", "Proteínas causam mais sono.", "Hidratos de carbono previnem a desidratação."], answer: "A digestão de proteínas requer mais oxigênio." },
+    { question: "O que é isquemia do miocárdio?", options: ["É a inflamação do músculo cardíaco.", "É a morte (necrose) do tecido cardíaco.", "É a redução do fluxo sanguíneo e da oferta de oxigênio para o músculo cardíaco.", "É o aumento anormal do tamanho do coração."], answer: "É a redução do fluxo sanguíneo e da oferta de oxigênio para o músculo cardíaco." },
+    { question: "Após a ruptura de uma placa de aterosclerose, qual componente do sangue se adere à lesão para formar um coágulo?", options: ["Hemácias", "Leucócitos", "Plasma", "Plaquetas"], answer: "Plaquetas" },
+    { question: "Na fisiopatologia do IAM, a falta de ATP (energia) e a queda do pH dentro da célula cardíaca levam à liberação de qual íon que pode causar arritmias?", options: ["Sódio (Na+)", "Cálcio (Ca++)", "Potássio (K+)", "Magnésio (Mg++)"], answer: "Potássio (K+)" },
+    { question: "Qual o nome da camada mais externa do coração?", options: ["Endocárdio", "Miocárdio", "Pericárdio", "Epicárdio"], answer: "Epicárdio" },
+    { question: "O que são as artérias coronárias?", options: ["Artérias que levam sangue para o cérebro.", "Artérias que irrigam a parede do próprio coração (miocárdio).", "As principais artérias dos braços.", "Artérias que se conectam diretamente aos pulmões."], answer: "Artérias que irrigam a parede do próprio coração (miocárdio)." },
+    { question: "O que é 'insuficiência cardíaca', a principal indicação para um transplante?", options: ["Quando o coração bate rápido demais.", "Quando o coração não consegue bombear sangue suficiente para o corpo.", "Quando as artérias do coração estão entupidas.", "Quando o paciente tem pressão alta."], answer: "Quando o coração não consegue bombear sangue suficiente para o corpo." },
+    { question: "Por que pacientes transplantados precisam tomar medicamentos imunossupressores?", options: ["Para fortalecer o novo coração.", "Para prevenir a formação de coágulos.", "Para diminuir a resposta imune do corpo e evitar a rejeição do órgão.", "Para controlar a pressão arterial."], answer: "Para diminuir a resposta imune do corpo e evitar a rejeição do órgão." },
+    { question: "A exposição prolongada a vibrações em voo pode causar repercussões sobre quais sentidos?", options: ["Olfato e paladar.", "Tato e equilíbrio.", "Audição e visão.", "Apenas o equilíbrio."], answer: "Audição e visão." },
+    { question: "O estresse é definido como uma reação que tende a perturbar qual estado do organismo?", options: ["Estado de alerta.", "Equilíbrio homeostático.", "Metabolismo basal.", "Ciclo de sono."], answer: "Equilíbrio homeostático." },
+    { question: "Onde os leucócitos (células de defesa) podem ser encontrados, além do sangue?", options: ["Apenas dentro dos ossos.", "Eles nunca saem dos vasos sanguíneos.", "Apenas no cérebro.", "Podem migrar do sangue para os tecidos e para a linfa."], answer: "Podem migrar do sangue para os tecidos e para a linfa." },
+    { question: "A frequência cardíaca normal em um adulto em repouso é de aproximadamente:", options: ["40-50 bpm", "50-60 bpm", "70-80 bpm", "90-100 bpm"], answer: "70-80 bpm" },
+    { question: "Qual dos seguintes fatores NÃO influencia a pressão atmosférica?", options: ["Altitude", "Temperatura", "Longitude", "Umidade do ar"], answer: "Longitude" },
+    { question: "A aerogastria e aerocolia são manifestações de disbarismo em qual parte do corpo?", options: ["Ouvidos e seios da face.", "Dentes.", "Trato gastrointestinal (estômago e intestinos).", "Pulmões."], answer: "Trato gastrointestinal (estômago e intestinos)." },
+    { question: "Se um estetoscópio é usado para medir a pressão arterial, os sons são audíveis quando a pressão na bolsa de ar está:", options: ["Acima da pressão sistólica.", "Abaixo da pressão diastólica.", "Entre a pressão sistólica e a diastólica.", "Os sons nunca são audíveis."], answer: "Entre a pressão sistólica e a diastólica." },
+    { question: "Qual o nome da válvula que fica entre o átrio direito e o ventrículo direito?", options: ["Válvula Mitral (Bicúspide)", "Válvula Aórtica", "Válvula Tricúspide", "Válvula Pulmonar"], answer: "Válvula Tricúspide" },
+    { question: "O sangue sai do ventrículo esquerdo e vai para o corpo através de qual grande vaso sanguíneo?", options: ["Artéria Pulmonar", "Veia Cava Superior", "Artéria Aorta", "Veias Pulmonares"], answer: "Artéria Aorta" },
+    { question: "O que é 'necrose celular', consequência final de um IAM não tratado?", options: ["A multiplicação descontrolada das células.", "A inflamação do tecido.", "A morte do tecido por falta de oxigênio e nutrientes.", "A cicatrização do músculo cardíaco."], answer: "A morte do tecido por falta de oxigênio e nutrientes." },
+    { question: "Qual a principal medida para minimizar os efeitos de ruídos na cabine?", options: ["Falar mais alto.", "Ouvir música com fones de ouvido.", "Utilizar protetores auriculares.", "Manter as janelas fechadas."], answer: "Utilizar protetores auriculares." }
+];
+
+// Variáveis Globais de Controle e Funções do Quiz
 const menuContainer = document.getElementById('menu-container');
 const quizContainer = document.getElementById('quiz-container');
 const quizBody = document.getElementById('quiz-body');
@@ -348,18 +480,36 @@ let currentLevel = '';
 
 function startQuiz(level) {
     currentLevel = level;
-    if (level === 'nivel1') {
-        currentQuizData = quizDataNivel1;
-        quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 1 - Conceitos Gerais</span>`;
-        resultsTitle.innerText = "Quiz Nível 1 Finalizado!";
-        quizHeader.classList.remove('level-2');
-        progressBar.classList.remove('level-2');
-    } else {
-        currentQuizData = quizDataNivel2;
-        quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 2 - Conhecimento Aprofundado</span>`;
-        resultsTitle.innerText = "Quiz Nível 2 Finalizado!";
-        quizHeader.classList.add('level-2');
-        progressBar.classList.add('level-2');
+    // Lógica para selecionar o banco de dados correto
+    switch (level) {
+        case 'aeronauta_nivel1':
+            currentQuizData = quizDataAeronautaN1;
+            quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 1 - Conceitos Gerais</span>`;
+            resultsTitle.innerText = "Quiz Nível 1 (Aeronauta) Finalizado!";
+            quizHeader.className = 'level-1';
+            progressBar.className = 'level-1';
+            break;
+        case 'aeronauta_nivel2':
+            currentQuizData = quizDataAeronautaN2;
+            quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 2 - Conhecimento Aprofundado</span>`;
+            resultsTitle.innerText = "Quiz Nível 2 (Aeronauta) Finalizado!";
+            quizHeader.className = 'level-2';
+            progressBar.className = 'level-2';
+            break;
+        case 'fisiologia_nivel1':
+            currentQuizData = quizDataFisiologiaN1;
+            quizTitle.innerHTML = `Aspectos Fisiológicos <span>Nível 1 - Fundamentos</span>`;
+            resultsTitle.innerText = "Quiz Nível 1 (Fisiologia) Finalizado!";
+            quizHeader.className = 'level-1 fisiologia';
+            progressBar.className = 'level-1';
+            break;
+        case 'fisiologia_nivel2':
+            currentQuizData = quizDataFisiologiaN2;
+            quizTitle.innerHTML = `Aspectos Fisiológicos <span>Nível 2 - Detalhes e Aplicações</span>`;
+            resultsTitle.innerText = "Quiz Nível 2 (Fisiologia) Finalizado!";
+            quizHeader.className = 'level-2 fisiologia';
+            progressBar.className = 'level-2';
+            break;
     }
     
     menuContainer.classList.add('hidden');
@@ -367,15 +517,12 @@ function startQuiz(level) {
     resultsContainer.classList.add('hidden');
     navigation.classList.remove('hidden');
 
-    currentQuestion = 0;
-    userAnswers = [];
-    
     loadProgress();
     showQuestion();
 }
 
 function backToMenu() {
-    saveProgress(); // Salva o progresso antes de voltar
+    saveProgress();
     quizContainer.classList.add('hidden');
     menuContainer.classList.remove('hidden');
 }
@@ -389,7 +536,9 @@ function showQuestion() {
 
     const questionText = document.createElement('h3');
     questionText.innerHTML = `${currentQuestion + 1}. ${questionData.question}`;
-    if(currentLevel === 'nivel2') questionText.classList.add('level-2');
+    if(currentLevel.includes('nivel2')) {
+        questionText.classList.add('level-2');
+    }
     questionBlock.appendChild(questionText);
 
     const optionsList = document.createElement('ul');
@@ -445,7 +594,6 @@ function nextQuestion() {
 
     if (buttonText === 'Continuar') {
         currentQuestion++;
-        saveProgress(); // Salva a nova posição
         showQuestion();
         return;
     }
@@ -491,7 +639,6 @@ function nextQuestion() {
 function prevQuestion() {
     if (currentQuestion > 0) {
         currentQuestion--;
-        saveProgress(); // Salva a nova posição
         showQuestion();
     }
 }
@@ -511,11 +658,10 @@ function loadProgress() {
         const progress = JSON.parse(savedProgress);
         userAnswers = progress.answers || Array(currentQuizData.length).fill(undefined);
         currentQuestion = progress.currentQuestion || 0;
-
-        // Garante que o array de respostas tenha o tamanho correto
-        if (userAnswers.length < currentQuizData.length) {
-            const diff = currentQuizData.length - userAnswers.length;
-            userAnswers = userAnswers.concat(Array(diff).fill(undefined));
+        
+        if (userAnswers.length !== currentQuizData.length) {
+            userAnswers = Array(currentQuizData.length).fill(undefined);
+            currentQuestion = 0;
         }
     } else {
         userAnswers = Array(currentQuizData.length).fill(undefined);
@@ -526,11 +672,12 @@ function loadProgress() {
 function resetQuiz() {
     if (confirm('Tem certeza de que deseja resetar o progresso deste quiz? Suas respostas serão apagadas.')) {
         localStorage.removeItem(`quizProgress_${currentLevel}`);
-        startQuiz(currentLevel); // Reinicia o quiz atual
+        startQuiz(currentLevel);
     }
 }
 
 function showResults() {
+    saveProgress();
     quizBody.classList.add('hidden');
     navigation.classList.add('hidden');
     resultsContainer.classList.remove('hidden');
