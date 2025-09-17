@@ -386,7 +386,7 @@ const quizDataFisiologiaN1 = [
     { question: "O relaxamento do músculo cardíaco é chamado de:", options: ["Sístole", "Diástole", "Apneia", "Isquemia"], answer: "Diástole" },
     { question: "O que é o 'sopro cardíaco'?", options: ["Um sinal normal do funcionamento do coração.", "Um ruído causado pela disfunção de uma válvula cardíaca.", "O som da respiração ouvido no peito.", "Um sintoma de pressão alta."], answer: "Um ruído causado pela disfunção de uma válvula cardíaca." },
     { question: "Qual estrutura é considerada o 'marcapasso natural' do coração, controlando os batimentos?", options: ["Válvula Mitral", "Feixe de His", "Nódulo Sinoatrial", "Ventrículo Esquerdo"], answer: "Nódulo Sinoatrial" },
-    { question: "Qual a principal diferença entre a constituição das paredes de artérias e veias?", options: ["Veias não possuem tecido muscular.", "Artérias possuem paredes mais finas e menos elásticas.", "Artérias possuem paredes mais espessas e elásticas para suportar alta pressão.", "Artérias possuem válvulas e veias não."], answer: "Artérias possuem paredes mais espessas и elásticas para suportar alta pressão." },
+    { question: "Qual a principal diferença entre a constituição das paredes de artérias e veias?", options: ["Veias não possuem tecido muscular.", "Artérias possuem paredes mais finas e menos elásticas.", "Artérias possuem paredes mais espessas e elásticas para suportar alta pressão.", "Artérias possuem válvulas e veias não."], answer: "Artérias possuem paredes mais espessas e elásticas para suportar alta pressão." },
     { question: "O que é hematose?", options: ["A coagulação do sangue.", "A produção de células sanguíneas.", "A troca gasosa que ocorre nos pulmões, onde o sangue se torna arterial.", "O processo de filtragem do sangue pelos rins."], answer: "A troca gasosa que ocorre nos pulmões, onde o sangue se torna arterial." },
     { question: "Qual dos seguintes alimentos é mais propenso a causar gases (aerodilatação) em altitude?", options: ["Água", "Peito de frango grelhado", "Refrigerantes", "Arroz branco"], answer: "Refrigerantes" },
     { question: "Qual fator de risco para IAM NÃO pode ser controlado ou mudado?", options: ["Sedentarismo", "Hipertensão arterial", "História familiar", "Colesterol alto"], answer: "História familiar" },
@@ -456,10 +456,11 @@ const quizDataFisiologiaN2 = [
     { question: "Qual o nome da válvula que fica entre o átrio direito e o ventrículo direito?", options: ["Válvula Mitral (Bicúspide)", "Válvula Aórtica", "Válvula Tricúspide", "Válvula Pulmonar"], answer: "Válvula Tricúspide" },
     { question: "O sangue sai do ventrículo esquerdo e vai para o corpo através de qual grande vaso sanguíneo?", options: ["Artéria Pulmonar", "Veia Cava Superior", "Artéria Aorta", "Veias Pulmonares"], answer: "Artéria Aorta" },
     { question: "O que é 'necrose celular', consequência final de um IAM não tratado?", options: ["A multiplicação descontrolada das células.", "A inflamação do tecido.", "A morte do tecido por falta de oxigênio e nutrientes.", "A cicatrização do músculo cardíaco."], answer: "A morte do tecido por falta de oxigênio e nutrientes." },
-    { question: "Qual a principal medida para minimizar os efeitos de ruídos na cabine?", options: ["Falar mais alto.", "Ouvir música com fones de ouvido.", "Utilizar protetores auriculares.", "Manter as janelas fechadas."], answer: "Utilizar protetores auriculares." }
+    { question: "Como é remunerada a hora de sobreaviso?", options: ["Na mesma base da hora de voo.", "À base de 1/3 (um terço) do valor da hora de voo.", "À base de 1/2 (metade) do valor da hora de voo.", "Não é remunerada, apenas o tempo de deslocamento."], answer: "À base de 1/3 (um terço) do valor da hora de voo." }
 ];
 
-// Variáveis Globais de Controle e Funções do Quiz
+
+// Lógica principal do Quiz (JavaScript)
 const menuContainer = document.getElementById('menu-container');
 const quizContainer = document.getElementById('quiz-container');
 const quizBody = document.getElementById('quiz-body');
@@ -480,7 +481,6 @@ let currentLevel = '';
 
 function startQuiz(level) {
     currentLevel = level;
-    // Lógica para selecionar o banco de dados correto
     switch (level) {
         case 'aeronauta_nivel1':
             currentQuizData = quizDataAeronautaN1;
@@ -530,43 +530,34 @@ function backToMenu() {
 function showQuestion() {
     const questionData = currentQuizData[currentQuestion];
     quizBody.innerHTML = '';
-
     const questionBlock = document.createElement('div');
     questionBlock.classList.add('question-block');
-
     const questionText = document.createElement('h3');
     questionText.innerHTML = `${currentQuestion + 1}. ${questionData.question}`;
     if(currentLevel.includes('nivel2')) {
         questionText.classList.add('level-2');
     }
     questionBlock.appendChild(questionText);
-
     const optionsList = document.createElement('ul');
     optionsList.classList.add('options');
     optionsList.classList.remove('disabled');
-
     questionData.options.forEach(option => {
         const optionItem = document.createElement('li');
         optionItem.innerHTML = `<label><input type="radio" name="question${currentQuestion}" value="${option}"> ${option}</label>`;
-        
         if (userAnswers[currentQuestion] === option) {
             optionItem.classList.add('selected');
             optionItem.querySelector('input').checked = true;
         }
-
         optionItem.addEventListener('click', () => {
             if (optionsList.classList.contains('disabled')) return;
             document.querySelectorAll(`#quiz-body ul li`).forEach(li => li.classList.remove('selected'));
             optionItem.classList.add('selected');
             selectAnswer(option);
         });
-        
         optionsList.appendChild(optionItem);
     });
-
     questionBlock.appendChild(optionsList);
     quizBody.appendChild(questionBlock);
-
     updateNavigation();
     updateProgress();
 }
