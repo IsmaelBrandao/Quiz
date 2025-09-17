@@ -1,0 +1,471 @@
+// BANCO DE QUESTÕES - REGULAMENTAÇÃO DO AERONAUTA - NÍVEL 1
+const quizDataAeronautaN1 = [
+    { question: "De acordo com a Lei Nº 13.475/2017, quem é considerado aeronauta?", options: ["Apenas pilotos de aeronave e comissários de voo.","Profissionais que trabalham no aeroporto em funções de solo.","Piloto de aeronave, comissário de voo e mecânico de voo.","Qualquer pessoa a bordo de uma aeronave civil nacional."], answer: "Piloto de aeronave, comissário de voo e mecânico de voo." },
+    { question: "O que é a 'tripulação mínima'?", options: ["A tripulação necessária para voos internacionais longos.","A determinada na certificação de tipo da aeronave, permitida em voos de instrução, experiência, vistoria e traslado.","A tripulação simples acrescida de um comandante.","Qualquer tripulação com menos de 3 membros."], answer: "A determinada na certificação de tipo da aeronave, permitida em voos de instrução, experiência, vistoria e traslado." },
+    { question: "Qual é a composição de uma 'tripulação composta'?", options: ["Tripulação simples + 1 piloto + 50% de comissários.","Tripulação simples + 1 comandante + 1 mecânico de voo (se necessário) + 25% do número de comissários.","Tripulação mínima + 2 comandantes.","Tripulação simples + 1 comissário extra para cada 50 passageiros."], answer: "Tripulação simples + 1 comandante + 1 mecânico de voo (se necessário) + 25% do número de comissários." },
+    { question: "A 'tripulação de revezamento' pode ser empregada em quais tipos de voos?", options: ["Apenas em voos domésticos com mais de 12 horas.","Em qualquer voo, desde que autorizado pela ANAC.","Apenas em voos internacionais.","Em voos de táxi aéreo e serviços especializados."], answer: "Apenas em voos internacionais." },
+    { question: "O que é definido como 'hora de voo' ou 'tempo de voo'?", options: ["O período desde a decolagem até o pouso da aeronave.","O tempo em que a aeronave está acima de 10.000 pés.","O período 'calço a calço': do início do deslocamento até a imobilização total da aeronave.","A duração total da jornada de trabalho do tripulante."], answer: "O período 'calço a calço': do início do deslocamento até a imobilização total da aeronave." },
+    { question: "Qual o limite de horas de voo e pousos para um integrante de tripulação simples em serviço de transporte aéreo público regular (RBAC 121)?", options: ["11 horas de voo e 5 pousos.","9 horas de voo e 6 pousos.","8 horas de voo e 4 pousos.","10 horas de voo e sem limite de pousos."], answer: "8 horas de voo e 4 pousos." },
+    { question: "A jornada de trabalho de um tripulante é contada a partir de qual momento?", options: ["Da partida dos motores.","Do fechamento das portas da aeronave.","Da hora da apresentação no local de trabalho.","Do início do briefing de pré-voo."], answer: "Da hora da apresentação no local de trabalho." },
+    { question: "Qual o limite máximo de jornada de trabalho para uma tripulação composta em serviços de táxi aéreo (RBAC 135)?", options: ["12 horas.","16 horas.","11 horas.","14 horas."], answer: "14 horas." },
+    { question: "O que é 'sobreaviso'?", options: ["Período em que o tripulante permanece no aeroporto à disposição do empregador.","Período em que o tripulante permanece em local de sua escolha, devendo se apresentar em até 90 minutos após ser comunicado.","O tempo de descanso obrigatório entre jornadas.","Um período de trabalho em simulador."], answer: "Período em que o tripulante permanece em local de sua escolha, devendo se apresentar em até 90 minutos após ser comunicado." },
+    { question: "Como é remunerada a hora de 'reserva'?", options: ["Com 1/3 do valor da hora de voo.","Não é remunerada, mas conta como jornada.","Na mesma base da hora de voo.","Com 50% do valor da hora de voo."], answer: "Na mesma base da hora de voo." },
+    { question: "Qual o tempo mínimo de repouso assegurado a um tripulante após uma jornada de 14 horas?", options: ["12 horas.","24 horas.","16 horas.","20 horas."], answer: "16 horas." },
+    { question: "Um tripulante em serviço de transporte aéreo regular (RBAC 121) tem direito a um número mínimo mensal de quantas folgas?", options: ["8 folgas.","12 folgas.","10 folgas.","6 folgas."], answer: "10 folgas." },
+    { question: "A função de comissário de voo é auxiliar de quem a bordo?", options: ["Do chefe de cabine.","Do copiloto.","Do comandante, encarregado das normas de segurança e atendimento.","Da equipe de solo."], answer: "Do comandante, encarregado das normas de segurança e atendimento." },
+    { question: "De acordo com o RBAC 121, quantos comissários são necessários em um avião com capacidade para 80 passageiros?", options: ["Um comissário.","Dois comissários.","Três comissários.","Quatro comissários."], answer: "Dois comissários." },
+    { question: "O que é um 'tripulante extra a serviço'?", options: ["Um tripulante em treinamento.","Um tripulante que se desloca a serviço do empregador, sem exercer função a bordo.","Um mecânico de voo que não faz parte da tripulação mínima.","Um tripulante de outra companhia aérea pegando carona."], answer: "Um tripulante que se desloca a serviço do empregador, sem exercer função a bordo." },
+    { question: "A jornada de trabalho de um tripulante é considerada encerrada quantos minutos após a parada final dos motores em voos domésticos?", options: ["15 minutos.","45 minutos.","60 minutos.","30 minutos."], answer: "30 minutos." },
+    { question: "Para efeito de jornada, como é computada a hora de trabalho noturno?", options: ["Como 60 minutos.","Como 52 minutos e 30 segundos.","Como 70 minutos.","Não há diferença no cômputo, apenas na remuneração."], answer: "Como 52 minutos e 30 segundos." },
+    { question: "Em quais situações o comandante pode ampliar os limites da jornada de trabalho em até 60 minutos?", options: ["Atraso de passageiros ou tráfego aéreo intenso.","Para chegar mais rápido à base contratual.","Inexistência de acomodações, condições meteorológicas desfavoráveis ou por imperiosa necessidade.","A qualquer momento, a seu critério, para otimizar a operação."], answer: "Inexistência de acomodações, condições meteorológicas desfavoráveis ou por imperiosa necessidade." },
+    { question: "Qual o limite máximo de madrugadas de trabalho consecutivas para um tripulante?", options: ["Uma madrugada.","Duas madrugadas.","Três madrugadas.","Não há limite."], answer: "Duas madrugadas." },
+    { question: "O que é considerado 'madrugada' para fins da lei?", options: ["O período entre 22h e 05h.","O período transcorrido, total ou parcialmente, entre 00h e 06h, no fuso da base contratual.","Qualquer voo que ocorra após a meia-noite local.","O período entre 01h e 05h, no fuso da base contratual."], answer: "O período transcorrido, total ou parcialmente, entre 00h e 06h, no fuso da base contratual." },
+    { question: "A duração da 'reserva' para um tripulante de aviação regular (RBAC 121) tem um máximo de:", options: ["4 horas.","10 horas.","8 horas.","6 horas."], answer: "6 horas." },
+    { question: "Quando um tripulante cruza 4 fusos horários em uma viagem, seu repouso na base contratual será acrescido de quantas horas?", options: ["4 horas (1 por fuso).","Nenhum acréscimo.","8 horas (2 por fuso).","6 horas."], answer: "8 horas (2 por fuso)." },
+    { question: "O que define uma 'transferência permanente'?", options: ["Deslocamento da base por período superior a 30 dias.","Deslocamento da base por período superior a 120 dias, com mudança de domicílio.","Qualquer deslocamento que exija mudança de cidade.","Deslocamento da base por período superior a 180 dias."], answer: "Deslocamento da base por período superior a 120 dias, com mudança de domicílio." },
+    { question: "De quem é a responsabilidade pelo custeio do Certificado Médico Aeronáutico (CMA) e da habilitação técnica (CHT) de um tripulante?", options: ["Do próprio tripulante.","Do sindicato da categoria.","É dividido entre o empregador e o tripulante.","Do empregador."], answer: "Do empregador." },
+    { question: "As férias anuais de um tripulante são de quantos dias consecutivos?", options: ["20 dias.","25 dias.","30 dias.","Depende do tempo de serviço na empresa."], answer: "30 dias." },
+    { question: "Qual a validade de um CMA de 2ª classe para um comissário de voo com 45 anos de idade?", options: ["12 meses.","24 meses.","60 meses.","Não há prazo de validade."], answer: "60 meses." },
+    { question: "Segundo o RBAC 117, o que é uma acomodação para descanso 'Classe 1' a bordo?", options: ["Um assento que reclina 40 graus na cabine de passageiros.","Um assento na cabine de comando.","Uma cama ou superfície horizontal, em local separado da cabine de comando e de passageiros, com controle de temperatura, iluminação e som.","Qualquer assento na primeira classe."], answer: "Uma cama ou superfície horizontal, em local separado da cabine de comando e de passageiros, com controle de temperatura, iluminação e som." },
+    { question: "Empresas brasileiras em serviço aéreo internacional podem utilizar comissários estrangeiros, desde que o número não exceda:", options: ["1/2 (metade) dos comissários a bordo.","1/3 (um terço) dos comissários a bordo.","1/4 (um quarto) dos comissários a bordo.","Não há permissão para comissários estrangeiros."], answer: "1/3 (um terço) dos comissários a bordo." },
+    { question: "O que é o CHT (Certificado de Habilitação Técnica)?", options: ["Um certificado de conclusão do curso de comissário.","O Certificado Médico Aeronáutico.","Um documento emitido pela ANAC que comprova a habilitação do profissional para exercer sua profissão.","Uma permissão para voos internacionais."], answer: "Um documento emitido pela ANAC que comprova a habilitação do profissional para exercer sua profissão." },
+    { question: "Qual o limite de horas de voo anuais para um tripulante em aviões a jato?", options: ["1000 horas.","850 horas.","800 horas.","960 horas."], answer: "800 horas." },
+    { question: "Por quanto tempo, no mínimo, um tripulante deve permanecer em sua base após cada transferência provisória?", options: ["30 dias.","90 dias.","120 dias.","180 dias."], answer: "180 dias." },
+    { question: "Em voos no período noturno (22h às 06h), uma refeição deve ser servida se a duração do voo for igual ou superior a:", options: ["1 hora.","2 horas.","3 horas.","4 horas."], answer: "3 horas." },
+    { question: "Qual a duração mínima e máxima do intervalo para alimentação do tripulante quando em terra?", options: ["Mínimo 30 min e máximo 45 min.","Mínimo 45 min e máximo 60 min.","Mínimo 60 min e máximo 90 min.","A duração não é especificada."], answer: "Mínimo 45 min e máximo 60 min." },
+    { question: "O que o empregador deve assegurar ao tripulante em serviço fora da base contratual em casos de urgência médica?", options: ["Apenas o contato de um hospital local.","Reembolso parcial das despesas.","Assistência médica e remoção por via aérea para retorno à base ou tratamento.","Uma licença remunerada para tratamento."], answer: "Assistência médica e remoção por via aérea para retorno à base ou tratamento." },
+    { question: "As peças de uniforme e equipamentos exigidos para o exercício da profissão são custeadas por quem?", options: ["Pelo tripulante, com reembolso de 50%.","Pelo sindicato da categoria.","Pela empresa (empregador), gratuitamente.","Pela ANAC."], answer: "Pela empresa (empregador), gratuitamente." },
+    { question: "Com qual antecedência mínima o empregador deve notificar o tripulante sobre uma transferência permanente?", options: ["15 dias.","30 dias.","60 dias.","90 dias."], answer: "60 dias." },
+    { question: "O pagamento da remuneração das férias do tripulante deve ser realizado até quantos dias antes do seu início?", options: ["No primeiro dia das férias.","Até 2 dias antes.","Até 5 dias antes.","No quinto dia útil do mês das férias."], answer: "Até 2 dias antes." },
+    { question: "Qual o período máximo de trabalho consecutivo permitido a um tripulante de táxi aéreo, contado da saída ao regresso à sua base?", options: ["15 dias.","21 dias.","30 dias.","Não há limite especificado."], answer: "21 dias." },
+    { question: "Quando um tripulante pode cumprir uma combinação de voos passando por sua base contratual sem ser dispensado do serviço?", options: ["Apenas em situações de emergência.","A qualquer momento, a critério do comandante.","Nunca, o tripulante deve ser dispensado ao passar pela base.","Desde que a programação obedeça à escala previamente publicada."], answer: "Desde que a programação obedeça à escala previamente publicada." },
+    { question: "O que acontece se não houver transporte disponível para a tripulação ao término da jornada fora da base contratual?", options: ["A jornada é estendida até o transporte chegar.","A tripulação deve providenciar seu próprio transporte.","O período de repouso será computado a partir da colocação de transporte à disposição.","A empresa paga uma multa para cada tripulante."], answer: "O período de repouso será computado a partir da colocação de transporte à disposição." },
+    { question: "Qual o limite máximo, em horas, que um tipo de tripulação pode ser transformado (ex: simples para composta) na origem do voo?", options: ["1 hora, a partir da apresentação.","2 horas, a partir da apresentação.","3 horas, a partir da apresentação.","Pode ser transformado a qualquer momento antes da decolagem."], answer: "3 horas, a partir da apresentação." },
+    { question: "O que a lei define como 'base contratual' de um tripulante?", options: ["O aeroporto onde o tripulante mais opera.","A cidade onde o tripulante reside.","A matriz ou filial onde o contrato de trabalho do tripulante está registrado.","O principal hub de operações da companhia aérea."], answer: "A matriz ou filial onde o contrato de trabalho do tripulante está registrado." },
+    { question: "A autoridade do comandante sobre a tripulação é exercida durante qual período?", options: ["Apenas durante o voo, do 'calço a calço'.","Desde o momento em que se apresenta para o voo até a entrega da aeronave.","Durante toda a jornada de trabalho, mesmo em solo.","Apenas em situações de emergência a bordo."], answer: "Desde o momento em que se apresenta para o voo até a entrega da aeronave." },
+    { question: "Em que situação um instrutor de voo estrangeiro pode ser admitido por uma empresa brasileira?", options: ["A qualquer momento, se tiver mais experiência.","Apenas em voos internacionais.","Na falta de tripulantes de voo brasileiros, em caráter provisório e restrito ao período de instrução.","A lei não permite a contratação de instrutores estrangeiros."], answer: "Na falta de tripulantes de voo brasileiros, em caráter provisório e restrito ao período de instrução." },
+    { question: "O tempo de deslocamento para um aeroporto de partida a mais de 50km da base contratual é computado na jornada de trabalho?", options: ["Sim, e é remunerado como hora de voo.","Sim, é computado na jornada, mas não é remunerado.","Não, o tempo de deslocamento não faz parte da jornada.","Apenas 50% do tempo de deslocamento é computado."], answer: "Sim, é computado na jornada, mas não é remunerado." },
+    { question: "A escala de serviço mensal para tripulantes da aviação regular (RBAC 121) deve ser divulgada com qual antecedência mínima?", options: ["2 dias.","5 dias.","7 dias.","10 dias."], answer: "5 dias." },
+    { question: "Um tripulante pode exercer, simultaneamente, mais de uma função a bordo, mesmo que seja titular das licenças correspondentes?", options: ["Sim, se o comandante autorizar.","Sim, em voos com menos de 1 hora de duração.","Não, em nenhuma hipótese.","Apenas se for mecânico de voo e copiloto."], answer: "Não, em nenhuma hipótese." },
+    { question: "Para uma transferência provisória, qual é o período mínimo e máximo de deslocamento da base?", options: ["Mínimo 15 dias e máximo 60 dias.","Mínimo 30 dias e máximo 90 dias.","Mínimo 30 dias e máximo 120 dias.","Mínimo 60 dias e máximo 180 dias."], answer: "Mínimo 30 dias e máximo 120 dias." },
+    { question: "Na transferência permanente, a ajuda de custo para despesas de instalação não pode ser inferior a:", options: ["2 vezes o valor do salário mensal.","3 vezes o valor do salário mensal.","4 vezes o valor do salário mensal.","5 vezes o valor do salário mensal."], answer: "4 vezes o valor do salário mensal." },
+    { question: "A quem se aplica a Lei nº 13.475/2017 no caso de aeronautas brasileiros trabalhando em aeronaves estrangeiras?", options: ["A lei brasileira não se aplica nesses casos.","Aplica-se apenas se a aeronave estiver em território brasileiro.","Aplica-se aos que exercem suas funções em virtude de contrato de trabalho regido pela legislação brasileira.","Aplica-se a todos os aeronautas brasileiros, independentemente do contrato."], answer: "Aplica-se aos que exercem suas funções em virtude de contrato de trabalho regido pela legislação brasileira." }
+];
+
+// BANCO DE QUESTÕES - REGULAMENTAÇÃO DO AERONAUTA - NÍVEL 2
+const quizDataAeronautaN2 = [
+    { question: "Como é remunerada a hora de sobreaviso?", options: ["Na mesma base da hora de voo.", "À base de 1/3 (um terço) do valor da hora de voo.", "À base de 1/2 (metade) do valor da hora de voo.", "Não é remunerada, apenas o tempo de deslocamento."], answer: "À base de 1/3 (um terço) do valor da hora de voo." },
+    { question: "Qual a porcentagem mínima de comissários de voo que deve ser acrescida a uma tripulação simples para formar uma tripulação de revezamento?", options: ["25%","33%","50%","100%"], answer: "50%" },
+    { question: "Além de atrasos por condições meteorológicas, em que outra situação uma tripulação composta pode ser usada em voo doméstico na aviação regular?", options: ["Quando há excesso de passageiros.","Para atender a trabalhos de manutenção não programados.","Em feriados nacionais de grande movimento.","A critério exclusivo do comandante da aeronave."], answer: "Para atender a trabalhos de manutenção não programados." },
+    { question: "Qual o prazo máximo, em minutos, para apresentação de um tripulante de sobreaviso em um município com dois ou mais aeroportos, caso seja designado para um diferente de sua base?", options: ["60 minutos.","90 minutos.","120 minutos.","150 minutos."], answer: "150 minutos." },
+    { question: "A duração do sobreaviso de um tripulante não pode ser inferior a 3 horas nem exceder a:", options: ["8 horas.","10 horas.","12 horas.","14 horas."], answer: "12 horas." },
+    { question: "A reserva de um tripulante empregado em táxi aéreo (RBAC 135) terá duração máxima de:", options: ["6 horas.","8 horas.","10 horas.","12 horas."], answer: "10 horas." },
+    { question: "O trabalho realizado como 'tripulante extra a serviço' é computado para qual limite?", options: ["Apenas para os limites de horas de voo mensais e anuais.","Apenas para o limite de pousos da jornada.","Para os limites da jornada de trabalho, mas não para os limites de horas de voo.","Não é computado para nenhum limite, apenas remunerado."], answer: "Para os limites da jornada de trabalho, mas não para os limites de horas de voo." },
+    { question: "Qual acréscimo de repouso é concedido a um tripulante caso o empregador opte por aumentar o limite de pousos de 4 para 5 em uma jornada de tripulação simples?", options: ["Nenhum, apenas a remuneração é maior.","1 hora de repouso adicional.","2 horas de repouso adicional.","A jornada é reduzida em 1 hora."], answer: "2 horas de repouso adicional." },
+    { question: "A jornada de trabalho é considerada encerrada 45 minutos após a parada final dos motores em que tipo de voo?", options: ["Voos domésticos.","Voos internacionais.","Voos de carga.","Todos os tipos de voo."], answer: "Voos internacionais." },
+    { question: "A jornada de trabalho semanal não excederá a 44 horas, e a mensal não excederá a:", options: ["160 horas.","176 horas.","180 horas.","200 horas."], answer: "176 horas." },
+    { question: "Para tripulantes em serviços de táxi aéreo (RBAC 135), qual o período máximo de trabalho consecutivo no local de operação, fora da base contratual?", options: ["15 dias.","17 dias.","21 dias.","30 dias."], answer: "17 dias." },
+    { question: "Um tripulante pode ser escalado para uma terceira madrugada consecutiva de trabalho?", options: ["Não, em nenhuma hipótese.","Sim, se receber remuneração dobrada.","Sim, desde que como tripulante extra em voo de retorno à base.","Sim, a critério do comandante da aeronave."], answer: "Sim, desde que como tripulante extra em voo de retorno à base." },
+    { question: "O que a lei define como 'acomodação adequada' para repouso do tripulante fora da base contratual?", options: ["Quarto compartilhado com banheiro privativo.","Quarto individual em hotel com no mínimo 3 estrelas.","Quarto individual com banheiro privativo e condições adequadas de higiene, segurança, ruído e controle de temperatura/luminosidade.","Qualquer local de descanso disponibilizado pela empresa."], answer: "Quarto individual com banheiro privativo e condições adequadas de higiene, segurança, ruído e controle de temperatura/luminosidade." },
+    { question: "Uma folga só pode ter início após a conclusão do:", options: ["Briefing pós-voo.","Período de sobreaviso.","Repouso da jornada.","Ciclo de 7 dias de trabalho."], answer: "Repouso da jornada." },
+    { question: "Quando um tripulante faz um curso de 30 dias fora da base, ele tem direito a uma licença remunerada no regresso. Quantos dias de licença ele receberá?", options: ["1 dia.","2 dias.","3 dias.","Nenhum, pois o curso é considerado trabalho."], answer: "2 dias." },
+    { question: "Para voos internacionais de longo curso, o limite de 6 períodos de 24h para o início da folga pode ser ampliado em 36 horas. Qual a contrapartida da empresa?", options: ["Pagar um bônus ao tripulante.","Conceder 2 períodos de folga a mais no mesmo mês.","Aumentar o período de férias em 2 dias.","Nenhuma, a ampliação já é prevista em lei."], answer: "Conceder 2 períodos de folga a mais no mesmo mês." },
+    { question: "Diárias de hospedagem e alimentação pagas pela empresa integram a remuneração do tripulante para cálculo de férias e 13º salário?", options: ["Sim, integram totalmente.","Apenas 50% do valor.","Não, são consideradas ajudas de custo e não integram a remuneração.","Apenas se o valor exceder 50% do salário base."], answer: "Não, são consideradas ajudas de custo e não integram a remuneração." },
+    { question: "A parcela variável da remuneração do tripulante é obrigatoriamente calculada com base nas horas de voo, exceto para qual modalidade de serviço aéreo?", options: ["Transporte aéreo público regular.","Aviação agrícola, onde pode ser baseada na área produzida.","Voos internacionais de longo curso.","Voos de instrução em escolas de aviação."], answer: "Aviação agrícola, onde pode ser baseada na área produzida." },
+    { question: "Qual o intervalo máximo em que a alimentação deve ser servida ao tripulante durante um voo?", options: ["2 horas.","3 horas.","4 horas.","Não há intervalo máximo definido."], answer: "4 horas." },
+    { question: "Para tripulantes de helicópteros, o período de alimentação de 60 minutos é computado na jornada de trabalho?", options: ["Sim, integralmente.","Apenas 30 minutos são computados.","Não, o período não é computado na jornada.","Apenas se a alimentação ocorrer a bordo de unidades marítimas."], answer: "Não, o período não é computado na jornada." },
+    { question: "O empregador deve controlar a validade do CMA e CHT de seus tripulantes. De quem é a responsabilidade de manter o CMA em dia?", options: ["Exclusivamente do empregador.","Do sindicato da categoria.","Do tripulante, com o empregador controlando a validade.","Exclusivamente do tripulante."], answer: "Do tripulante, com o empregador controlando a validade." },
+    { question: "Em que meses as empresas devem manter rodízio na concessão de férias entre tripulantes do mesmo equipamento?", options: ["Março, Abril, Setembro e Outubro.","Junho, Julho, Novembro e Dezembro.","Janeiro, Fevereiro, Julho e Dezembro.","A lei não especifica meses para rodízio."], answer: "Janeiro, Fevereiro, Julho e Dezembro." },
+    { question: "Qual o interstício (intervalo) mínimo entre duas transferências permanentes para um mesmo tripulante?", options: ["6 meses.","1 ano.","180 dias.","2 anos."], answer: "2 anos." },
+    { question: "Na transferência provisória, o tripulante tem direito a uma licença remunerada no regresso. Se a transferência durar 40 dias, quantos dias de licença ele terá?", options: ["2 dias.","3 dias.","4 dias.","5 dias."], answer: "3 dias." },
+    { question: "Na transferência permanente, a ajuda de custo não pode ser inferior a 4 vezes o salário mensal. Além disso, o tripulante tem direito a dispensa do trabalho por quantos dias?", options: ["5 dias.","8 dias.","10 dias.","15 dias."], answer: "8 dias." },
+    { question: "Qual a função do copiloto em uma tripulação composta ou de revezamento?", options: ["Ele é o substituto eventual do comandante.","Ele não é considerado substituto eventual do comandante nesses tipos de tripulação.","Ele assume o comando na segunda metade do voo.","Ele é responsável pela comunicação com o controle de tráfego aéreo."], answer: "Ele não é considerado substituto eventual do comandante nesses tipos de tripulação." },
+    { question: "A guarda de valores pelos comissários de voo é condicionada a quê?", options: ["À autorização prévia do comandante.","À presença de um segurança a bordo.","À existência de local apropriado e seguro na aeronave, atestado pelo empregador.","A voos com duração superior a 4 horas."], answer: "À existência de local apropriado e seguro na aeronave, atestado pelo empregador." },
+    { question: "A autoridade de aviação civil (ANAC) pode determinar a modificação da composição de uma tripulação baseando-se em quais critérios?", options: ["Apenas no custo da operação.","Apenas na antiguidade dos tripulantes escalados.","No interesse da segurança operacional, características da rota e do voo.","Apenas na solicitação da empresa aérea."], answer: "No interesse da segurança operacional, características da rota e do voo." },
+    { question: "Qual o limite mensal de sobreavisos para um tripulante da aviação regular (RBAC 121)?", options: ["6 sobreavisos.","8 sobreavisos.","10 sobreavisos.","Não há limite."], answer: "8 sobreavisos." },
+    { question: "Caso um tripulante não seja acionado durante o sobreaviso, o que deve ser respeitado antes do início de uma nova tarefa?", options: ["Um período de folga de 24 horas.","Um repouso mínimo de 8 horas.","Ele pode iniciar uma nova tarefa imediatamente.","Um intervalo de 2 horas."], answer: "Um repouso mínimo de 8 horas." },
+    { question: "Para tripulantes de aeronaves convencionais e turboélice em serviço regular, o limite de pousos pode ser aumentado em até quantos pousos?", options: ["1 pouso.","2 pousos.","3 pousos.","Não pode ser aumentado."], answer: "2 pousos." },
+    { question: "Em caso de desvio para um aeroporto de alternativa, quantos pousos podem ser acrescidos aos limites normais da jornada?", options: ["Nenhum, o limite deve ser respeitado.","Apenas 1 pouso.","2 pousos.","Sem limite de pousos, em caso de alternativa."], answer: "Apenas 1 pouso." },
+    { question: "Se um tripulante opera diferentes tipos de aeronaves (ex: jato e turboélice), qual limite de horas de voo mensal e anual deve ser respeitado?", options: ["O limite superior.","Uma média entre os dois limites.","O limite inferior.","O tripulante escolhe qual limite seguir."], answer: "O limite inferior." },
+    { question: "Qual o período de tempo de voo considerado noturno para fins de jornada de trabalho (baseado no fuso da base contratual)?", options: ["Das 18h de um dia às 6h do dia seguinte.","Das 21h de um dia às 5h do dia seguinte.","Das 22h de um dia às 6h do dia seguinte.","Das 0h às 6h."], answer: "Das 18h de um dia às 6h do dia seguinte." },
+    { question: "O Sistema de Gerenciamento de Risco de Fadiga Humana pode alterar limites de jornada e repouso, mas para superar 12h de jornada ou diminuir 12h de repouso em tripulação simples, é necessário:", options: ["Apenas autorização da ANAC.","Apenas autorização do comandante.","Convenção ou acordo coletivo de trabalho.","Relatório de fadiga assinado pelo tripulante."], answer: "Convenção ou acordo coletivo de trabalho." },
+    { question: "Um tripulante de voo ou de cabine pode prestar serviço remunerado para um operador ao qual não tem vínculo por mais de uma vez ao ano?", options: ["Sim, até 3 vezes ao ano.","Sim, quantas vezes forem necessárias.","Não, a prestação desse serviço não pode ocorrer por mais de uma vez ao ano.","Sim, se o serviço for inferior a 15 dias."], answer: "Não, a prestação desse serviço não pode ocorrer por mais de uma vez ao ano." },
+    { question: "A escala semanal para tripulantes de táxi aéreo (RBAC 135) deve ser divulgada com qual antecedência mínima?", options: ["1 dia (24 horas).","2 dias (48 horas).","5 dias.","7 dias."], answer: "2 dias (48 horas)." },
+    { question: "Para voos exclusivamente cargueiros (RBAC 121), a empresa pode divulgar escala semanal com antecedência de 2 dias para a primeira semana e de quantos dias para as semanas seguintes?", options: ["2 dias.","5 dias.","7 dias.","10 dias."], answer: "7 dias." },
+    { question: "Em voos com tripulação composta, será assegurado um número de acomodações para descanso a bordo igual ao número de:", options: ["Tripulantes da tripulação mínima.","Tripulantes somados à tripulação simples.","Metade do total de tripulantes.","Comissários de voo."], answer: "Tripulantes somados à tripulação simples." },
+    { question: "Em voos com tripulação de revezamento, o número de acomodações para descanso a bordo deve ser igual a:", options: ["Um terço do total de tripulantes.","Metade do total de tripulantes.","O número total de tripulantes.","O número de tripulantes da tripulação simples."], answer: "Metade do total de tripulantes." },
+    { question: "Quando o empregador é um órgão da administração pública, as regras sobre a obrigatoriedade de contrato de trabalho direto se aplicam?", options: ["Sim, aplicam-se as mesmas regras do setor privado.","Não, as regras não se aplicam no exercício de missões institucionais ou de poder de polícia.","Sim, mas com flexibilização de prazos.","A lei não aborda essa situação."], answer: "Não, as regras não se aplicam no exercício de missões institucionais ou de poder de polícia." },
+    { question: "Quando o operador da aeronave poderá utilizar instrutores que não estejam a ele vinculados por contrato de trabalho?", options: ["A qualquer momento para reduzir custos.","Apenas em voos internacionais.","Quando em seu quadro não existirem instrutores habilitados para o equipamento específico.","A lei proíbe essa prática."], answer: "Quando em seu quadro não existirem instrutores habilitados para o equipamento específico." },
+    { question: "A folga de um tripulante em serviço regular (RBAC 121) deve ter no mínimo 24 horas consecutivas e deve incluir, pelo menos duas vezes ao mês:", options: ["Uma sexta-feira e um sábado.","Um sábado e um domingo consecutivos.","Um domingo e uma segunda-feira.","Dois dias úteis consecutivos."], answer: "Um sábado e um domingo consecutivos." },
+    { question: "Se um tripulante em situação de reserva for acionado para um voo, o tempo remunerado como reserva será contabilizado como?", options: ["Apenas a primeira hora de reserva.","Apenas as horas que excederem a franquia mínima.","O período entre o início da reserva e o início do voo.","O tempo de reserva não é remunerado se o tripulante voar."], answer: "O período entre o início da reserva e o início do voo." },
+    { question: "As frações de hora de voo são computadas para efeito de remuneração?", options: ["Não, apenas horas inteiras são computadas.","Sim, são computadas.","Apenas frações acima de 30 minutos.","Depende de acordo coletivo."], answer: "Sim, são computadas." },
+    { question: "É permitido converter férias em abono pecuniário (vender as férias)?", options: ["Sim, até 1/3 das férias.","Sim, integralmente, se o tripulante concordar.","Não, ressalvados os casos de rescisão de contrato.","Apenas com autorização do sindicato."], answer: "Não, ressalvados os casos de rescisão de contrato." },
+    { question: "Se um voo terminar em um aeroporto a mais de 50km da base e diferente dela, o repouso mínimo será acrescido de no mínimo:", options: ["30 minutos.","1 hora.","2 horas.","4 horas."], answer: "2 horas." },
+    { question: "Qual o limite de horas de voo em uma mesma jornada para um integrante de tripulação de helicópteros?", options: ["7 horas.","8 horas.","9 horas e 30 minutos.","11 horas."], answer: "8 horas." },
+    { question: "A implementação do Sistema de Gerenciamento de Risco de Fadiga Humana deve ser acompanhada por quem?", options: ["Apenas pela diretoria da empresa.","Apenas pela ANAC.","Pelo sindicato da categoria profissional.","Por uma consultoria internacional."], answer: "Pelo sindicato da categoria profissional." }
+];
+
+// BANCO DE QUESTÕES - ASPECTOS FISIOLÓGICOS - NÍVEL 1
+const quizDataFisiologiaN1 = [
+    { question: "Qual é a principal função do sistema circulatório?", options: ["Produzir hormônios para o corpo.", "Transportar nutrientes, gases e excretas.", "Realizar a digestão dos alimentos.", "Proteger o corpo contra impactos físicos."], answer: "Transportar nutrientes, gases e excretas." },
+    { question: "Quais são os três componentes principais do sistema circulatório?", options: ["Cérebro, pulmões e rins.", "Sangue, vasos sanguíneos e coração.", "Músculos, ossos e pele.", "Estômago, intestino e fígado."], answer: "Sangue, vasos sanguíneos e coração." },
+    { question: "O que caracteriza o sangue arterial?", options: ["É rico em gás carbônico e pobre em oxigênio.", "É rico em oxigênio e pobre em gás carbônico.", "Não possui células sanguíneas.", "É transportado apenas por veias."], answer: "É rico em oxigênio e pobre em gás carbônico." },
+    { question: "Qual tipo de vaso sanguíneo é responsável por levar o sangue DO coração PARA os tecidos do corpo?", options: ["Veias", "Capilares", "Artérias", "Vênulas"], answer: "Artérias" },
+    { question: "Qual tipo de vaso sanguíneo possui válvulas para impedir o refluxo do sangue?", options: ["Artérias", "Capilares", "Arteríolas", "Veias"], answer: "Veias" },
+    { question: "Onde ocorrem as trocas de gases e nutrientes entre o sangue e os tecidos?", options: ["Nas artérias de grosso calibre.", "No interior do coração.", "Nos capilares sanguíneos.", "Nas veias profundas."], answer: "Nos capilares sanguíneos." },
+    { question: "O coração humano é dividido em quantas cavidades?", options: ["Duas: um átrio e um ventrículo.", "Três: dois átrios e um ventrículo.", "Quatro: dois átrios e dois ventrículos.", "Cinco, incluindo a aorta."], answer: "Quatro: dois átrios e dois ventrículos." },
+    { question: "A pequena circulação (ou circulação pulmonar) descreve qual trajeto do sangue?", options: ["Coração -> Corpo -> Coração", "Coração -> Pulmões -> Coração", "Cérebro -> Coração -> Cérebro", "Fígado -> Coração -> Fígado"], answer: "Coração -> Pulmões -> Coração" },
+    { question: "A grande circulação (ou circulação sistêmica) é responsável por:", options: ["Levar sangue venoso aos pulmões.", "Oxigenar o sangue.", "Levar sangue arterial para todos os tecidos do corpo.", "Apenas irrigar o próprio coração."], answer: "Levar sangue arterial para todos os tecidos do corpo." },
+    { question: "Qual a causa mais comum do Infarto Agudo do Miocárdio (IAM)?", options: ["Estresse emocional súbito.", "Oclusão de uma artéria coronária por um trombo.", "Uma infecção viral no coração.", "Exercício físico exagerado."], answer: "Oclusão de uma artéria coronária por um trombo." },
+    { question: "O que é aterosclerose, no contexto do IAM?", options: ["O enfraquecimento do músculo cardíaco.", "Uma arritmia cardíaca.", "A formação de placas de gordura nas artérias.", "A dilatação de uma veia."], answer: "A formação de placas de gordura nas artérias." },
+    { question: "Qual dos seguintes é um fator de risco MODIFICÁVEL para o IAM?", options: ["Idade avançada.", "História familiar de doença cardíaca.", "Sexo masculino.", "Tabagismo."], answer: "Tabagismo." },
+    { question: "Qual é o sintoma mais clássico do infarto?", options: ["Dor de cabeça intensa na nuca.", "Dor no peito tipo aperto, peso ou pressão.", "Cãibras nas pernas.", "Tosse seca e persistente."], answer: "Dor no peito tipo aperto, peso ou pressão." },
+    { question: "A dor do infarto, ao contrário da angina estável, geralmente:", options: ["Melhora com o repouso.", "Dura apenas alguns segundos.", "Não alivia com o repouso e dura vários minutos.", "É aliviada com um copo de água."], answer: "Não alivia com o repouso e dura vários minutos." },
+    { question: "Além da dor no peito, quais outros sintomas podem acompanhar um infarto?", options: ["Aumento de apetite e euforia.", "Suores, falta de ar e náuseas.", "Visão turva e zumbido no ouvido.", "Coceira e manchas na pele."], answer: "Suores, falta de ar e náuseas." },
+    { question: "Qual camada da atmosfera concentra cerca de 80% dos gases e onde ocorre a maioria dos fenômenos meteorológicos?", options: ["Estratosfera", "Mesosfera", "Termosfera", "Troposfera"], answer: "Troposfera" },
+    { question: "Qual o principal gás que compõe a atmosfera terrestre, com aproximadamente 78%?", options: ["Oxigênio", "Dióxido de Carbono", "Argônio", "Nitrogênio"], answer: "Nitrogênio" },
+    { question: "Como a pressão atmosférica se comporta com o aumento da altitude?", options: ["Aumenta.", "Diminui.", "Permanece constante.", "Aumenta até 10.000 pés e depois diminui."], answer: "Diminui." },
+    { question: "O que é hipóxia?", options: ["Excesso de oxigênio nos tecidos.", "Deficiência de oxigênio nos tecidos.", "Excesso de gás carbônico no sangue.", "Formação de bolhas de nitrogênio no sangue."], answer: "Deficiência de oxigênio nos tecidos." },
+    { question: "Qual lei dos gases explica a expansão de gases nas cavidades do corpo com o aumento da altitude?", options: ["Lei de Dalton", "Lei de Henry", "Lei de Boyle-Mariotte", "Lei de Charles"], answer: "Lei de Boyle-Mariotte" },
+    { question: "A formação de bolhas de nitrogênio no sangue devido a uma descompressão rápida é explicada pela:", options: ["Lei de Boyle-Mariotte", "Lei de Henry", "Lei de Dalton", "Lei da Gravidade"], answer: "Lei de Henry" },
+    { question: "O que é Disbarismo ou Aerodilatação?", options: ["É a falta de oxigênio em altitude.", "É a desorientação espacial durante o voo.", "É a expansão de gases presos nas cavidades do corpo.", "É a fadiga causada por longos períodos de voo."], answer: "É a expansão de gases presos nas cavidades do corpo." },
+    { question: "Qual dos seguintes é um exemplo de disbarismo?", options: ["Hipóxia", "Fadiga", "Barotite (dor de ouvido)", "Jet lag"], answer: "Barotite (dor de ouvido)" },
+    { question: "O que significa 'Tempo Útil de Consciência' (TUC)?", options: ["O tempo total de um voo.", "O tempo que a tripulação tem para descansar.", "O tempo disponível para tomar ações corretivas após uma despressurização.", "O tempo que a aeronave leva para atingir a altitude de cruzeiro."], answer: "O tempo disponível para tomar ações corretivas após uma despressurização." },
+    { question: "O que é fadiga em aviação?", options: ["Um estado de euforia causado pela altitude.", "O tédio durante um voo longo.", "Um estado de reduzida capacidade de desempenho mental ou físico.", "Apenas o cansaço muscular após um voo."], answer: "Um estado de reduzida capacidade de desempenho mental ou físico." },
+    { question: "Qual a principal função do sistema linfático?", options: ["Bombear sangue para o corpo.", "Drenar o excesso de líquido dos tecidos e atuar na defesa do organismo.", "Produzir adrenalina.", "Regular a temperatura corporal."], answer: "Drenar o excesso de líquido dos tecidos e atuar na defesa do organismo." },
+    { question: "O que é a linfa?", options: ["O mesmo que sangue venoso.", "Um fluido derivado do sangue, composto por plasma e células de defesa.", "O líquido que preenche as articulações.", "Um hormônio produzido pelo pâncreas."], answer: "Um fluido derivado do sangue, composto por plasma e células de defesa." },
+    { question: "O que são linfonodos (ou gânglios linfáticos)?", options: ["Glândulas que produzem saliva.", "Pequenas estruturas que filtram a linfa e atuam na defesa.", "Células que transportam oxigênio.", "Vasos que conectam o coração ao pulmão."], answer: "Pequenas estruturas que filtram a linfa e atuam na defesa." },
+    { question: "Qual é a principal causa do surgimento de varizes nas pernas?", options: ["Excesso de artérias.", "Mal funcionamento das válvulas venosas.", "Obstrução dos capilares.", "Pressão arterial muito baixa."], answer: "Mal funcionamento das válvulas venosas." },
+    { question: "Qual o nome do movimento de contração do coração?", options: ["Diástole", "Sístole", "Hematose", "Fagocitose"], answer: "Sístole" },
+    { question: "O relaxamento do músculo cardíaco é chamado de:", options: ["Sístole", "Diástole", "Apneia", "Isquemia"], answer: "Diástole" },
+    { question: "O que é o 'sopro cardíaco'?", options: ["Um sinal normal do funcionamento do coração.", "Um ruído causado pela disfunção de uma válvula cardíaca.", "O som da respiração ouvido no peito.", "Um sintoma de pressão alta."], answer: "Um ruído causado pela disfunção de uma válvula cardíaca." },
+    { question: "Qual estrutura é considerada o 'marcapasso natural' do coração, controlando os batimentos?", options: ["Válvula Mitral", "Feixe de His", "Nódulo Sinoatrial", "Ventrículo Esquerdo"], answer: "Nódulo Sinoatrial" },
+    { question: "Qual a principal diferença entre a constituição das paredes de artérias e veias?", options: ["Veias não possuem tecido muscular.", "Artérias possuem paredes mais finas e menos elásticas.", "Artérias possuem paredes mais espessas e elásticas para suportar alta pressão.", "Artérias possuem válvulas e veias não."], answer: "Artérias possuem paredes mais espessas e elásticas para suportar alta pressão." },
+    { question: "O que é hematose?", options: ["A coagulação do sangue.", "A produção de células sanguíneas.", "A troca gasosa que ocorre nos pulmões, onde o sangue se torna arterial.", "O processo de filtragem do sangue pelos rins."], answer: "A troca gasosa que ocorre nos pulmões, onde o sangue se torna arterial." },
+    { question: "Qual dos seguintes alimentos é mais propenso a causar gases (aerodilatação) em altitude?", options: ["Água", "Peito de frango grelhado", "Refrigerantes", "Arroz branco"], answer: "Refrigerantes" },
+    { question: "Qual fator de risco para IAM NÃO pode ser controlado ou mudado?", options: ["Sedentarismo", "Hipertensão arterial", "História familiar", "Colesterol alto"], answer: "História familiar" },
+    { question: "A dor do infarto pode irradiar para quais partes do corpo?", options: ["Apenas para o braço direito.", "Para o braço esquerdo, mandíbula e/ou costas.", "Apenas para as pernas.", "A dor do infarto nunca irradia."], answer: "Para o braço esquerdo, mandíbula e/ou costas." },
+    { question: "Um dos primeiros exames realizados na suspeita de IAM, que pode fechar o diagnóstico em até 50% dos casos, é o:", options: ["Raio-X de tórax", "Exame de urina", "Eletrocardiograma (ECG)", "Tomografia computadorizada"], answer: "Eletrocardiograma (ECG)" },
+    { question: "A deficiência de oxigênio em altitude, explicada pela Lei de Dalton, ocorre porque:", options: ["A porcentagem de oxigênio no ar diminui.", "A pressão parcial do oxigênio diminui, dificultando sua absorção.", "O ar fica mais denso e pesado.", "A temperatura mais baixa congela as moléculas de oxigênio."], answer: "A pressão parcial do oxigênio diminui, dificultando sua absorção." },
+    { question: "O que é o plasma sanguíneo?", options: ["A parte celular do sangue, contendo hemácias.", "A parte líquida do sangue, composta principalmente por água e proteínas.", "São as plaquetas responsáveis pela coagulação.", "É um tipo de glóbulo branco."], answer: "A parte líquida do sangue, composta principalmente por água e proteínas." },
+    { question: "O que é recomendado para a alimentação da tripulação em voo para evitar desconfortos?", options: ["Alimentos ricos em gordura para dar mais energia.", "Muitas bebidas gasificadas para hidratação.", "Alimentos ricos em hidratos de carbono e evitar gases.", "Proteínas de digestão lenta para manter a saciedade."], answer: "Alimentos ricos em hidratos de carbono e evitar gases." },
+    { question: "O que é o ciclo circadiano, frequentemente afetado em voos longos?", options: ["O ciclo menstrual feminino.", "O ciclo de vida de uma célula.", "O ritmo biológico de aproximadamente 24 horas do corpo.", "O ciclo de manutenção da aeronave."], answer: "O ritmo biológico de aproximadamente 24 horas do corpo." },
+    { question: "Qual a principal causa da formação de edema (inchaço) nos membros inferiores?", options: ["Excesso de vasos sanguíneos.", "Disfunção do sistema de drenagem linfática.", "Pressão arterial elevada.", "Falta de vitaminas."], answer: "Disfunção do sistema de drenagem linfática." },
+    { question: "Em um transplante cardíaco, o que é a principal causa de rejeição do órgão?", options: ["O tamanho do coração ser diferente.", "Incompatibilidade do sistema imunológico (ABO e HLA).", "A idade do doador.", "O tempo da cirurgia ser muito longo."], answer: "Incompatibilidade do sistema imunológico (ABO e HLA)." },
+    { question: "Ruídos e vibrações na cabine podem causar quais efeitos nos tripulantes?", options: ["Melhora da concentração.", "Sonolência e relaxamento.", "Diminuição da acuidade visual e auditiva.", "Aumento da força muscular."], answer: "Diminuição da acuidade visual e auditiva." },
+    { question: "Qual o nome da válvula que separa o átrio esquerdo do ventrículo esquerdo?", options: ["Válvula Aórtica", "Válvula Tricúspide", "Válvula Pulmonar", "Válvula Bicúspide (Mitral)"], answer: "Válvula Bicúspide (Mitral)" },
+    { question: "O sangue venoso, vindo do corpo, entra no coração por qual câmara?", options: ["Átrio Esquerdo", "Ventrículo Esquerdo", "Átrio Direito", "Ventrículo Direito"], answer: "Átrio Direito" },
+    { question: "O que são 'elementos figurados' do sangue?", options: ["Apenas o plasma e a água.", "As proteínas e sais minerais.", "As células sanguíneas (hemácias, leucócitos) e as plaquetas.", "Apenas as hemácias."], answer: "As células sanguíneas (hemácias, leucócitos) e as plaquetas." },
+    { question: "Qual a recomendação principal para prevenir um IAM?", options: ["Tomar aspirina diariamente sem prescrição.", "Evitar qualquer tipo de exercício físico.", "Manter uma dieta balanceada e praticar atividades físicas.", "Consumir bebidas alcoólicas moderadamente."], answer: "Manter uma dieta balanceada e praticar atividades físicas." }
+];
+
+// BANCO DE QUESTÕES - ASPECTOS FISIOLÓGICOS - NÍVEL 2
+const quizDataFisiologiaN2 = [
+    { question: "A Lei de Dalton, aplicada à aviação, explica a hipóxia porque com a altitude, a pressão total diminui, e consequentemente...", options: ["A porcentagem de oxigênio no ar diminui.", "A pressão parcial do oxigênio diminui.", "O nitrogênio se torna tóxico.", "A temperatura do ar aumenta."], answer: "A pressão parcial do oxigênio diminui." },
+    { question: "Segundo a Lei de Boyle-Mariotte, se a pressão atmosférica cai pela metade (a 18.000 pés), o que acontece com o volume de um gás preso em uma cavidade corporal?", options: ["Diminui pela metade.", "Permanece o mesmo.", "Dobra de volume.", "Triplica de volume."], answer: "Dobra de volume." },
+    { question: "A doença da descompressão, com formação de bolhas de Nitrogênio no sangue, é um exemplo prático de qual lei dos gases?", options: ["Lei de Dalton", "Lei de Boyle-Mariotte", "Lei de Henry", "Lei de Gay-Lussac"], answer: "Lei de Henry" },
+    { question: "Qual é a pressão atmosférica padrão ao nível do mar em milímetros de mercúrio (mmHg)?", options: ["1013 mmHg", "760 mmHg", "560 mmHg", "380 mmHg"], answer: "760 mmHg" },
+    { question: "Na fase 'Compensatória' da hipóxia (entre 6.000 e 12.000 pés), a saturação de oxigênio (SPO2) do sangue cai para aproximadamente:", options: ["98%", "93%", "83%", "70%"], answer: "83%" },
+    { question: "Na fase 'Crítica' da hipóxia (acima de 20.000 pés), a saturação de oxigênio (SPO2) pode atingir níveis perigosamente baixos, em torno de:", options: ["80%", "75%", "60%", "50%"], answer: "60%" },
+    { question: "A uma altitude de 35.000 pés, qual é o Tempo Útil de Consciência (TUC) aproximado para um indivíduo em repouso?", options: ["120 segundos", "60 segundos", "30 segundos", "15 segundos"], answer: "30 segundos" },
+    { question: "Se um tripulante estiver em atividade física durante uma despressurização a 28.000 pés, seu TUC será de aproximadamente:", options: ["60 segundos", "45 segundos", "30 segundos", "15 segundos"], answer: "30 segundos" },
+    { question: "Qual dos seguintes marcadores de necrose miocárdica é mais específico para o diagnóstico de Infarto Agudo do Miocárdio?", options: ["Mioglobina", "Lactato-desidrogenase (LDH)", "Troponinas (T ou I)", "Aspartato-aminotransferase (AST)"], answer: "Troponinas (T ou I)" },
+    { question: "A dor do IAM é frequentemente desencadeada por esforço físico, estresse ou após uma refeição exagerada. Qual o termo médico para essa dor no peito?", options: ["Dispepsia", "Cefaleia", "Angina pectoris", "Parestesia"], answer: "Angina pectoris" },
+    { question: "Qual fator de risco para IAM é considerado 'não modificável'?", options: ["Sobrepeso e obesidade.", "Diabetes Mellitus.", "Idade acima de 45 anos para homens.", "Sedentarismo."], answer: "Idade acima de 45 anos para homens." },
+    { question: "O risco de doença arterial coronariana aumenta se o pai ou irmão de um indivíduo foi diagnosticado com a doença antes de qual idade?", options: ["45 anos", "55 anos", "65 anos", "70 anos"], answer: "55 anos" },
+    { question: "Qual dos seguintes quadros clínicos NÃO cardíacos pode mimetizar os sintomas de dor no peito de um IAM?", options: ["Fratura de fêmur", "Refluxo gastroesofágico", "Conjutivite", "Cistite"], answer: "Refluxo gastroesofágico" },
+    { question: "A sístole e a diástole correspondem, respectivamente, a quais pressões arteriais em uma medição normal?", options: ["80 mmHg e 120 mmHg", "120 mmHg e 80 mmHg", "100 mmHg e 60 mmHg", "140 mmHg e 90 mmHg"], answer: "120 mmHg e 80 mmHg" },
+    { question: "Qual neurotransmissor, liberado em situações de estresse, aumenta a frequência cardíaca?", options: ["Acetilcolina", "Serotonina", "Dopamina", "Adrenalina"], answer: "Adrenalina" },
+    { question: "Qual neurotransmissor, associado ao sistema parassimpático, diminui a frequência cardíaca?", options: ["Adrenalina", "Noradrenalina", "Acetilcolina", "GABA"], answer: "Acetilcolina" },
+    { question: "Qual a constituição dos capilares sanguíneos, que permite a eficiência nas trocas gasosas?", options: ["Tecido conjuntivo, muscular e endotélio.", "Apenas tecido muscular liso.", "Apenas uma camada de células endoteliais.", "Tecido conjuntivo e endotélio."], answer: "Apenas uma camada de células endoteliais." },
+    { question: "O sangue venoso, pobre em oxigênio, é bombeado do Ventrículo Direito para qual vaso sanguíneo?", options: ["Artéria Aorta", "Veias Cavas", "Artéria Pulmonar", "Veias Pulmonares"], answer: "Artéria Pulmonar" },
+    { question: "O sangue arterial, vindo dos pulmões, entra no coração através das Veias Pulmonares e chega em qual câmara?", options: ["Átrio Direito", "Ventrículo Direito", "Átrio Esquerdo", "Ventrículo Esquerdo"], answer: "Átrio Esquerdo" },
+    { question: "O processo de hematose ocorre por qual mecanismo de transporte através da membrana celular?", options: ["Transporte ativo com gasto de energia.", "Osmose.", "Difusão simples, sem gasto de energia.", "Endocitose."], answer: "Difusão simples, sem gasto de energia." },
+    { question: "Qual o tempo máximo que um coração para transplante pode ser armazenado em solução salina fria até a cirurgia?", options: ["1 hora", "2 horas", "4 horas", "8 horas"], answer: "4 horas" },
+    { question: "No procedimento de transplante, qual substância anticoagulante é injetada antes da secção dos vasos cardíacos?", options: ["Aspirina", "Varfarina", "Heparina", "Clopidogrel"], answer: "Heparina" },
+    { question: "Além da compatibilidade do sistema ABO, qual outro sistema de antígenos é crucial para evitar a rejeição em transplantes cardíacos?", options: ["Sistema Rh", "Sistema MNS", "Sistema HLA (Antígenos Leucocitários Humanos)", "Sistema Duffy"], answer: "Sistema HLA (Antígenos Leucocitários Humanos)" },
+    { question: "A disfunção das válvulas cardíacas que causa refluxo de sangue é chamada de:", options: ["Aterosclerose", "Valvopatia", "Miocardite", "Endocardite"], answer: "Valvopatia" },
+    { question: "Por que a linfa, ao contrário do sangue, é incolor ou ligeiramente rosada?", options: ["Porque não possui plaquetas.", "Porque não possui leucócitos.", "Porque não possui hemácias.", "Porque não possui plasma."], answer: "Porque não possui hemácias." },
+    { question: "O que são 'ínguas' que aparecem durante uma infecção?", options: ["Acúmulo de gordura sob a pele.", "Veias varicosas inflamadas.", "Linfonodos que aumentam de tamanho ao amadurecer células de defesa.", "Pequenos coágulos sanguíneos."], answer: "Linfonodos que aumentam de tamanho ao amadurecer células de defesa." },
+    { question: "Qual é a variação aproximada da temperatura a cada 1000 pés de altitude na troposfera?", options: ["Aumenta 2°C", "Diminui 1°C", "Diminui 2°C", "Permanece constante"], answer: "Diminui 2°C" },
+    { question: "A 'maré barométrica' se refere a uma variação diária da pressão atmosférica. Em quais horários a pressão atinge seus valores máximos?", options: ["04:00 e 16:00", "10:00 e 22:00", "08:00 e 20:00", "Meio-dia e Meia-noite"], answer: "10:00 e 22:00" },
+    { question: "Forças de aceleração linear, como as sentidas na decolagem, podem aumentar o risco de quais complicações em indivíduos predispostos?", options: ["Crise de asma e bronquite.", "AVC Hemorrágico e Insuficiência Cardíaca Congestiva.", "Gastrite e úlcera gástrica.", "Cálculos renais e infecção urinária."], answer: "AVC Hemorrágico e Insuficiência Cardíaca Congestiva." },
+    { question: "Qual a porcentagem aproximada de Oxigênio na composição do ar atmosférico?", options: ["78%", "21%", "1%", "0,03%"], answer: "21%" },
+    { question: "A aerodontia é um tipo de disbarismo que se manifesta como:", options: ["Dor de ouvido.", "Dor nos seios da face.", "Dor de dente.", "Distensão abdominal."], answer: "Dor de dente." },
+    { question: "Qual o principal motivo para recomendar uma dieta mais rica em hidratos de carbono do que em proteínas para a tripulação?", options: ["Hidratos de carbono são mais saborosos.", "A digestão de proteínas requer mais oxigênio.", "Proteínas causam mais sono.", "Hidratos de carbono previnem a desidratação."], answer: "A digestão de proteínas requer mais oxigênio." },
+    { question: "O que é isquemia do miocárdio?", options: ["É a inflamação do músculo cardíaco.", "É a morte (necrose) do tecido cardíaco.", "É a redução do fluxo sanguíneo e da oferta de oxigênio para o músculo cardíaco.", "É o aumento anormal do tamanho do coração."], answer: "É a redução do fluxo sanguíneo e da oferta de oxigênio para o músculo cardíaco." },
+    { question: "Após a ruptura de uma placa de aterosclerose, qual componente do sangue se adere à lesão para formar um coágulo?", options: ["Hemácias", "Leucócitos", "Plasma", "Plaquetas"], answer: "Plaquetas" },
+    { question: "Na fisiopatologia do IAM, a falta de ATP (energia) e a queda do pH dentro da célula cardíaca levam à liberação de qual íon que pode causar arritmias?", options: ["Sódio (Na+)", "Cálcio (Ca++)", "Potássio (K+)", "Magnésio (Mg++)"], answer: "Potássio (K+)" },
+    { question: "Qual o nome da camada mais externa do coração?", options: ["Endocárdio", "Miocárdio", "Pericárdio", "Epicárdio"], answer: "Epicárdio" },
+    { question: "O que são as artérias coronárias?", options: ["Artérias que levam sangue para o cérebro.", "Artérias que irrigam a parede do próprio coração (miocárdio).", "As principais artérias dos braços.", "Artérias que se conectam diretamente aos pulmões."], answer: "Artérias que irrigam a parede do próprio coração (miocárdio)." },
+    { question: "O que é 'insuficiência cardíaca', a principal indicação para um transplante?", options: ["Quando o coração bate rápido demais.", "Quando o coração não consegue bombear sangue suficiente para o corpo.", "Quando as artérias do coração estão entupidas.", "Quando o paciente tem pressão alta."], answer: "Quando o coração não consegue bombear sangue suficiente para o corpo." },
+    { question: "Por que pacientes transplantados precisam tomar medicamentos imunossupressores?", options: ["Para fortalecer o novo coração.", "Para prevenir a formação de coágulos.", "Para diminuir a resposta imune do corpo e evitar a rejeição do órgão.", "Para controlar a pressão arterial."], answer: "Para diminuir a resposta imune do corpo e evitar a rejeição do órgão." },
+    { question: "A exposição prolongada a vibrações em voo pode causar repercussões sobre quais sentidos?", options: ["Olfato e paladar.", "Tato e equilíbrio.", "Audição e visão.", "Apenas o equilíbrio."], answer: "Audição e visão." },
+    { question: "O estresse é definido como uma reação que tende a perturbar qual estado do organismo?", options: ["Estado de alerta.", "Equilíbrio homeostático.", "Metabolismo basal.", "Ciclo de sono."], answer: "Equilíbrio homeostático." },
+    { question: "Onde os leucócitos (células de defesa) podem ser encontrados, além do sangue?", options: ["Apenas dentro dos ossos.", "Eles nunca saem dos vasos sanguíneos.", "Apenas no cérebro.", "Podem migrar do sangue para os tecidos e para a linfa."], answer: "Podem migrar do sangue para os tecidos e para a linfa." },
+    { question: "A frequência cardíaca normal em um adulto em repouso é de aproximadamente:", options: ["40-50 bpm", "50-60 bpm", "70-80 bpm", "90-100 bpm"], answer: "70-80 bpm" },
+    { question: "Qual dos seguintes fatores NÃO influencia a pressão atmosférica?", options: ["Altitude", "Temperatura", "Longitude", "Umidade do ar"], answer: "Longitude" },
+    { question: "A aerogastria e aerocolia são manifestações de disbarismo em qual parte do corpo?", options: ["Ouvidos e seios da face.", "Dentes.", "Trato gastrointestinal (estômago e intestinos).", "Pulmões."], answer: "Trato gastrointestinal (estômago e intestinos)." },
+    { question: "Se um estetoscópio é usado para medir a pressão arterial, os sons são audíveis quando a pressão na bolsa de ar está:", options: ["Acima da pressão sistólica.", "Abaixo da pressão diastólica.", "Entre a pressão sistólica e a diastólica.", "Os sons nunca são audíveis."], answer: "Entre a pressão sistólica e a diastólica." },
+    { question: "Qual o nome da válvula que fica entre o átrio direito e o ventrículo direito?", options: ["Válvula Mitral (Bicúspide)", "Válvula Aórtica", "Válvula Tricúspide", "Válvula Pulmonar"], answer: "Válvula Tricúspide" },
+    { question: "O sangue sai do ventrículo esquerdo e vai para o corpo através de qual grande vaso sanguíneo?", options: ["Artéria Pulmonar", "Veia Cava Superior", "Artéria Aorta", "Veias Pulmonares"], answer: "Artéria Aorta" },
+    { question: "O que é 'necrose celular', consequência final de um IAM não tratado?", options: ["A multiplicação descontrolada das células.", "A inflamação do tecido.", "A morte do tecido por falta de oxigênio e nutrientes.", "A cicatrização do músculo cardíaco."], answer: "A morte do tecido por falta de oxigênio e nutrientes." },
+    { question: "A principal medida para minimizar os efeitos de ruídos na cabine?", options: ["Falar mais alto.", "Ouvir música com fones de ouvido.", "Utilizar protetores auriculares.", "Manter as janelas fechadas."], answer: "Utilizar protetores auriculares." }
+];
+
+// Lógica principal do Quiz (JavaScript)
+const menuContainer = document.getElementById('menu-container');
+const quizContainer = document.getElementById('quiz-container');
+const quizBody = document.getElementById('quiz-body');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+const navigation = document.getElementById('navigation');
+const resultsContainer = document.getElementById('results');
+const questionCounter = document.getElementById('question-counter');
+const progressBar = document.getElementById('progress-bar');
+const quizHeader = document.getElementById('quiz-header');
+const quizTitle = document.getElementById('quiz-title');
+const resultsTitle = document.getElementById('results-title');
+
+let currentQuizData = [];
+let currentQuestion = 0;
+let userAnswers = [];
+let currentLevel = '';
+
+function startQuiz(level) {
+    currentLevel = level;
+    switch (level) {
+        case 'aeronauta_nivel1':
+            currentQuizData = quizDataAeronautaN1;
+            quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 1 - Conceitos Gerais</span>`;
+            resultsTitle.innerText = "Quiz Nível 1 (Aeronauta) Finalizado!";
+            quizHeader.className = 'level-1';
+            progressBar.className = 'level-1';
+            break;
+        case 'aeronauta_nivel2':
+            currentQuizData = quizDataAeronautaN2;
+            quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 2 - Conhecimento Aprofundado</span>`;
+            resultsTitle.innerText = "Quiz Nível 2 (Aeronauta) Finalizado!";
+            quizHeader.className = 'level-2';
+            progressBar.className = 'level-2';
+            break;
+        case 'fisiologia_nivel1':
+            currentQuizData = quizDataFisiologiaN1;
+            quizTitle.innerHTML = `Aspectos Fisiológicos <span>Nível 1 - Fundamentos</span>`;
+            resultsTitle.innerText = "Quiz Nível 1 (Fisiologia) Finalizado!";
+            quizHeader.className = 'level-1 fisiologia';
+            progressBar.className = 'level-1';
+            break;
+        case 'fisiologia_nivel2':
+            currentQuizData = quizDataFisiologiaN2;
+            quizTitle.innerHTML = `Aspectos Fisiológicos <span>Nível 2 - Detalhes e Aplicações</span>`;
+            resultsTitle.innerText = "Quiz Nível 2 (Fisiologia) Finalizado!";
+            quizHeader.className = 'level-2 fisiologia';
+            progressBar.className = 'level-2';
+            break;
+    }
+    
+    menuContainer.classList.add('hidden');
+    quizContainer.classList.remove('hidden');
+    resultsContainer.classList.add('hidden');
+    navigation.classList.remove('hidden');
+
+    loadProgress();
+    showQuestion();
+}
+
+function backToMenu() {
+    saveProgress();
+    quizContainer.classList.add('hidden');
+    menuContainer.classList.remove('hidden');
+}
+
+function showQuestion() {
+    const questionData = currentQuizData[currentQuestion];
+    quizBody.innerHTML = '';
+    const questionBlock = document.createElement('div');
+    questionBlock.classList.add('question-block');
+    const questionText = document.createElement('h3');
+    questionText.innerHTML = `${currentQuestion + 1}. ${questionData.question}`;
+    if(currentLevel.includes('nivel2')) {
+        questionText.classList.add('level-2');
+    }
+    questionBlock.appendChild(questionText);
+    const optionsList = document.createElement('ul');
+    optionsList.classList.add('options');
+    optionsList.classList.remove('disabled');
+    questionData.options.forEach(option => {
+        const optionItem = document.createElement('li');
+        optionItem.innerHTML = `<label><input type="radio" name="question${currentQuestion}" value="${option}"> ${option}</label>`;
+        if (userAnswers[currentQuestion] === option) {
+            optionItem.classList.add('selected');
+            optionItem.querySelector('input').checked = true;
+        }
+        optionItem.addEventListener('click', () => {
+            if (optionsList.classList.contains('disabled')) return;
+            document.querySelectorAll(`#quiz-body ul li`).forEach(li => li.classList.remove('selected'));
+            optionItem.classList.add('selected');
+            selectAnswer(option);
+        });
+        optionsList.appendChild(optionItem);
+    });
+    questionBlock.appendChild(optionsList);
+    quizBody.appendChild(questionBlock);
+    updateNavigation();
+    updateProgress();
+}
+
+function selectAnswer(answer) {
+    userAnswers[currentQuestion] = answer;
+    saveProgress();
+    updateProgress();
+}
+
+function updateNavigation() {
+    prevBtn.style.display = currentQuestion === 0 ? 'none' : 'inline-block';
+    nextBtn.innerText = currentQuestion === currentQuizData.length - 1 ? 'Finalizar' : 'Próximo';
+    questionCounter.innerText = `Questão ${currentQuestion + 1} de ${currentQuizData.length}`;
+}
+
+function updateProgress() {
+    const answeredCount = userAnswers.filter(answer => answer !== undefined && answer !== null).length;
+    const progressPercentage = (answeredCount / currentQuizData.length) * 100;
+    progressBar.style.width = `${progressPercentage}%`;
+}
+
+function nextQuestion() {
+    const buttonText = nextBtn.innerText;
+
+    if (buttonText === 'Continuar') {
+        currentQuestion++;
+        showQuestion();
+        return;
+    }
+
+    if (buttonText === 'Ver Resultados') {
+        showResults();
+        return;
+    }
+
+    const userAnswer = userAnswers[currentQuestion];
+    if (userAnswer === undefined || userAnswer === null) {
+        alert("Por favor, selecione uma resposta para continuar.");
+        return;
+    }
+
+    const optionsList = quizBody.querySelector('.options');
+    optionsList.classList.add('disabled');
+    prevBtn.style.display = 'none';
+
+    const correctAnswer = currentQuizData[currentQuestion].answer;
+    const liElements = optionsList.querySelectorAll('li');
+
+    liElements.forEach(li => {
+        const radioValue = li.querySelector('input').value;
+        if (radioValue === userAnswer) {
+            if (userAnswer === correctAnswer) {
+                li.classList.add('correct-feedback');
+            } else {
+                li.classList.add('incorrect-feedback');
+                const correctLi = Array.from(liElements).find(el => el.querySelector('input').value === correctAnswer);
+                if (correctLi) correctLi.classList.add('actual-answer');
+            }
+        }
+    });
+
+    if (currentQuestion === currentQuizData.length - 1) {
+        nextBtn.innerText = 'Ver Resultados';
+    } else {
+        nextBtn.innerText = 'Continuar';
+    }
+}
+
+function prevQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion();
+    }
+}
+
+function saveProgress() {
+    if (!currentLevel) return;
+    const progress = {
+        answers: userAnswers,
+        currentQuestion: currentQuestion
+    };
+    localStorage.setItem(`quizProgress_${currentLevel}`, JSON.stringify(progress));
+}
+
+function loadProgress() {
+    const savedProgress = localStorage.getItem(`quizProgress_${currentLevel}`);
+    if (savedProgress) {
+        const progress = JSON.parse(savedProgress);
+        userAnswers = progress.answers || Array(currentQuizData.length).fill(undefined);
+        currentQuestion = progress.currentQuestion || 0;
+        
+        if (userAnswers.length !== currentQuizData.length) {
+            userAnswers = Array(currentQuizData.length).fill(undefined);
+            currentQuestion = 0;
+        }
+    } else {
+        userAnswers = Array(currentQuizData.length).fill(undefined);
+        currentQuestion = 0;
+    }
+}
+
+function resetQuiz() {
+    if (confirm('Tem certeza de que deseja resetar o progresso deste quiz? Suas respostas serão apagadas.')) {
+        localStorage.removeItem(`quizProgress_${currentLevel}`);
+        startQuiz(currentLevel);
+    }
+}
+
+function showResults() {
+    saveProgress();
+    quizBody.classList.add('hidden');
+    navigation.classList.add('hidden');
+    resultsContainer.classList.remove('hidden');
+
+    let score = 0;
+    currentQuizData.forEach((question, index) => {
+        if (userAnswers[index] === question.answer) {
+            score++;
+        }
+    });
+
+    const scorePercentage = (score / currentQuizData.length) * 100;
+    const scoreText = document.getElementById('score-text');
+    scoreText.innerText = `Você acertou ${score} de ${currentQuizData.length} questões. (${scorePercentage.toFixed(1)}%)`;
+    
+    if (scorePercentage < 70) {
+        scoreText.classList.add('low-score');
+    }
+
+    const reviewContainer = document.getElementById('review-container');
+    reviewContainer.innerHTML = '<h3>Revisão Completa das Questões</h3>';
+    
+    currentQuizData.forEach((question, index) => {
+        const reviewBlock = document.createElement('div');
+        reviewBlock.classList.add('review-question');
+        const userAnswer = userAnswers[index];
+        const isCorrect = userAnswer === question.answer;
+
+        reviewBlock.classList.add(isCorrect ? 'correct' : 'incorrect');
+        
+        let answerHtml;
+        if (isCorrect) {
+            answerHtml = `<div class="review-answer">Sua resposta: <span class="correct-answer">${userAnswer || 'Não respondida'}</span></div>`;
+        } else {
+            answerHtml = `
+                <div class="review-answer">Sua resposta: <span class="wrong-answer">${userAnswer || 'Não respondida'}</span></div>
+                <div class="review-answer">Resposta correta: <span class="correct-answer">${question.answer}</span></div>
+            `;
+        }
+        
+        reviewBlock.innerHTML = `
+            <p>${index + 1}. ${question.question}</p>
+            ${answerHtml}
+        `;
+        reviewContainer.appendChild(reviewBlock);
+    });
+}
