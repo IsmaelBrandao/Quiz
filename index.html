@@ -589,7 +589,7 @@ function selectAnswer(answer) {
 }
 
 function updateNavigation() {
-    prevBtn.style.visibility = currentQuestion === 0 ? 'hidden' : 'visible';
+    prevBtn.style.display = currentQuestion === 0 ? 'none' : 'inline-block';
     nextBtn.innerText = currentQuestion === currentQuizData.length - 1 ? 'Finalizar' : 'Próximo';
     questionCounter.innerText = `Questão ${currentQuestion + 1} de ${currentQuizData.length}`;
 }
@@ -622,7 +622,7 @@ function nextQuestion() {
 
     const optionsList = quizBody.querySelector('.options');
     optionsList.classList.add('disabled');
-    prevBtn.style.visibility = 'hidden';
+    prevBtn.style.display = 'none';
 
     const correctAnswer = currentQuizData[currentQuestion].answer;
     const liElements = optionsList.querySelectorAll('li');
