@@ -213,259 +213,56 @@ const quizDataFisiologiaN2 = [
     { question: "A principal medida para minimizar os efeitos de ruídos na cabine?", options: ["Falar mais alto.", "Ouvir música com fones de ouvido.", "Utilizar protetores auriculares.", "Manter as janelas fechadas."], answer: "Utilizar protetores auriculares." }
 ];
 
-// Lógica principal do Quiz (JavaScript)
-const menuContainer = document.getElementById('menu-container');
-const quizContainer = document.getElementById('quiz-container');
-const quizBody = document.getElementById('quiz-body');
-const prevBtn = document.getElementById('prev-btn');
-const nextBtn = document.getElementById('next-btn');
-const navigation = document.getElementById('navigation');
-const resultsContainer = document.getElementById('results');
-const questionCounter = document.getElementById('question-counter');
-const progressBar = document.getElementById('progress-bar');
-const quizHeader = document.getElementById('quiz-header');
-const quizTitle = document.getElementById('quiz-title');
-const resultsTitle = document.getElementById('results-title');
-
-let currentQuizData = [];
-let currentQuestion = 0;
-let userAnswers = [];
-let currentLevel = '';
-
-function startQuiz(level) {
-    currentLevel = level;
-    switch (level) {
-        case 'aeronauta_nivel1':
-            currentQuizData = quizDataAeronautaN1;
-            quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 1 - Conceitos Gerais</span>`;
-            resultsTitle.innerText = "Quiz Nível 1 (Aeronauta) Finalizado!";
-            quizHeader.className = 'level-1';
-            progressBar.className = 'level-1';
-            break;
-        case 'aeronauta_nivel2':
-            currentQuizData = quizDataAeronautaN2;
-            quizTitle.innerHTML = `Regulamentação do Aeronauta <span>Nível 2 - Conhecimento Aprofundado</span>`;
-            resultsTitle.innerText = "Quiz Nível 2 (Aeronauta) Finalizado!";
-            quizHeader.className = 'level-2';
-            progressBar.className = 'level-2';
-            break;
-        case 'fisiologia_nivel1':
-            currentQuizData = quizDataFisiologiaN1;
-            quizTitle.innerHTML = `Aspectos Fisiológicos <span>Nível 1 - Fundamentos</span>`;
-            resultsTitle.innerText = "Quiz Nível 1 (Fisiologia) Finalizado!";
-            quizHeader.className = 'level-1 fisiologia';
-            progressBar.className = 'level-1';
-            break;
-        case 'fisiologia_nivel2':
-            currentQuizData = quizDataFisiologiaN2;
-            quizTitle.innerHTML = `Aspectos Fisiológicos <span>Nível 2 - Detalhes e Aplicações</span>`;
-            resultsTitle.innerText = "Quiz Nível 2 (Fisiologia) Finalizado!";
-            quizHeader.className = 'level-2 fisiologia';
-            progressBar.className = 'level-2';
-            break;
-    }
-    
-    menuContainer.classList.add('hidden');
-    quizContainer.classList.remove('hidden');
-    resultsContainer.classList.add('hidden');
-    navigation.classList.remove('hidden');
-
-    loadProgress();
-    showQuestion();
-}
-
-function backToMenu() {
-    saveProgress();
-    quizContainer.classList.add('hidden');
-    menuContainer.classList.remove('hidden');
-}
-
-function showQuestion() {
-    const questionData = currentQuizData[currentQuestion];
-    quizBody.innerHTML = '';
-    const questionBlock = document.createElement('div');
-    questionBlock.classList.add('question-block');
-    const questionText = document.createElement('h3');
-    questionText.innerHTML = `${currentQuestion + 1}. ${questionData.question}`;
-    if(currentLevel.includes('nivel2')) {
-        questionText.classList.add('level-2');
-    }
-    questionBlock.appendChild(questionText);
-    const optionsList = document.createElement('ul');
-    optionsList.classList.add('options');
-    optionsList.classList.remove('disabled');
-    questionData.options.forEach(option => {
-        const optionItem = document.createElement('li');
-        optionItem.innerHTML = `<label><input type="radio" name="question${currentQuestion}" value="${option}"> ${option}</label>`;
-        if (userAnswers[currentQuestion] === option) {
-            optionItem.classList.add('selected');
-            optionItem.querySelector('input').checked = true;
-        }
-        optionItem.addEventListener('click', () => {
-            if (optionsList.classList.contains('disabled')) return;
-            document.querySelectorAll(`#quiz-body ul li`).forEach(li => li.classList.remove('selected'));
-            optionItem.classList.add('selected');
-            selectAnswer(option);
-        });
-        optionsList.appendChild(optionItem);
-    });
-    questionBlock.appendChild(optionsList);
-    quizBody.appendChild(questionBlock);
-    updateNavigation();
-    updateProgress();
-}
-
-function selectAnswer(answer) {
-    userAnswers[currentQuestion] = answer;
-    saveProgress();
-    updateProgress();
-}
-
-function updateNavigation() {
-    prevBtn.style.display = currentQuestion === 0 ? 'none' : 'inline-block';
-    nextBtn.innerText = currentQuestion === currentQuizData.length - 1 ? 'Finalizar' : 'Próximo';
-    questionCounter.innerText = `Questão ${currentQuestion + 1} de ${currentQuizData.length}`;
-}
-
-function updateProgress() {
-    const answeredCount = userAnswers.filter(answer => answer !== undefined && answer !== null).length;
-    const progressPercentage = (answeredCount / currentQuizData.length) * 100;
-    progressBar.style.width = `${progressPercentage}%`;
-}
-
-function nextQuestion() {
-    const buttonText = nextBtn.innerText;
-
-    if (buttonText === 'Continuar') {
-        currentQuestion++;
-        showQuestion();
-        return;
-    }
-
-    if (buttonText === 'Ver Resultados') {
-        showResults();
-        return;
-    }
-
-    const userAnswer = userAnswers[currentQuestion];
-    if (userAnswer === undefined || userAnswer === null) {
-        alert("Por favor, selecione uma resposta para continuar.");
-        return;
-    }
-
-    const optionsList = quizBody.querySelector('.options');
-    optionsList.classList.add('disabled');
-    prevBtn.style.display = 'none';
-
-    const correctAnswer = currentQuizData[currentQuestion].answer;
-    const liElements = optionsList.querySelectorAll('li');
-
-    liElements.forEach(li => {
-        const radioValue = li.querySelector('input').value;
-        if (radioValue === userAnswer) {
-            if (userAnswer === correctAnswer) {
-                li.classList.add('correct-feedback');
-            } else {
-                li.classList.add('incorrect-feedback');
-                const correctLi = Array.from(liElements).find(el => el.querySelector('input').value === correctAnswer);
-                if (correctLi) correctLi.classList.add('actual-answer');
-            }
-        }
-    });
-
-    if (currentQuestion === currentQuizData.length - 1) {
-        nextBtn.innerText = 'Ver Resultados';
-    } else {
-        nextBtn.innerText = 'Continuar';
-    }
-}
-
-function prevQuestion() {
-    if (currentQuestion > 0) {
-        currentQuestion--;
-        showQuestion();
-    }
-}
-
-function saveProgress() {
-    if (!currentLevel) return;
-    const progress = {
-        answers: userAnswers,
-        currentQuestion: currentQuestion
-    };
-    localStorage.setItem(`quizProgress_${currentLevel}`, JSON.stringify(progress));
-}
-
-function loadProgress() {
-    const savedProgress = localStorage.getItem(`quizProgress_${currentLevel}`);
-    if (savedProgress) {
-        const progress = JSON.parse(savedProgress);
-        userAnswers = progress.answers || Array(currentQuizData.length).fill(undefined);
-        currentQuestion = progress.currentQuestion || 0;
-        
-        if (userAnswers.length !== currentQuizData.length) {
-            userAnswers = Array(currentQuizData.length).fill(undefined);
-            currentQuestion = 0;
-        }
-    } else {
-        userAnswers = Array(currentQuizData.length).fill(undefined);
-        currentQuestion = 0;
-    }
-}
-
-function resetQuiz() {
-    if (confirm('Tem certeza de que deseja resetar o progresso deste quiz? Suas respostas serão apagadas.')) {
-        localStorage.removeItem(`quizProgress_${currentLevel}`);
-        startQuiz(currentLevel);
-    }
-}
-
-function showResults() {
-    saveProgress();
-    quizBody.classList.add('hidden');
-    navigation.classList.add('hidden');
-    resultsContainer.classList.remove('hidden');
-
-    let score = 0;
-    currentQuizData.forEach((question, index) => {
-        if (userAnswers[index] === question.answer) {
-            score++;
-        }
-    });
-
-    const scorePercentage = (score / currentQuizData.length) * 100;
-    const scoreText = document.getElementById('score-text');
-    scoreText.innerText = `Você acertou ${score} de ${currentQuizData.length} questões. (${scorePercentage.toFixed(1)}%)`;
-    
-    if (scorePercentage < 70) {
-        scoreText.classList.add('low-score');
-    }
-
-    const reviewContainer = document.getElementById('review-container');
-    reviewContainer.innerHTML = '<h3>Revisão Completa das Questões</h3>';
-    
-    currentQuizData.forEach((question, index) => {
-        const reviewBlock = document.createElement('div');
-        reviewBlock.classList.add('review-question');
-        const userAnswer = userAnswers[index];
-        const isCorrect = userAnswer === question.answer;
-
-        reviewBlock.classList.add(isCorrect ? 'correct' : 'incorrect');
-        
-        let answerHtml;
-        if (isCorrect) {
-            answerHtml = `<div class="review-answer">Sua resposta: <span class="correct-answer">${userAnswer || 'Não respondida'}</span></div>`;
-        } else {
-            answerHtml = `
-                <div class="review-answer">Sua resposta: <span class="wrong-answer">${userAnswer || 'Não respondida'}</span></div>
-                <div class="review-answer">Resposta correta: <span class="correct-answer">${question.answer}</span></div>
-            `;
-        }
-        
-        reviewBlock.innerHTML = `
-            <p>${index + 1}. ${question.question}</p>
-            ${answerHtml}
-        `;
-        reviewContainer.appendChild(reviewBlock);
-    });
-}
+// NOVO BANCO DE QUESTÕES - PREPARATÓRIO PARA PROVA RPA
+const quizDataProvaRPA = [
+    { question: "De acordo com suas anotações, o que define um 'Aeronauta' em contraste com um 'Tripulante'?", options: ["Aeronauta trabalha em solo, tripulante voa.", "Aeronauta é o dono da aeronave, tripulante é o funcionário.", "Tripulante está a trabalho dentro da aeronave, e Aeronauta é o empregado que pode ou não estar em voo.", "Não há diferença, os termos são sinônimos."], answer: "Tripulante está a trabalho dentro da aeronave, e Aeronauta é o empregado que pode ou não estar em voo." },
+    { question: "Segundo uma anotação, a Lei nº 13.475 de 28 de agosto de 2017, dispõe sobre o exercício da profissão de quem?", options: ["Controlador de tráfego aéreo.", "Mecânico de manutenção.", "Tripulante de aeronave, denominado aeronauta.", "Agente de aeroporto."], answer: "Tripulante de aeronave, denominado aeronauta." },
+    { question: "Qual a validade de um CMA (Certificado Médico Aeronáutico) segundo suas anotações?", options: ["1 ano", "2 anos", "5 anos", "10 anos"], answer: "5 anos" },
+    { question: "Conforme suas notas, o RBAC 63 trata de qual assunto?", options: ["Gerenciamento de Risco de Fadiga Humana.", "Requisitos para Certificados Médicos.", "Operações de Táxi Aéreo.", "Licenças e Habilitações para Comissários."], answer: "Licenças e Habilitações para Comissários." },
+    { question: "O que significa a sigla 'Lima' no contexto de aviação, de acordo com suas anotações?", options: ["Lado esquerdo da aeronave.", "Lado direito da aeronave.", "A parte da frente da aeronave.", "A cozinha da aeronave."], answer: "Lado esquerdo da aeronave." },
+    { question: "O que é 'Cinetose'?", options: ["Uma doença causada por vírus em altitude.", "A inflamação do ouvido médio.", "Um conflito de informações que o cérebro recebe, causando enjoo e mal-estar.", "A expansão de gases no dente."], answer: "Um conflito de informações que o cérebro recebe, causando enjoo e mal-estar." },
+    { question: "Segundo suas anotações, o que acontece com a temperatura a cada 1000 pés de altitude?", options: ["Aumenta 2°C.", "Diminui 1°C.", "Permanece a mesma.", "Ocorre uma queda de 2°C."], answer: "Ocorre uma queda de 2°C." },
+    { question: "A não correção da queda de temperatura em altitude pode levar a qual condição?", options: ["Hipertermia", "Febre alta", "Hipotermia", "Hipóxia"], answer: "Hipotermia" },
+    { question: "Qual é a faixa normal da frequência respiratória em repouso, conforme suas anotações?", options: ["10 a 12 rpm", "14 a 20 rpm", "22 a 26 rpm", "28 a 32 rpm"], answer: "14 a 20 rpm" },
+    { question: "O que é 'Hematose'?", options: ["O processo de coagulação sanguínea.", "A oxigenação do sangue.", "A morte de células cardíacas.", "A inflamação de uma artéria."], answer: "A oxigenação do sangue." },
+    { question: "Em uma emergência, por que os comissários devem sempre entregar as opções primeiro para o piloto e copiloto?", options: ["Porque eles são os mais importantes.", "Para segurança, pois caso um esteja contaminado, o outro pode assumir.", "É apenas uma cortesia da tripulação.", "Porque o manual de emergência exige."], answer: "Para segurança, pois caso um esteja contaminado, o outro pode assumir." },
+    { question: "Qual o tempo em segundos para a inflação da escorregadeira, segundo suas anotações?", options: ["90 segundos", "60 segundos", "30 segundos", "5 a 10 segundos"], answer: "5 a 10 segundos" },
+    { question: "Os coletes salva-vidas dos passageiros são de que cor, e os dos tripulantes?", options: ["Ambos são amarelos.", "Passageiros: laranja; Tripulantes: amarelo.", "Passageiros: amarelo; Tripulantes: laranja.", "Ambos são laranjas."], answer: "Passageiros: amarelo; Tripulantes: laranja." },
+    { question: "Onde se deve inflar o colete salva-vidas em uma evacuação?", options: ["Dentro da cabine, antes de sair.", "Na asa da aeronave.", "Somente na soleira da porta, antes de pular.", "Dentro da água, após se afastar da aeronave."], answer: "Somente na soleira da porta, antes de pular." },
+    { question: "O que é o 'desembarque híbrido'?", options: ["Desembarque de passageiros e carga ao mesmo tempo.", "Uso de 2 portas ao mesmo tempo para a evacuação.", "Desembarque com a aeronave em movimento.", "Uso de escada e escorregadeira simultaneamente."], answer: "Uso de 2 portas ao mesmo tempo para a evacuação." },
+    { question: "Qual a principal causa do 'choque', de acordo com suas anotações sobre fisiologia?", options: ["Medo extremo.", "O oxigênio não entra na célula.", "Perda excessiva de sangue.", "Uma descarga elétrica."], answer: "O oxigênio não entra na célula." },
+    { question: "O que mede um 'oxímetro'?", options: ["A pressão arterial e os batimentos cardíacos.", "A temperatura corporal.", "A hemoglobina e o transporte de oxigênio.", "O nível de glicose no sangue."], answer: "A hemoglobina e o transporte de oxigênio." },
+    { question: "Conforme suas anotações, qual é a faixa de temperatura para um estado 'Febril'?", options: ["Abaixo de 35.1°C", "35.1°C a 37.2°C", "37.3°C a 38.5°C", "39.5°C a 41°C"], answer: "37.3°C a 38.5°C" },
+    { question: "O que significa 'Barosinusite'?", options: ["Inflamação no dente devido à pressão.", "Inflamação no ouvido devido à pressão.", "Inflamação nos seios da face devido à pressão.", "Inflamação no intestino devido à pressão."], answer: "Inflamação nos seios da face devido à pressão." },
+    { question: "O alfabeto fonético da aviação é usado para evitar confusões. Qual palavra representa a letra 'S'?", options: ["Sierra", "Sugar", "Samba", "Seven"], answer: "Sierra" },
+    { question: "Qual palavra representa a letra 'J' no alfabeto fonético?", options: ["Jane", "Jack", "Juliet", "Joker"], answer: "Juliet" },
+    { question: "O 'jump seat' na estação do comissário é um assento retrátil. O que significa 'retrátil'?", options: ["Que ele reclina totalmente.", "Que ele se retrai (recolhe) automaticamente.", "Que ele possui cinto de 4 pontas.", "Que ele é ejetável em emergências."], answer: "Que ele se retrai (recolhe) automaticamente." },
+    { question: "Os motores devem estar cortados para uma evacuação. Onde se encontra o painel de abertura externa?", options: ["Na cabine de comando.", "Próximo à asa.", "Na parte externa da aeronave.", "Dentro do compartimento de carga."], answer: "Na parte externa da aeronave." },
+    { question: "O que é 'CAPE'?", options: ["Cinto de segurança.", "Capuz Anti-Fumaça.", "Colete Auxiliar de Proteção em Emergência.", "Caixa Preta da Aeronave."], answer: "Capuz Anti-Fumaça." },
+    { question: "Por quanto tempo uma luz sinalizadora de colete salva-vidas fica acesa em contato com a água?", options: ["1 hora", "4 horas", "8 horas", "12 horas"], answer: "8 horas" },
+    { question: "O que é o 'comburente' no tetraedro do fogo?", options: ["O material que queima.", "A fonte de calor.", "O oxigênio que alimenta a chama.", "A reação química em cadeia."], answer: "O oxigênio que alimenta a chama." },
+    { question: "Para um fogo de Classe A (materiais sólidos como papel e tecido), qual o método de extinção mais comum?", options: ["Abafamento com pó químico.", "Resfriamento com água ou gás carbônico.", "Isolamento do material.", "Uso de espuma."], answer: "Resfriamento com água ou gás carbônico." },
+    { question: "Fogo em materiais elétricos energizados é classificado como Classe C. O que deve ser feito antes de combater esse tipo de fogo?", options: ["Jogar água imediatamente.", "Usar um extintor de pó químico.", "Desligar a energia da fonte.", "Abafar com um cobertor."], answer: "Desligar a energia da fonte." },
+    { question: "O que significa a sigla CVR?", options: ["Caixa Vermelha de Rota.", "Controle de Voo Regional.", "Cockpit Voice Recorder (Gravador de Voz da Cabine).", "Central de Vistoria e Reparos."], answer: "Cockpit Voice Recorder (Gravador de Voz da Cabine)." },
+    { question: "Em uma evacuação na água, a faca para desconectar a escorregadeira/barco está localizada em que parte?", options: ["No jump seat do comissário.", "Na cabine de comando.", "Na própria escorregadeira/barco.", "No kit de primeiros socorros."], answer: "Na própria escorregadeira/barco." },
+    { question: "Qual a sequência de sobrevivência na evacuação, conforme a anotação 'Perna, cabeça, tronco, perna'?", options: ["É a ordem de checagem de ferimentos.", "É a posição de impacto.", "É a sequência de saída pela janela de emergência.", "É a ordem de partes do corpo que saem do avião."], answer: "É a ordem de partes do corpo que saem do avião." },
+    { question: "Qual a frequência de emergência civil?", options: ["121.5 MHz", "143.5 MHz", "243.0 MHz", "406.0 MHz"], answer: "121.5 MHz" },
+    { question: "O que é o 'overhead'?", options: ["O compartimento de bagagens acima dos assentos.", "O painel de controle no teto da cabine de comando.", "A saída de emergência sobre a asa.", "O corredor principal da aeronave."], answer: "O painel de controle no teto da cabine de comando." },
+    { question: "Em uma evacuação em terra, o 'disconnector' da escorregadeira deve ser acionado antes ou depois da pista simples?", options: ["Deve ser desconectado antes.", "Deve ser desconectado depois.", "Não se desconecta em evacuação em terra.", "Tanto faz."], answer: "Deve ser desconectado antes." },
+    { question: "O que a sigla SAR significa?", options: ["Segurança e Resgate Aeronáutico.", "Sistema de Alerta Rápido.", "Search and Rescue (Busca e Salvamento).", "Sinal de Ajuda e Rastreio."], answer: "Search and Rescue (Busca e Salvamento)." },
+    { question: "O que significa 'Azimute' e 'Contra-azimute'?", options: ["Direção Norte e Sul.", "Ângulo de subida e descida.", "Ida de A para B, e volta de B para A.", "Velocidade de cruzeiro e velocidade de pouso."], answer: "Ida de A para B, e volta de B para A." },
+    { question: "Conforme suas notas sobre o período noturno (Art. 39), a jornada em terra é considerada noturna entre quais horários?", options: ["18h às 06h", "22h às 05h", "21h às 04h", "00h às 06h"], answer: "22h às 05h" },
+    { question: "O Art. 40 da Lei do Aeronauta permite ampliar a jornada em até 60 minutos. Isso pode ocorrer no turno noturno?", options: ["Sim, a qualquer momento.", "Apenas com autorização da ANAC.", "Não, a ampliação não se aplica ao turno noturno.", "Sim, exceto em turno noturno que vira 52min e 30s."], answer: "Sim, exceto em turno noturno que vira 52min e 30s." },
+    { question: "De acordo com o Art. 43, se um tripulante de sobreaviso é acionado, qual o prazo em minutos para se apresentar no local, em uma situação normal?", options: ["30 minutos", "60 minutos", "90 minutos", "120 minutos"], answer: "90 minutos" },
+    { question: "O Art. 44 define os limites de duração da reserva. Qual o limite para a aviação regular?", options: ["3 a 12 horas", "3 a 10 horas", "3 a 8 horas", "3 a 6 horas"], answer: "3 a 6 horas" },
+    { question: "O que é o 'Feixe de His'?", options: ["O marcapasso natural do coração.", "Uma estrutura que conduz o impulso elétrico para os ventrículos.", "A válvula entre o átrio e o ventrículo.", "Uma artéria principal do coração."], answer: "Uma estrutura que conduz o impulso elétrico para os ventrículos." },
+    { question: "Segundo suas anotações, a frequência cardíaca normal em repouso é de:", options: ["50 a 60 bpm", "60 a 70 bpm", "70 a 80 bpm", "80 a 90 bpm"], answer: "70 a 80 bpm" },
+    { question: "O que é 'osmose', conforme sua anotação?", options: ["O movimento do soluto para o mais concentrado.", "O movimento do solvente (água) para o meio mais concentrado.", "A quebra de moléculas de glicose.", "A produção de energia na célula."], answer: "O movimento do solvente (água) para o meio mais concentrado." },
+    { question: "Qual a definição de 'combustível volátil'?", options: ["Que entra em combustão em temperatura ambiente.", "Que precisa ser aquecido para entrar em combustão.", "Que não queima.", "Que é sólido."], answer: "Que entra em combustão em temperatura ambiente." },
+    { question: "O que é o Ponto de Fulgor (PF)?", options: ["A temperatura em que o combustível queima sem fonte externa de calor.", "A temperatura em que o combustível emite vapor suficiente para manter a chama acesa.", "A temperatura em que o combustível não emite gases suficientes para manter a chama acesa.", "A temperatura de congelamento do combustível."], answer: "A temperatura em que o combustível não emite gases suficientes para manter a chama acesa." },
+    { question: "Como funciona o método de 'isolamento' para combater um incêndio?", options: ["Retirando o oxigênio.", "Resfriando o material.", "Cortando a reação em cadeia.", "Retirando ou cobrindo o material combustível."], answer: "Retirando ou cobrindo o material combustível." },
+    { question: "Um incêndio em líquidos inflamáveis como gasolina é de qual classe?", options: ["Classe A", "Classe B", "Classe C", "Classe D"], answer: "Classe B" },
+    { question: "O que é o sistema nervoso 'parassimpático', de acordo com suas anotações?", options: ["Prepara o corpo para o estresse e ação.", "Prepara o corpo para relaxar.", "É responsável pelas ações conscientes.", "Controla apenas os batimentos cardíacos."], answer: "Prepara o corpo para relaxar." },
+    { question: "Qual o número de cromossomos que recebemos do pai e da mãe, respectivamente?", options: ["23 do pai e 23 da mãe", "46 do pai e 46 da mãe", "22 do pai e 24 da mãe", "24 do pai e 22 da mãe"], answer: "23 do pai e 23 da mãe" },
+    { question: "O que significa a expressão 'cheque de abandono' em uma emergência?", options: ["Verificar se o pagamento do seguro foi feito.", "Um documento a ser preenchido após a evacuação.", "Verificar se não há nenhum passageiro esquecido antes de evacuar.", "Checar se o trem de pouso está travado."], answer: "Verificar se não há nenhum passageiro esquecido antes de evacuar." }
+];
