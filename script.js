@@ -17,6 +17,11 @@ let currentQuestion = 0;
 let userAnswers = [];
 let currentLevel = '';
 
+function toggleTopic(header) {
+    const topicCard = header.parentElement;
+    topicCard.classList.toggle('active');
+}
+
 function startQuiz(level) {
     currentLevel = level;
     switch (level) {
@@ -47,6 +52,13 @@ function startQuiz(level) {
             resultsTitle.innerText = "Quiz Nível 2 (Fisiologia) Finalizado!";
             quizHeader.className = 'level-2 fisiologia';
             progressBar.className = 'level-2';
+            break;
+        case 'emergencia_abordo':
+            currentQuizData = quizDataEmergencia;
+            quizTitle.innerHTML = `Emergência a Bordo <span>Equipamentos e Procedimentos</span>`;
+            resultsTitle.innerText = "Quiz de Emergência Finalizado!";
+            quizHeader.className = 'emergencia';
+            progressBar.className = 'emergencia';
             break;
         case 'prova_rpa':
             currentQuizData = quizDataProvaRPA;

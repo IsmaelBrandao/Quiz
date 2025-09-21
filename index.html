@@ -10,34 +10,61 @@
 
     <div id="menu-container">
         <h1>✈️ Plataforma de Quizzes</h1>
-        <p>Escolha um tema e o nível de dificuldade para começar.</p>
+        <p>Escolha um tópico de estudo para começar.</p>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h2>Regulamentação do Aeronauta</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="topic-quizzes">
+                <button class="quiz-selection-btn" onclick="startQuiz('aeronauta_nivel1')">
+                    Nível 1 - Conceitos Gerais
+                </button>
+                <button class="quiz-selection-btn" onclick="startQuiz('aeronauta_nivel2')">
+                    Nível 2 - Conhecimento Aprofundado
+                </button>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h2>Aspectos Fisiológicos da Aviação</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="topic-quizzes">
+                <button class="quiz-selection-btn fisiologia" onclick="startQuiz('fisiologia_nivel1')">
+                    Nível 1 - Fundamentos
+                </button>
+                <button class="quiz-selection-btn fisiologia" onclick="startQuiz('fisiologia_nivel2')">
+                    Nível 2 - Detalhes e Aplicações
+                </button>
+            </div>
+        </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h2>Emergência a Bordo</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="topic-quizzes">
+                <button class="quiz-selection-btn emergencia" onclick="startQuiz('emergencia_abordo')">
+                    Módulo Único - Equipamentos e Procedimentos
+                </button>
+            </div>
+        </div>
         
-        <button class="quiz-selection-btn" onclick="startQuiz('aeronauta_nivel1')">
-            Regulamentação do Aeronauta
-            <span>Nível 1 - Conceitos Gerais</span>
-        </button>
-        <button class="quiz-selection-btn" onclick="startQuiz('aeronauta_nivel2')">
-            Regulamentação do Aeronauta
-            <span>Nível 2 - Conhecimento Aprofundado</span>
-        </button>
-    
-        <hr class="quiz-topic-divider">
-    
-        <button class="quiz-selection-btn fisiologia" onclick="startQuiz('fisiologia_nivel1')">
-            Aspectos Fisiológicos da Aviação
-            <span>Nível 1 - Fundamentos</span>
-        </button>
-        <button class="quiz-selection-btn fisiologia" onclick="startQuiz('fisiologia_nivel2')">
-            Aspectos Fisiológicos da Aviação
-            <span>Nível 2 - Detalhes e Aplicações</span>
-        </button>
-
-        <hr class="quiz-topic-divider">
-
-        <button class="quiz-selection-btn rpa-prep" onclick="startQuiz('prova_rpa')">
-            Preparatório para Prova RPA
-            <span>50 Questões Focadas no Exame</span>
-        </button>
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h2>Preparatório para Prova RPA</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="topic-quizzes">
+                <button class="quiz-selection-btn rpa-prep" onclick="startQuiz('prova_rpa')">
+                    Módulo Único - Questões Focadas no Exame
+                </button>
+            </div>
+        </div>
     </div>
     
     <div id="quiz-container" class="hidden">
