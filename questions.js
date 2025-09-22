@@ -268,7 +268,7 @@ const quizDataProvaRPA = [
 ];
 
 // NOVO BANCO DE QUESTÕES - EMERGÊNCIA A BORDO
-const quizDataEmergencia = [
+const quizDataEmergenciaN1 = [
     { question: "Qual o nome dado ao corredor único em uma aeronave?", options: ["Widebody", "Narrowbody", "Single Deck", "Main Deck"], answer: "Narrowbody" },
     { question: "Qual o nome do equipamento utilizado para embarcar Pessoas com Deficiência ou mobilidade reduzida?", options: ["Finger", "Escada de Rampa", "Ambulift", "Cadeira Robótica"], answer: "Ambulift" },
     { question: "O local onde as refeições e bebidas são armazenadas e preparadas na aeronave é chamado de:", options: ["Cockpit", "Galley", "Bin", "Lavatory"], answer: "Galley" },
