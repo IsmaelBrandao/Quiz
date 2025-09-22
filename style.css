@@ -15,7 +15,6 @@ body {
 
 .hidden { display: none !important; }
 
-/* --- Estilos do Novo Menu --- */
 #menu-container {
     text-align: center;
     background-color: #fff;
@@ -65,7 +64,7 @@ body {
 }
 
 .topic-card.active .topic-quizzes {
-    max-height: 500px; /* Altura suficiente para os botões */
+    max-height: 500px; 
     padding: 15px;
 }
 
@@ -91,14 +90,13 @@ body {
 
 .quiz-selection-btn.fisiologia { background-color: #00695c; }
 .quiz-selection-btn.rpa-prep { background-color: #6a1b9a; }
-.quiz-selection-btn.emergencia { background-color: #b71c1c; } /* Nova Cor */
+.quiz-selection-btn.emergencia { background-color: #b71c1c; }
 
 .quiz-selection-btn:hover { background-color: #004494; }
 .quiz-selection-btn.fisiologia:hover { background-color: #004d40; }
 .quiz-selection-btn.rpa-prep:hover { background-color: #4a148c; }
 .quiz-selection-btn.emergencia:hover { background-color: #871414; }
 
-/* --- Estilos do Quiz --- */
 #quiz-container { max-width: 800px; width: 100%; }
 #quiz-header {
     background-color: #003366;

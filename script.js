@@ -53,12 +53,19 @@ function startQuiz(level) {
             quizHeader.className = 'level-2 fisiologia';
             progressBar.className = 'level-2';
             break;
-        case 'emergencia_abordo':
-            currentQuizData = quizDataEmergencia;
-            quizTitle.innerHTML = `Emergência a Bordo <span>Equipamentos e Procedimentos</span>`;
-            resultsTitle.innerText = "Quiz de Emergência Finalizado!";
+        case 'emergencia_nivel1': // Nível 1 de Emergência
+            currentQuizData = quizDataEmergenciaN1;
+            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 1 - Equipamentos e Procedimentos</span>`;
+            resultsTitle.innerText = "Quiz de Emergência (Nível 1) Finalizado!";
             quizHeader.className = 'emergencia';
             progressBar.className = 'emergencia';
+            break;
+        case 'emergencia_nivel2': // Nível 2 de Emergência
+            currentQuizData = quizDataEmergenciaN2;
+            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 2 - Detalhes Técnicos</span>`;
+            resultsTitle.innerText = "Quiz de Emergência (Nível 2) Finalizado!";
+            quizHeader.className = 'emergencia level-2';
+            progressBar.className = 'emergencia level-2';
             break;
         case 'prova_rpa':
             currentQuizData = quizDataProvaRPA;
