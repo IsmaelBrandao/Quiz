@@ -15,6 +15,7 @@ body {
 
 .hidden { display: none !important; }
 
+/* --- Estilos do Novo Menu --- */
 #menu-container {
     text-align: center;
     background-color: #fff;
@@ -91,12 +92,15 @@ body {
 .quiz-selection-btn.fisiologia { background-color: #00695c; }
 .quiz-selection-btn.rpa-prep { background-color: #6a1b9a; }
 .quiz-selection-btn.emergencia { background-color: #b71c1c; }
+.quiz-selection-btn.meteorologia { background-color: #2196f3; }
 
 .quiz-selection-btn:hover { background-color: #004494; }
 .quiz-selection-btn.fisiologia:hover { background-color: #004d40; }
 .quiz-selection-btn.rpa-prep:hover { background-color: #4a148c; }
 .quiz-selection-btn.emergencia:hover { background-color: #871414; }
+.quiz-selection-btn.meteorologia:hover { background-color: #1976d2; }
 
+/* --- Estilos do Quiz --- */
 #quiz-container { max-width: 800px; width: 100%; }
 #quiz-header {
     background-color: #003366;
@@ -136,6 +140,7 @@ body {
 #quiz-header.level-2 { background-color: #1a237e; }
 #quiz-header.rpa-prep { background-color: #6a1b9a; }
 #quiz-header.emergencia { background-color: #b71c1c; }
+#quiz-header.meteorologia { background-color: #2196f3; }
 #progress-bar.level-2 { background-color: #ff9800; }
 #progress-bar.rpa-prep { background-color: #fdd835; }
 #progress-bar.emergencia { background-color: #ffc107; }

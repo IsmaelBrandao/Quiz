@@ -68,6 +68,21 @@
                 </button>
             </div>
         </div>
+
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h2>Meteorologia Aeronáutica</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="topic-quizzes">
+                <button class="quiz-selection-btn meteorologia" onclick="startQuiz('meteorologia_nivel1')">
+                    Nível 1 - Fundamentos
+                </button>
+                <button class="quiz-selection-btn meteorologia" onclick="startQuiz('meteorologia_nivel2')">
+                    Nível 2 - Fenômenos e Cartas
+                </button>
+            </div>
+        </div>
     </div>
     
     <div id="quiz-container" class="hidden">

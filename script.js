@@ -18,8 +18,12 @@ let userAnswers = [];
 let currentLevel = '';
 
 function toggleTopic(header) {
-    const topicCard = header.parentElement;
-    topicCard.classList.toggle('active');
+    document.querySelectorAll('.topic-card.active').forEach(card => {
+        if (card !== header.parentElement) {
+            card.classList.remove('active');
+        }
+    });
+    header.parentElement.classList.toggle('active');
 }
 
 function startQuiz(level) {
@@ -53,16 +57,16 @@ function startQuiz(level) {
             quizHeader.className = 'level-2 fisiologia';
             progressBar.className = 'level-2';
             break;
-        case 'emergencia_nivel1': // Nível 1 de Emergência
+        case 'emergencia_nivel1':
             currentQuizData = quizDataEmergenciaN1;
-            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 1 - Equipamentos e Procedimentos</span>`;
+            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 1 - Equipamentos</span>`;
             resultsTitle.innerText = "Quiz de Emergência (Nível 1) Finalizado!";
             quizHeader.className = 'emergencia';
             progressBar.className = 'emergencia';
             break;
-        case 'emergencia_nivel2': // Nível 2 de Emergência
+        case 'emergencia_nivel2':
             currentQuizData = quizDataEmergenciaN2;
-            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 2 - Detalhes Técnicos</span>`;
+            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 2 - Procedimentos</span>`;
             resultsTitle.innerText = "Quiz de Emergência (Nível 2) Finalizado!";
             quizHeader.className = 'emergencia level-2';
             progressBar.className = 'emergencia level-2';
@@ -73,6 +77,20 @@ function startQuiz(level) {
             resultsTitle.innerText = "Quiz Preparatório RPA Finalizado!";
             quizHeader.className = 'rpa-prep';
             progressBar.className = 'rpa-prep';
+            break;
+        case 'meteorologia_nivel1':
+            currentQuizData = quizDataMeteorologiaN1;
+            quizTitle.innerHTML = `Meteorologia Aeronáutica <span>Nível 1 - Fundamentos</span>`;
+            resultsTitle.innerText = "Quiz de Meteorologia (Nível 1) Finalizado!";
+            quizHeader.className = 'meteorologia';
+            progressBar.className = 'meteorologia';
+            break;
+        case 'meteorologia_nivel2':
+            currentQuizData = quizDataMeteorologiaN2;
+            quizTitle.innerHTML = `Meteorologia Aeronáutica <span>Nível 2 - Fenômenos e Cartas</span>`;
+            resultsTitle.innerText = "Quiz de Meteorologia (Nível 2) Finalizado!";
+            quizHeader.className = 'meteorologia level-2';
+            progressBar.className = 'meteorologia level-2';
             break;
     }
     
