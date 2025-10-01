@@ -1,6 +1,6 @@
 # ✈️ Quiz Interativo - Legislação do Aeronauta
 
-![Status da Publicação](https://img.shields.io/github/deployments/SEU-USUARIO/NOME-DO-REPOSITORIO/github-pages?label=Status&logo=github&style=for-the-badge)
+![Status da Publicação](https://img.shields.io/github/deployments/IsmaelBrandao/Quiz/github-pages?label=Status&logo=github&style=for-the-badge)
 
 Este repositório contém o código-fonte de um quiz interativo e educacional, desenvolvido para auxiliar estudantes e profissionais da aviação, especialmente futuros comissários de voo, a estudarem e testarem seus conhecimentos sobre a **Lei Nº 13.475/2017 (Lei do Aeronauta)** e outras regulamentações pertinentes da ANAC.
 
