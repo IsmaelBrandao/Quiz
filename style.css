@@ -15,7 +15,6 @@ body {
 
 .hidden { display: none !important; }
 
-/* --- Estilos do Novo Menu --- */
 #menu-container {
     text-align: center;
     background-color: #fff;
@@ -50,6 +49,7 @@ body {
     margin: 0;
     font-size: 1.2em;
     color: #343a40;
+    text-align: left;
 }
 
 .topic-header .arrow {
@@ -91,16 +91,17 @@ body {
 
 .quiz-selection-btn.fisiologia { background-color: #00695c; }
 .quiz-selection-btn.rpa-prep { background-color: #6a1b9a; }
-.quiz-selection-btn.emergencia { background-color: #b71c1c; }
-.quiz-selection-btn.meteorologia { background-color: #2196f3; }
+.quiz-selection-btn.emergencia { background-color: #c62828; }
+.quiz-selection-btn.combate-fogo { background-color: #ef6c00; }
+.quiz-selection-btn.meteorologia { background-color: #2196f3; } 
 
 .quiz-selection-btn:hover { background-color: #004494; }
 .quiz-selection-btn.fisiologia:hover { background-color: #004d40; }
 .quiz-selection-btn.rpa-prep:hover { background-color: #4a148c; }
-.quiz-selection-btn.emergencia:hover { background-color: #871414; }
+.quiz-selection-btn.emergencia:hover { background-color: #b71c1c; }
+.quiz-selection-btn.combate-fogo:hover { background-color: #e65100; }
 .quiz-selection-btn.meteorologia:hover { background-color: #1976d2; }
 
-/* --- Estilos do Quiz --- */
 #quiz-container { max-width: 800px; width: 100%; }
 #quiz-header {
     background-color: #003366;
@@ -139,15 +140,20 @@ body {
 
 #quiz-header.level-2 { background-color: #1a237e; }
 #quiz-header.rpa-prep { background-color: #6a1b9a; }
-#quiz-header.emergencia { background-color: #b71c1c; }
+#quiz-header.emergencia { background-color: #c62828; }
+#quiz-header.combate-fogo { background-color: #ef6c00; }
 #quiz-header.meteorologia { background-color: #2196f3; }
+
 #progress-bar.level-2 { background-color: #ff9800; }
 #progress-bar.rpa-prep { background-color: #fdd835; }
 #progress-bar.emergencia { background-color: #ffc107; }
-.question-block h3.level-2, .question-block h3.rpa-prep, .question-block h3.emergencia { color: #1a237e; }
+#progress-bar.combate-fogo { background-color: #ffca28; }
+#progress-bar.meteorologia { background-color: #90caf9; }
 
 .question-block { padding: 20px; border-bottom: 1px solid #eee; }
 .question-block h3 { margin-top: 0; font-size: 1.1em; color: #003366; }
+.question-block h3.level-2, .question-block h3.rpa-prep, .question-block h3.emergencia, .question-block h3.combate-fogo, .question-block h3.meteorologia { color: #1a237e; }
+
 .options { list-style: none; padding: 0; margin: 0; }
 .options li { background-color: #f8f9fa; border: 2px solid #ddd; border-radius: 8px; margin-bottom: 10px; padding: 12px 15px; cursor: pointer; transition: background-color 0.2s, border-color 0.2s; }
 .options li.selected { background-color: #d4e3ff; border-color: #0056b3; font-weight: 500; }
@@ -180,6 +186,7 @@ body {
     #menu-container, #quiz-container { border-radius: 0; min-height: 100vh; box-shadow: none; }
     #menu-container h1, #quiz-header h1 { font-size: 1.2em; }
     #quiz-header h1 { padding: 0 40px; }
+    .topic-header h2 { font-size: 1.1em; }
     .quiz-selection-btn { font-size: 1em; padding: 15px; }
     .question-block { padding: 15px; }
     .question-block h3 { font-size: 1em; }

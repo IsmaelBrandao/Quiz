@@ -66,10 +66,17 @@ function startQuiz(level) {
             break;
         case 'emergencia_nivel2':
             currentQuizData = quizDataEmergenciaN2;
-            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 2 - Procedimentos</span>`;
+            quizTitle.innerHTML = `Emergência a Bordo <span>Nível 2 - Detalhes Técnicos</span>`;
             resultsTitle.innerText = "Quiz de Emergência (Nível 2) Finalizado!";
             quizHeader.className = 'emergencia level-2';
             progressBar.className = 'emergencia level-2';
+            break;
+        case 'combate_fogo':
+            currentQuizData = quizDataCombateFogoN1;
+            quizTitle.innerHTML = `Combate ao Fogo <span>Classes, Agentes e Equipamentos</span>`;
+            resultsTitle.innerText = "Quiz de Combate ao Fogo Finalizado!";
+            quizHeader.className = 'combate-fogo';
+            progressBar.className = 'combate-fogo';
             break;
         case 'prova_rpa':
             currentQuizData = quizDataProvaRPA;
