@@ -485,7 +485,7 @@ const quizDataMeteorologiaN2 = [
 ];
 
 // BANCO DE QUESTÕES - COMBATE A INCÊNDIO - NÍVEL 1
-const quizDataCombateFogoN1 = [
+const quizDataCombateFogo = [
     { question: "Quais são os quatro componentes do Tetraedro do Fogo?", options: ["Calor, Oxigênio, Água e Fumaça", "Combustível, Comburente, Calor e Reação em Cadeia", "Combustível, Nitrogênio, Faísca e Abafamento", "Madeira, Gás, Eletricidade e Metal"], answer: "Combustível, Comburente, Calor e Reação em Cadeia" },
     { question: "No contexto do fogo, o que é o 'combustível'?", options: ["O oxigênio do ar", "A chama visível", "O material que queima (sólido, líquido ou gasoso)", "A energia de ativação"], answer: "O material que queima (sólido, líquido ou gasoso)" },
     { question: "Qual é o comburente mais comum presente na atmosfera?", options: ["Nitrogênio", "Hidrogênio", "Gás Carbônico", "Oxigênio"], answer: "Oxigênio" },
