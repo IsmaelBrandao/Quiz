@@ -99,7 +99,15 @@ function startQuiz(level) {
             quizHeader.className = 'meteorologia level-2';
             progressBar.className = 'meteorologia level-2';
             break;
-        case 'emergencia_detalhada':
+        case 'sobrevivencia':
+            currentQuizData = quizDataSobrevivencia;
+            quizTitle.innerHTML = `Sobrevivência <span>Módulo Único</span>`;
+            resultsTitle.innerText = "Quiz de Sobrevivência Finalizado!";
+            quizHeader.className = 'sobrevivencia';
+            progressBar.className = 'sobrevivencia';
+            break;
+
+            case 'emergencia_detalhada':
             currentQuizData = quizDataEmergenciaDetalhada;
             quizTitle.innerHTML = `Procedimentos de Emergência <span>Tópicos Específicos</span>`;
             resultsTitle.innerText = "Quiz de Procedimentos de Emergência Finalizado!";

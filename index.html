@@ -12,6 +12,7 @@
         <h1>✈️ Plataforma de Quizzes</h1>
         <p>Escolha um tópico de estudo para começar.</p>
 
+        <!-- Regulamentação -->
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
                 <h2>Regulamentação do Aeronauta</h2>
@@ -27,6 +28,7 @@
             </div>
         </div>
 
+        <!-- Fisiologia -->
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
                 <h2>Aspectos Fisiológicos da Aviação</h2>
@@ -42,6 +44,7 @@
             </div>
         </div>
 
+        <!-- Emergência a Bordo -->
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
                 <h2>Emergência a Bordo</h2>
@@ -57,6 +60,7 @@
             </div>
         </div>
 
+        <!-- Combate ao Fogo -->
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
                 <h2>Combate ao Fogo</h2>
@@ -69,6 +73,7 @@
             </div>
         </div>
 
+        <!-- Meteorologia -->
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
                 <h2>Meteorologia Aeronáutica</h2>
@@ -83,7 +88,8 @@
                 </button>
             </div>
         </div>
-        
+
+        <!-- Procedimentos Detalhados -->
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
                 <h2>Procedimentos de Emergência Detalhados</h2>
@@ -96,6 +102,20 @@
             </div>
         </div>
 
+        <!-- Sobrevivência (NOVO MÓDULO) -->
+        <div class="topic-card">
+            <div class="topic-header" onclick="toggleTopic(this)">
+                <h2>Sobrevivência</h2>
+                <span class="arrow">▼</span>
+            </div>
+            <div class="topic-quizzes">
+                <button class="quiz-selection-btn sobrevivencia" onclick="startQuiz('sobrevivencia')">
+                    Módulo Único - Primeiros Socorros, Animais e Sinalização
+                </button>
+            </div>
+        </div>
+
+        <!-- Prova RPA -->
         <div class="topic-card">
             <div class="topic-header" onclick="toggleTopic(this)">
                 <h2>Preparatório para Prova RPA</h2>
@@ -108,30 +128,32 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Container do Quiz -->
     <div id="quiz-container" class="hidden">
         <div id="quiz-header">
             <button id="header-back-to-menu-btn" onclick="backToMenu()" title="Voltar ao Menu">☰</button>
             <h1 id="quiz-title"></h1>
         </div>
+
         <div id="progress-container">
             <div id="progress-bar"></div>
         </div>
-        
+
         <div id="quiz-body"></div>
-        
+
         <div id="navigation">
             <button id="prev-btn" class="nav-btn" onclick="prevQuestion()">Anterior</button>
             <span id="question-counter"></span>
             <button id="next-btn" class="nav-btn" onclick="nextQuestion()">Próximo</button>
         </div>
-    
+
         <div id="results" class="hidden">
             <h2 id="results-title"></h2>
             <p id="score-text"></p>
             <div id="action-buttons">
-                 <button id="back-to-menu-btn-results" class="action-btn" onclick="backToMenu()">Voltar ao Menu</button>
-                 <button id="reset-btn" class="action-btn" onclick="resetQuiz()">Resetar Quiz</button>
+                <button id="back-to-menu-btn-results" class="action-btn" onclick="backToMenu()">Voltar ao Menu</button>
+                <button id="reset-btn" class="action-btn" onclick="resetQuiz()">Resetar Quiz</button>
             </div>
             <div id="review-container"></div>
         </div>
