@@ -95,6 +95,7 @@ body {
 .quiz-selection-btn.combate-fogo { background-color: #ef6c00; }
 .quiz-selection-btn.meteorologia { background-color: #2196f3; }
 .quiz-selection-btn.sobrevivencia { background-color: #2e7d32; }
+.quiz-selection-btn.sobrevivencia.level-2 { background-color: #2e7d32; }
 
 .quiz-selection-btn:hover { background-color: #004494; }
 .quiz-selection-btn.fisiologia:hover { background-color: #004d40; }
@@ -103,6 +104,7 @@ body {
 .quiz-selection-btn.combate-fogo:hover { background-color: #e65100; }
 .quiz-selection-btn.meteorologia:hover { background-color: #1976d2; }
 .quiz-selection-btn.sobrevivencia:hover { background-color: #1b5e20; }
+.quiz-selection-btn.sobrevivencia.level-2:hover { background-color: #1b5e20; }
 
 #quiz-container { max-width: 800px; width: 100%; }
 #quiz-header {
@@ -146,6 +148,7 @@ body {
 #quiz-header.combate-fogo { background-color: #ef6c00; }
 #quiz-header.meteorologia { background-color: #2196f3; }
 #quiz-header.sobrevivencia { background-color: #2e7d32; }
+#quiz-header.sobrevivencia.level-2 { background-color: #2e7d32; }
 
 #progress-bar.level-2 { background-color: #ff9800; }
 #progress-bar.rpa-prep { background-color: #fdd835; }
@@ -153,6 +156,7 @@ body {
 #progress-bar.combate-fogo { background-color: #ffca28; }
 #progress-bar.meteorologia { background-color: #90caf9; }
 #progress-bar.sobrevivencia { background-color: #a5d6a7; }
+#progress-bar.sobrevivencia.level-2 { background-color: #81c784; }
 
 .question-block { padding: 20px; border-bottom: 1px solid #eee; }
 .question-block h3 { margin-top: 0; font-size: 1.1em; color: #003366; }

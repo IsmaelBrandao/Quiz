@@ -106,13 +106,19 @@ function startQuiz(level) {
             quizHeader.className = 'sobrevivencia';
             progressBar.className = 'sobrevivencia';
             break;
-
-            case 'emergencia_detalhada':
+        case 'emergencia_detalhada':
             currentQuizData = quizDataEmergenciaDetalhada;
             quizTitle.innerHTML = `Procedimentos de Emergência <span>Tópicos Específicos</span>`;
             resultsTitle.innerText = "Quiz de Procedimentos de Emergência Finalizado!";
             quizHeader.className = 'emergencia-detalhada';
             progressBar.className = 'emergencia-detalhada';
+            break;
+        case 'sobrevivencia_anac':
+            currentQuizData = quizDataSobrevivenciaN2;
+            quizTitle.innerHTML = `Sobrevivência <span>Nível 2 - ANAC</span>`;
+            resultsTitle.innerText = "Quiz de Sobrevivência (Nível ANAC) Finalizado!";
+            quizHeader.className = 'sobrevivencia level-2';
+            progressBar.className = 'sobrevivencia level-2';
             break;
     }
     
