@@ -118,4 +118,6 @@ Ismael Brandão
 Este projeto está licenciado sob a MIT License.
 Você pode usar, modificar e distribuir livremente com os devidos créditos.
 
-<h3 align="center">🛩️ "Estudar é o primeiro passo para voar mais alto." ✈️</h3> ```
+---
+
+<h3 align="center">🛩️ "Estudar é o primeiro passo para voar mais alto." ✈️</h3>
