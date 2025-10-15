@@ -99,12 +99,12 @@ function startQuiz(level) {
             quizHeader.className = 'meteorologia level-2';
             progressBar.className = 'meteorologia level-2';
             break;
-        case 'sobrevivencia':
-            currentQuizData = quizDataSobrevivencia;
-            quizTitle.innerHTML = `Sobrevivência <span>Módulo Único</span>`;
+        case 'sobrevivencia_1':
+            currentQuizData = quizDataAnimaisPeconhentos;
+            quizTitle.innerHTML = `Sobrevivência <span>Módulo de Animais Peçonhentos</span>`;
             resultsTitle.innerText = "Quiz de Sobrevivência Finalizado!";
-            quizHeader.className = 'sobrevivencia';
-            progressBar.className = 'sobrevivencia';
+            quizHeader.className = 'sobrevivencia level-1';
+            progressBar.className = 'sobrevivencia level-1';
             break;
         case 'emergencia_detalhada':
             currentQuizData = quizDataEmergenciaDetalhada;
@@ -113,15 +113,43 @@ function startQuiz(level) {
             quizHeader.className = 'emergencia-detalhada';
             progressBar.className = 'emergencia-detalhada';
             break;
-        case 'sobrevivencia_anac':
-            currentQuizData = quizDataSobrevivenciaN2;
-            quizTitle.innerHTML = `Sobrevivência <span>Nível 2 - ANAC</span>`;
-            resultsTitle.innerText = "Quiz de Sobrevivência (Nível ANAC) Finalizado!";
+        case 'sobrevivencia_2':
+            currentQuizData = quizDataSobrevivenciaMar;
+            quizTitle.innerHTML = `Sobrevivência <span>Módulo de Sobrevivencia em Mar</span>`;
+            resultsTitle.innerText = "Quiz de Sobrevivência Finalizado!";
             quizHeader.className = 'sobrevivencia level-2';
             progressBar.className = 'sobrevivencia level-2';
             break;
+        case 'sobrevivencia_3':
+            currentQuizData = quizDataSobrevivenciaTerra;
+            quizTitle.innerHTML = `Sobrevivência <span>Módulo de Sobrevivencia em Terra</span>`;
+            resultsTitle.innerText = "Quiz de Sobrevivência Finalizado!";
+            quizHeader.className = 'sobrevivencia level-3';
+            progressBar.className = 'sobrevivencia level-3';
+            break;
+        case 'sobrevivencia_4':
+            currentQuizData = quizDataSinalizacaoOrientacao;
+            quizTitle.innerHTML = `Sobrevivência <span>Módulo de Sinalização e Orientação</span>`;
+            resultsTitle.innerText = "Quiz de Sobrevivência Finalizado!";
+            quizHeader.className = 'sobrevivencia level-4';
+            progressBar.className = 'sobrevivencia level-4';
+            break;
+        case 'sobrevivencia_5':
+            currentQuizData = quizDataPrimeirosSocorros;
+            quizTitle.innerHTML = `Sobrevivência <span>Módulo de Primeiros Socorros em Sobrevivência</span>`;
+            resultsTitle.innerText = "Quiz de Sobrevivência Finalizado!";
+            quizHeader.className = 'sobrevivencia level-5';
+            progressBar.className = 'sobrevivencia level-5';
+            break;
+        case 'sobrevivencia_6':
+            currentQuizData = quizDataPrincipiosPsicologia;
+            quizTitle.innerHTML = `Sobrevivência <span>Módulo de Princípios de Sobrevivência e Psicologia</span>`;
+            resultsTitle.innerText = "Quiz de Sobrevivência Finalizado!";
+            quizHeader.className = 'sobrevivencia level-6';
+            progressBar.className = 'sobrevivencia level-6';
+            break;
     }
-    
+
     menuContainer.classList.add('hidden');
     quizContainer.classList.remove('hidden');
     resultsContainer.classList.add('hidden');
