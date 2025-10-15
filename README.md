@@ -76,3 +76,46 @@ Cada módulo é apresentado como um **card expansível**, permitindo ao usuário
 Tudo acontece de forma simples e intuitiva, sem necessidade de instalação adicional.
 
 ---
+
+💡 Melhorias Futuras
+
+✅ Sistema de pontuação por módulo
+
+✅ Feedback visual imediato após respostas
+
+🚧 Banco de dados para salvar progresso
+
+🚧 Simulado completo com tempo e pontuação final
+
+🚧 Versão responsiva aprimorada para mobile
+
+---
+
+🤝 Contribuições
+
+Contribuições são muito bem-vindas!
+Siga os passos abaixo para colaborar:
+
+Faça um fork do repositório
+
+Crie uma nova branch (feature/nova-funcionalidade)
+
+Envie um pull request com suas alterações
+
+---
+
+🧑‍💻 Autor
+
+Ismael Brandão
+📎 GitHub
+
+💬 Aberto a sugestões e colaborações!
+
+---
+
+🪪 Licença
+
+Este projeto está licenciado sob a MIT License.
+Você pode usar, modificar e distribuir livremente com os devidos créditos.
+
+<h3 align="center">🛩️ "Estudar é o primeiro passo para voar mais alto." ✈️</h3> ```
