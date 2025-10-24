@@ -100,6 +100,8 @@ body {
 .quiz-selection-btn.sobrevivencia.level-4 { background-color: #2e7d32; }
 .quiz-selection-btn.sobrevivencia.level-5 { background-color: #2e7d32; }
 .quiz-selection-btn.sobrevivencia.level-6 { background-color: #2e7d32; }
+.quiz-selection-btn.fisiologia-anac { background-color: #00695c; }
+.quiz-selection-btn.fisiologia-anac_2 { background-color: #04ad9a; }
 
 .quiz-selection-btn:hover { background-color: #004494; }
 .quiz-selection-btn.fisiologia:hover { background-color: #004d40; }
@@ -113,6 +115,8 @@ body {
 .quiz-selection-btn.sobrevivencia.level-4:hover { background-color: #1b5e20; }
 .quiz-selection-btn.sobrevivencia.level-5:hover { background-color: #1b5e20; }
 .quiz-selection-btn.sobrevivencia.level-6:hover { background-color: #1b5e20; }
+.quiz-selection-btn.fisiologia-anac:hover { background-color: #004d40; }
+.quiz-selection-btn.fisiologia-anac_2:hover { background-color: #02897b; }
 #quiz-container { max-width: 800px; width: 100%; }
 #quiz-header {
     background-color: #003366;
@@ -160,6 +164,8 @@ body {
 #quiz-header.sobrevivencia.level-4 { background-color: #2e7d32; }
 #quiz-header.sobrevivencia.level-5 { background-color: #2e7d32; }
 #quiz-header.sobrevivencia.level-6 { background-color: #2e7d32; }
+#progress-bar.fisiologia-anac { background-color: #009688; }
+#progress-bar.fisiologia-anac_2 { background-color: #04ad9a; }
 
 #progress-bar.level-2 { background-color: #ff9800; }
 #progress-bar.rpa-prep { background-color: #fdd835; }
@@ -172,6 +178,8 @@ body {
 #progress-bar.sobrevivencia.level-4 { background-color: #81c784; }
 #progress-bar.sobrevivencia.level-5 { background-color: #81c784; }
 #progress-bar.sobrevivencia.level-6 { background-color: #81c784; }
+#progress-bar.fisiologia-anac { background-color: #009688; }
+#progress-bar.fisiologia-anac_2 { background-color: #04ad9a; }
 
 .question-block { padding: 20px; border-bottom: 1px solid #eee; }
 .question-block h3 { margin-top: 0; font-size: 1.1em; color: #003366; }

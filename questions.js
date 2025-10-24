@@ -429,7 +429,6 @@ const quizDataMeteorologiaN1 = [
     { question: "O que é a 'Atmosfera Padrão ISA'?", options: ["As condições reais da atmosfera em um dado momento.", "Um modelo atmosférico hipotético usado como referência para a aviação.", "A previsão do tempo para as próximas 24 horas.", "A camada mais alta da atmosfera."], answer: "Um modelo atmosférico hipotético usado como referência para a aviação." }
 ];
 
-
 // BANCO DE QUESTÕES - METEOROLOGIA - NÍVEL 2
 const quizDataMeteorologiaN2 = [
     { question: "Uma massa de ar classificada como 'mTc' é:", options: ["Marítima Tropical quente", "Marítima Temperada fria", "Continental Tropical quente", "Continental Temperada fria"], answer: "Marítima Tropical quente" },
@@ -943,3 +942,1024 @@ const quizDataPrincipiosPsicologia = [
     { question: "A 'disciplina de água' refere-se a:", options: ["Beber toda a água encontrada de uma vez", "Beber apenas à noite", "Gerenciar o consumo de água de forma consciente e controlada, bebendo em pequenos goles", "Usar a água apenas para cozinhar"], answer: "Gerenciar o consumo de água de forma consciente e controlada, bebendo em pequenos goles" },
     { question: "O planejamento de cada dia em uma situação de sobrevivência deve sempre incluir:", options: ["Apenas a busca por alimentos", "Tarefas para melhorar o abrigo, coletar água e lenha, e sinalizar", "Exploração de longas distâncias", "Descanso total para todos os membros"], answer: "Tarefas para melhorar o abrigo, coletar água e lenha, e sinalizar" }
 ]
+
+// BANCO DE QUESTÕES [1/2] - ASPECTOS FISIOLÓGICOS (50 QUESTÕES)
+const quizDataAspectosFisiologicosN1 = [
+  // --- Hipóxia ---
+  {
+    question: "A diminuição da pressão parcial de oxigênio nos alvéolos pulmonares, causada pela subida para grandes altitudes, caracteriza qual tipo de hipóxia?",
+    options: [
+      "Hipóxia hipêmica (ou anêmica)",
+      "Hipóxia hipóxica (ou hipobárica)",
+      "Hipóxia isquêmica (ou estagnante)",
+      "Hipóxia histotóxica"
+    ],
+    answer: "Hipóxia hipóxica (ou hipobárica)"
+  },
+  {
+    question: "Um indivíduo com anemia ou que sofreu intoxicação por monóxido de carbono (CO) terá sua capacidade de transporte de oxigênio no sangue reduzida. Este quadro caracteriza qual tipo de hipóxia?",
+    options: [
+      "Hipóxia histotóxica",
+      "Hipóxia hipêmica",
+      "Hipóxia isquêmica",
+      "Hipóxia hipóxica"
+    ],
+    answer: "Hipóxia hipêmica"
+  },
+  {
+    question: "O consumo de álcool ou certos venenos (como cianeto) impede que as células do corpo utilizem o oxigênio disponível no sangue. Este tipo de hipóxia é classificado como:",
+    options: [
+      "Hipóxia histotóxica",
+      "Hipóxia hipêmica",
+      "Hipóxia isquêmica",
+      "Hipóxia hipobárica"
+    ],
+    answer: "Hipóxia histotóxica"
+  },
+  {
+    question: "A exposição a altas Forças G positivas (+Gz), que dificulta o bombeamento de sangue para o cérebro, pode levar a qual tipo de hipóxia?",
+    options: [
+      "Hipóxia hipóxica",
+      "Hipóxia anêmica",
+      "Hipóxia isquêmica (ou estagnante)",
+      "Hipóxia histotóxica"
+    ],
+    answer: "Hipóxia isquêmica (ou estagnante)"
+  },
+  {
+    question: "Qual é o 'Tempo Útil de Consciência' (TUC) aproximado a 40.000 pés (FL400) após uma despressurização explosiva?",
+    options: [
+      "1 a 2 minutos",
+      "5 a 10 minutos",
+      "15 a 30 segundos",
+      "45 a 60 segundos"
+    ],
+    answer: "15 a 30 segundos"
+  },
+  {
+    question: "O primeiro sintoma perceptível da hipóxia em aeronavegantes é frequentemente:",
+    options: [
+      "Perda de consciência",
+      "Euforia e diminuição do senso crítico",
+      "Dor no peito",
+      "Cianose (lábios e unhas azulados)"
+    ],
+    answer: "Euforia e diminuição do senso crítico"
+  },
+  {
+    question: "A zona fisiológica de voo onde o ser humano pode respirar o ar ambiente sem necessidade de oxigênio suplementar é considerada até:",
+    options: [
+      "10.000 pés",
+      "18.000 pés",
+      "25.000 pés",
+      "8.000 pés"
+    ],
+    answer: "10.000 pés"
+  },
+  {
+    question: "O aumento da frequência e profundidade respiratória, geralmente por ansiedade, que leva a uma redução excessiva de CO2 no sangue, é chamado de:",
+    options: [
+      "Hipóxia",
+      "Hiperventilação",
+      "Disbarismo",
+      "Aerotite"
+    ],
+    answer: "Hiperventilação"
+  },
+  {
+    question: "Sintomas como formigamento nas extremidades (mãos e pés), tontura e espasmos musculares (tetania) são característicos de qual condição?",
+    options: [
+      "Hipóxia hipóxica",
+      "Doença da descompressão",
+      "Hiperventilação",
+      "Hipóxia histotóxica"
+    ],
+    answer: "Hiperventilação"
+  },
+  {
+    question: "Qual o procedimento imediato para corrigir um quadro de hiperventilação em voo?",
+    options: [
+      "Respirar oxigênio a 100%",
+      "Controlar a respiração, respirando mais devagar ou dentro de um saco (se disponível)",
+      "Iniciar uma descida de emergência",
+      "Beber água"
+    ],
+    answer: "Controlar a respiração, respirando mais devagar ou dentro de um saco (se disponível)"
+  },
+  // --- Disbarismos (Barotraumas) ---
+  {
+    question: "A dor de dente causada pela expansão de gases presos na polpa dentária ou em obturações malfeitas durante a subida é chamada de:",
+    options: [
+      "Aerotite",
+      "Aerosinusite",
+      "Aerodontalgia",
+      "Mal da descompressão"
+    ],
+    answer: "Aerodontalgia"
+  },
+  {
+    question: "A dificuldade em equalizar a pressão do ouvido médio durante a descida, causando dor aguda, é conhecida como:",
+    options: [
+      "Barotite ou Aerotite Média",
+      "Aerosinusite",
+      "Labirintite",
+      "Aerodontalgia"
+    ],
+    answer: "Barotite ou Aerotite Média"
+  },
+  {
+    question: "Qual manobra é recomendada para facilitar a abertura da Trompa de Eustáquio e equalizar a pressão do ouvido médio durante a descida?",
+    options: [
+      "Manobra de Valsalva (expirar com nariz e boca fechados)",
+      "Prender a respiração",
+      "Respirar rapidamente",
+      "Tossir vigorosamente"
+    ],
+    answer: "Manobra de Valsalva (expirar com nariz e boca fechados)"
+  },
+  {
+    question: "A inflamação dolorosa dos seios paranasais (seios da face) devido à dificuldade de equalização da pressão durante variações de altitude é chamada de:",
+    options: [
+      "Aerotite",
+      "Aerodontalgia",
+      "Aerosinusite (ou Barosinusite)",
+      "Rinite alérgica"
+    ],
+    answer: "Aerosinusite (ou Barosinusite)"
+  },
+  {
+    question: "Voar logo após um mergulho autônomo (scuba) aumenta significativamente o risco de qual condição fisiológica?",
+    options: [
+      "Hipóxia hipêmica",
+      "Hiperventilação",
+      "Doença da Descompressão (Disbarismo Gasoso)",
+      "Aerotite"
+    ],
+    answer: "Doença da Descompressão (Disbarismo Gasoso)"
+  },
+  {
+    question: "A Doença da Descompressão é causada pela formação de bolhas de qual gás nos tecidos e na corrente sanguínea?",
+    options: [
+      "Oxigênio (O2)",
+      "Dióxido de Carbono (CO2)",
+      "Nitrogênio (N2)",
+      "Hélio (He)"
+    ],
+    answer: "Nitrogênio (N2)"
+  },
+  {
+    question: "A manifestação da doença descompressiva que causa dores articulares ('bends') é classificada como:",
+    options: [
+      "Tipo I (Cutânea ou Musculoesquelética)",
+      "Tipo II (Neurológica)",
+      "Tipo III (Pulmonar - 'chokes')",
+      "Tipo IV (Cerebral)"
+    ],
+    answer: "Tipo I (Cutânea ou Musculoesquelética)"
+  },
+  {
+    question: "Manifestações neurológicas, como paralisia, vertigem ou problemas respiratórios ('chokes'), na doença descompressiva são classificadas como:",
+    options: [
+      "Tipo I",
+      "Tipo II",
+      "Leve",
+      "Inexistente"
+    ],
+    answer: "Tipo II"
+  },
+  {
+    question: "O tratamento definitivo para a doença da descompressão grave é:",
+    options: [
+      "Administração de analgésicos",
+      "Repouso e hidratação",
+      "Oxigenoterapia hiperbárica (Câmara Hiperbárica)",
+      "Descer para o nível do mar imediatamente"
+    ],
+    answer: "Oxigenoterapia hiperbárica (Câmara Hiperbárica)"
+  },
+  {
+    question: "A expansão de gases no trato gastrointestinal durante a subida, causando desconforto e dor abdominal, é conhecida como:",
+    options: [
+      "Aerogastria",
+      "Aerosinusite",
+      "Meteorismo (ou Flatulência de Altitude)",
+      "Aerofagia"
+    ],
+    answer: "Meteorismo (ou Flatulência de Altitude)"
+  },
+  // --- Forças G ---
+  {
+    question: "A 'visão de túnel' (perda da visão periférica) e a 'visão cinza' (greyout) são sintomas iniciais da exposição a:",
+    options: [
+      "Força G negativa (-Gz)",
+      "Força G positiva (+Gz)",
+      "Hipóxia",
+      "Desorientação espacial"
+    ],
+    answer: "Força G positiva (+Gz)"
+  },
+  {
+    question: "A perda total de visão, mas com manutenção da consciência, sob efeito de Força G positiva é conhecida como:",
+    options: [
+      "Greyout",
+      "Blackout",
+      "Redout",
+      "G-LOC"
+    ],
+    answer: "Blackout"
+  },
+  {
+    question: "A perda de consciência induzida por Força G é abreviada como:",
+    options: [
+      "Blackout",
+      "Redout",
+      "G-LOC (G-induced Loss of Consciousness)",
+      "TUC"
+    ],
+    answer: "G-LOC (G-induced Loss of Consciousness)"
+  },
+  {
+    question: "A sensação de 'olhos saltando das órbitas' e a visão vermelha ('redout') são associadas à exposição a qual tipo de aceleração?",
+    options: [
+      "Força G positiva (+Gz)",
+      "Força G negativa (-Gz)",
+      "Força G transversal (+Gx)",
+      "Força de Coriolis"
+    ],
+    answer: "Força G negativa (-Gz)"
+  },
+  {
+    question: "Qual manobra o piloto pode executar para aumentar sua tolerância à Força G positiva, contraindo a musculatura e controlando a respiração?",
+    options: [
+      "Manobra de Valsalva",
+      "Manobra Anti-G (AGSM ou L-1)",
+      "Manobra de Heimlich",
+      "Relaxamento muscular"
+    ],
+    answer: "Manobra Anti-G (AGSM ou L-1)"
+  },
+  // --- Desorientação Espacial ---
+  {
+    question: "A ilusão sensorial mais comum em voo, onde o piloto sente que a aeronave está nivelada quando na verdade está em uma curva prolongada, é chamada de:",
+    options: [
+      "Inclinação ('The Leans')",
+      "Coriolis",
+      "Vertigem do 'virar de cabeça'",
+      "Elevador (Somatogravic)"
+    ],
+    answer: "Inclinação ('The Leans')"
+  },
+  {
+    question: "A ilusão extremamente forte de rotação, causada por um movimento da cabeça em um plano diferente enquanto a aeronave está em uma curva, é a:",
+    options: [
+      "Ilusão Somatogravic",
+      "Ilusão Autocinética",
+      "Ilusão de Coriolis",
+      "Inclinação ('The Leans')"
+    ],
+    answer: "Ilusão de Coriolis"
+  },
+  {
+    question: "Durante uma aceleração linear rápida (como na decolagem), o piloto pode sentir que o nariz da aeronave está subindo excessivamente. Esta é a ilusão:",
+    options: [
+      "Somatogravic (Elevador)",
+      "Somatogiral",
+      "Autocinética",
+      "Coriolis"
+    ],
+    answer: "Somatogravic (Elevador)"
+  },
+  {
+    question: "O sistema sensorial que informa o cérebro sobre a posição do corpo em relação à gravidade e acelerações lineares e angulares é o:",
+    options: [
+      "Sistema Visual",
+      "Sistema Vestibular (Ouvido Interno)",
+      "Sistema Somatossensorial (Proprioceptivo)",
+      "Sistema Olfativo"
+    ],
+    answer: "Sistema Vestibular (Ouvido Interno)"
+  },
+  {
+    question: "Os canais semicirculares, localizados no ouvido interno, são responsáveis por detectar principalmente qual tipo de movimento?",
+    options: [
+      "Acelerações lineares",
+      "Acelerações angulares (rotação)",
+      "Gravidade",
+      "Vibração"
+    ],
+    answer: "Acelerações angulares (rotação)"
+  },
+  {
+    question: "Os órgãos otolíticos (utrículo e sáculo), no ouvido interno, detectam principalmente:",
+    options: [
+      "Acelerações lineares e gravidade",
+      "Acelerações angulares",
+      "Sons de alta frequência",
+      "Variações de pressão"
+    ],
+    answer: "Acelerações lineares e gravidade"
+  },
+  {
+    question: "Em condições de voo por instrumentos (IMC), qual sistema deve ter prioridade absoluta para o piloto manter a orientação espacial?",
+    options: [
+      "Sistema Vestibular (sensações do corpo)",
+      "Sistema Visual (Instrumentos de voo)",
+      "Sistema Somatossensorial (propriocepção)",
+      "Instinto do piloto"
+    ],
+    answer: "Sistema Visual (Instrumentos de voo)"
+  },
+  {
+    question: "A ilusão onde um ponto de luz estático no escuro parece se mover (como uma estrela) é chamada de:",
+    options: [
+      "Ilusão Autocinética",
+      "Ilusão de Coriolis",
+      "Falso horizonte",
+      "Ilusão Somatogravic"
+    ],
+    answer: "Ilusão Autocinética"
+  },
+  {
+    question: "Confundir luzes no solo (como as de uma cidade ou estrada) com estrelas, levando o piloto a uma atitude anormal, é a ilusão de:",
+    options: [
+      "Falso Horizonte",
+      "Visão de Túnel",
+      "Autocinese",
+      "Redout"
+    ],
+    answer: "Falso Horizonte"
+  },
+  {
+    question: "A incapacidade de perceber mudanças graduais na atitude da aeronave, abaixo do limiar de percepção do sistema vestibular, é conhecida como:",
+    options: [
+      "Limiar Sensorial",
+      "Ilusão de Coriolis",
+      "G-LOC",
+      "Blackout"
+    ],
+    answer: "Limiar Sensorial"
+  },
+  // --- Fadiga, Ritmo Circadiano, Álcool e Drogas ---
+  {
+    question: "A fadiga que se acumula ao longo de vários dias ou semanas de voo com descanso inadequado, exigindo um período de recuperação mais longo, é classificada como:",
+    options: [
+      "Fadiga aguda",
+      "Fadiga crônica",
+      "Fadiga de combate",
+      "Fadiga transitória"
+    ],
+    answer: "Fadiga crônica"
+  },
+  {
+    question: "A fadiga resultante de um único dia de trabalho intenso ou privação de sono, geralmente recuperada com uma boa noite de sono, é a:",
+    options: [
+      "Fadiga crônica",
+      "Fadiga aguda",
+      "Fadiga cumulativa",
+      "Fadiga de estresse"
+    ],
+    answer: "Fadiga aguda"
+  },
+  {
+    question: "O relógio biológico interno que regula os ciclos de sono-vigília ao longo de aproximadamente 24 horas é chamado de:",
+    options: [
+      "Ritmo Ultrassônico",
+      "Ritmo Circadiano",
+      "Ciclo REM",
+      "Homeostase"
+    ],
+    answer: "Ritmo Circadiano"
+  },
+  {
+    question: "A dessincronização do ritmo circadiano causada pela travessia rápida de múltiplos fusos horários é conhecida como:",
+    options: [
+      "Fadiga crônica",
+      "Jet Lag",
+      "Hipóxia",
+      "Desorientação"
+    ],
+    answer: "Jet Lag"
+  },
+  {
+    question: "Voos no sentido Leste-Oeste (Westbound) geralmente causam menos Jet Lag do que voos no sentido Oeste-Leste (Eastbound) porque:",
+    options: [
+      "O dia é encurtado, facilitando a adaptação",
+      "O dia é prolongado, o que é mais fácil para o corpo ajustar",
+      "A Força G é menor",
+      "A pressurização da cabine é melhor"
+    ],
+    answer: "O dia é prolongado, o que é mais fácil para o corpo ajustar"
+  },
+  {
+    question: "Qual o período mínimo recomendado, segundo a regulamentação brasileira (RBAC 121), de abstinência de álcool antes de assumir uma função a bordo?",
+    options: [
+      "4 horas",
+      "8 horas",
+      "12 horas",
+      "24 horas"
+    ],
+    answer: "8 horas"
+  },
+  {
+    question: "O principal perigo do consumo de álcool, mesmo em pequenas quantidades, para um piloto é:",
+    options: [
+      "Aumento da tolerância à Força G",
+      "Melhora da visão noturna",
+      "Redução da capacidade de julgamento e aumento do tempo de reação",
+      "Aumento da resistência à hipóxia"
+    ],
+    answer: "Redução da capacidade de julgamento e aumento do tempo de reação"
+  },
+  {
+    question: "O álcool interfere no uso de oxigênio pelo corpo, potencializando os efeitos da hipóxia. Este efeito é similar ao da hipóxia:",
+    options: [
+      "Hipóxica",
+      "Hipêmica",
+      "Isquêmica",
+      "Histotóxica"
+    ],
+    answer: "Histotóxica"
+  },
+  {
+    question: "A prática de voar sob efeito de medicamentos sem autorização médica (automedicação) é perigosa principalmente porque:",
+    options: [
+      "Os medicamentos podem ter efeitos colaterais inesperados em altitude",
+      "São caros",
+      "Podem curar a doença rapidamente",
+      "Aumentam a tolerância ao álcool"
+    ],
+    answer: "Os medicamentos podem ter efeitos colaterais inesperados em altitude"
+  },
+  {
+    question: "O monóxido de carbono (CO) presente na fumaça do cigarro tem alta afinidade com a hemoglobina, causando qual tipo de hipóxia?",
+    options: [
+      "Hipóxia hipêmica",
+      "Hipóxia histotóxica",
+      "Hipóxia isquêmica",
+      "Hipóxia hipóxica"
+    ],
+    answer: "Hipóxia hipêmica"
+  },
+  // --- Visão e Outros ---
+  {
+    question: "A altitude fisiológica do fumante (o quanto sua tolerância à altitude já está comprometida ao nível do mar) é, em média, de:",
+    options: [
+      "1.000 a 2.000 pés",
+      "5.000 a 8.000 pés",
+      "10.000 a 12.000 pés",
+      "Não há efeito"
+    ],
+    answer: "5.000 a 8.000 pés"
+  },
+  {
+    question: "A visão noturna depende primariamente de quais células da retina?",
+    options: [
+      "Cones",
+      "Bastonetes",
+      "Mácula",
+      "Nervo óptico"
+    ],
+    answer: "Bastonetes"
+  },
+  {
+    question: "Os bastonetes, responsáveis pela visão noturna, são menos eficazes em qual parte do campo visual?",
+    options: [
+      "Visão periférica",
+      "Visão central (Fóvea)",
+      "Visão superior",
+      "Visão inferior"
+    ],
+    answer: "Visão central (Fóvea)"
+  },
+  {
+    question: "Para detectar objetos à noite, um piloto deve utilizar a técnica de:",
+    options: [
+      "Olhar diretamente para o objeto (visão central)",
+      "Piscar rapidamente",
+      "Usar a visão periférica (olhar ligeiramente ao lado do objeto)",
+      "Fechar um olho"
+    ],
+    answer: "Usar a visão periférica (olhar ligeiramente ao lado do objeto)"
+  },
+  {
+    question: "O tempo necessário para adaptação total da visão ao escuro pode levar de:",
+    options: [
+      "1 a 2 minutos",
+      "5 a 10 minutos",
+      "20 a 30 minutos",
+      "1 hora"
+    ],
+    answer: "20 a 30 minutos"
+  }
+];
+
+// BANCO DE QUESTÕES [2/2] - PRIMEIROS SOCORROS (50 QUESTÕES)
+const quizDataPrimeirosSocorrosN2 = [
+  // --- RCP e DEA ---
+  {
+    question: "Qual é o primeiro passo ao encontrar uma vítima que aparenta estar inconsciente?",
+    options: [
+      "Iniciar compressões torácicas",
+      "Verificar a segurança do local",
+      "Checar a responsividade e chamar por ajuda",
+      "Abrir as vias aéreas"
+    ],
+    answer: "Verificar a segurança do local"
+  },
+  {
+    question: "Após verificar a segurança do local e constatar que a vítima não responde, qual o próximo passo imediato?",
+    options: [
+      "Chamar por ajuda (inclusive o DEA/DAE) e checar respiração e pulso simultaneamente",
+      "Iniciar 30 compressões",
+      "Aplicar 2 ventilações",
+      "Colocar a vítima em posição lateral de segurança"
+    ],
+    answer: "Chamar por ajuda (inclusive o DEA/DAE) e checar respiração e pulso simultaneamente"
+  },
+  {
+    question: "Durante a Reanimação Cardiopulmonar (RCP) em um adulto, qual a frequência (taxa) correta de compressões torácicas por minuto?",
+    options: [
+      "60 a 80",
+      "80 a 100",
+      "100 a 120",
+      "120 a 140"
+    ],
+    answer: "100 a 120"
+  },
+  {
+    question: "Qual a profundidade correta das compressões torácicas em um adulto durante a RCP?",
+    options: [
+      "2 a 3 cm",
+      "3 a 4 cm",
+      "5 a 6 cm",
+      "7 a 8 cm"
+    ],
+    answer: "5 a 6 cm"
+  },
+  {
+    question: "Qual é a relação correta de compressões e ventilações (ciclo) em um adulto na RCP realizada por um único socorrista?",
+    options: [
+      "15 compressões para 2 ventilações",
+      "30 compressões para 2 ventilações",
+      "30 compressões para 1 ventilação",
+      "Compressões contínuas, sem ventilação"
+    ],
+    answer: "30 compressões para 2 ventilações"
+  },
+  {
+    question: "Ao utilizar um Desfibrilador Externo Automático (DEA/DAE), qual o procedimento correto assim que o aparelho chega?",
+    options: [
+      "Continuar as compressões enquanto aplica as pás",
+      "Parar a RCP, ligar o DEA e seguir as instruções de voz",
+      "Aplicar o choque imediatamente, sem análise",
+      "Aplicar as pás apenas se a vítima for um adulto"
+    ],
+    answer: "Parar a RCP, ligar o DEA e seguir as instruções de voz"
+  },
+  {
+    question: "Durante o uso do DEA, o aparelho indica 'Choque recomendado'. Qual a ação correta do socorrista?",
+    options: [
+      "Continuar as compressões",
+      "Afastar-se e garantir que ninguém esteja tocando a vítima antes de apertar o botão de choque",
+      "Desligar o aparelho e reiniciar a RCP",
+      "Verificar o pulso da vítima antes de chocar"
+    ],
+    answer: "Afastar-se e garantir que ninguém esteja tocando a vítima antes de apertar o botão de choque"
+  },
+  {
+    question: "Imediatamente após a administração do choque pelo DEA, o que o socorrista deve fazer?",
+    options: [
+      "Reiniciar imediatamente as compressões torácicas",
+      "Checar o pulso da vítima",
+      "Esperar o DEA analisar novamente",
+      "Aplicar duas ventilações"
+    ],
+    answer: "Reiniciar imediatamente as compressões torácicas"
+  },
+  {
+    question: "Se o DEA indicar 'Choque não recomendado', qual deve ser a ação imediata?",
+    options: [
+      "Verificar o pulso",
+      "Reiniciar a RCP imediatamente, começando pelas compressões",
+      "Desligar o aparelho",
+      "Aguardar a chegada de socorro médico"
+    ],
+    answer: "Reiniciar a RCP imediatamente, começando pelas compressões"
+  },
+  {
+    question: "Para uma criança (não bebê), a profundidade da compressão torácica na RCP deve ser de:",
+    options: [
+      "Aproximadamente 5 cm (ou 1/3 do diâmetro do tórax)",
+      "Aproximadamente 2 cm",
+      "A mesma de um adulto (5 a 6 cm)",
+      "Aproximadamente 7 cm"
+    ],
+    answer: "Aproximadamente 5 cm (ou 1/3 do diâmetro do tórax)"
+  },
+  // --- Hemorragias ---
+  {
+    question: "Em caso de hemorragia externa grave em um membro (braço ou perna), qual é o método prioritário para controlar o sangramento?",
+    options: [
+      "Elevação do membro",
+      "Aplicação de torniquete",
+      "Aplicação de compressão direta e firme sobre o ferimento",
+      "Limpeza da ferida com água"
+    ],
+    answer: "Aplicação de compressão direta e firme sobre o ferimento"
+  },
+  {
+    question: "Se a compressão direta não for suficiente para conter uma hemorragia grave em um membro, qual o próximo passo recomendado (antes de um torniquete)?",
+    options: [
+      "Aplicar gelo",
+      "Aplicar pressão em um ponto arterial (ponto de pressão)",
+      "Preencher o ferimento com gaze (empacotamento) e continuar a compressão direta",
+      "Desistir da compressão e elevar o membro"
+    ],
+    answer: "Preencher o ferimento com gaze (empacotamento) e continuar a compressão direta"
+  },
+  {
+    question: "O uso de torniquete é indicado em qual situação?",
+    options: [
+      "Qualquer sangramento venoso",
+      "Hemorragias internas",
+      "Hemorragia grave em membro, com risco de vida, que não foi controlada por compressão direta",
+      "Sangramento capilar (escoriação)"
+    ],
+    answer: "Hemorragia grave em membro, com risco de vida, que não foi controlada por compressão direta"
+  },
+  {
+    question: "Um sangramento arterial é tipicamente caracterizado por:",
+    options: [
+      "Sangue escuro, fluindo continuamente",
+      "Sangue vermelho vivo, que jorra em jatos (pulsátil)",
+      "Sangramento lento e superficial",
+      "Sangue que coagula rapidamente"
+    ],
+    answer: "Sangue vermelho vivo, que jorra em jatos (pulsátil)"
+  },
+  {
+    question: "Um sangramento venoso é caracterizado por:",
+    options: [
+      "Sangue vermelho vivo, pulsátil",
+      "Sangue escuro, fluindo de forma contínua e lenta",
+      "Sangramento superficial (babando)",
+      "Sangramento que não para com a pressão"
+    ],
+    answer: "Sangue escuro, fluindo de forma contínua e lenta"
+  },
+  {
+    question: "Qual o procedimento correto ao aplicar um torniquete?",
+    options: [
+      "Aplicar diretamente sobre a articulação (joelho ou cotovelo)",
+      "Aplicar frouxamente, apenas para diminuir o fluxo",
+      "Aplicar alguns centímetros acima do ferimento, apertando até o sangramento parar, e anotar o horário",
+      "Afolgar o torniquete a cada 15 minutos"
+    ],
+    answer: "Aplicar alguns centímetros acima do ferimento, apertando até o sangramento parar, e anotar o horário"
+  },
+  {
+    question: "Em caso de sangramento nasal (epistaxe), qual o procedimento correto?",
+    options: [
+      "Inclinar a cabeça da vítima para trás e aplicar gelo na nuca",
+      "Inclinar a cabeça da vítima ligeiramente para frente e comprimir as narinas",
+      "Solicitar que a vítima assoe o nariz com força",
+      "Introduzir algodão profundamente na narina"
+    ],
+    answer: "Inclinar a cabeça da vítima ligeiramente para frente e comprimir as narinas"
+  },
+  // --- Queimaduras ---
+  {
+    question: "Uma queimadura que afeta apenas a epiderme (camada superficial da pele), causando vermelhidão e dor, é classificada como:",
+    options: [
+      "Primeiro grau",
+      "Segundo grau",
+      "Terceiro grau",
+      "Quarto grau"
+    ],
+    answer: "Primeiro grau"
+  },
+  {
+    question: "A formação de bolhas é a principal característica de qual grau de queimadura?",
+    options: [
+      "Primeiro grau",
+      "Segundo grau",
+      "Terceiro grau",
+      "Queimadura química"
+    ],
+    answer: "Segundo grau"
+  },
+  {
+    question: "Uma queimadura que destrói todas as camadas da pele, podendo atingir músculos e ossos, com aparência esbranquiçada ou carbonizada e pouca ou nenhuma dor, é de:",
+    options: [
+      "Primeiro grau",
+      "Segundo grau superficial",
+      "Segundo grau profundo",
+      "Terceiro grau"
+    ],
+    answer: "Terceiro grau"
+  },
+  {
+    question: "Qual o primeiro socorro imediato para uma queimadura térmica (causada por calor)?",
+    options: [
+      "Aplicar gelo diretamente sobre a queimadura",
+      "Resfriar a área com água corrente limpa em temperatura ambiente",
+      "Aplicar pasta de dente, manteiga ou café",
+      "Estourar as bolhas imediatamente"
+    ],
+    answer: "Resfriar a área com água corrente limpa em temperatura ambiente"
+  },
+  {
+    question: "Ao atender uma vítima com queimadura de 2º grau (com bolhas), qual o procedimento correto após o resfriamento inicial?",
+    options: [
+      "Estourar as bolhas para drenar o líquido",
+      "Aplicar pomada antibiótica diretamente",
+      "Cobrir a área com gaze estéril ou pano limpo e seco, sem apertar",
+      "Remover roupas que estejam grudadas na pele"
+    ],
+    answer: "Cobrir a área com gaze estéril ou pano limpo e seco, sem apertar"
+  },
+  {
+    question: "Em caso de queimaduras químicas nos olhos, qual o procedimento imediato?",
+    options: [
+      "Tentar neutralizar o produto químico (ex: base para ácido)",
+      "Lavar os olhos abundantemente com água corrente por pelo menos 15 minutos",
+      "Vendar os dois olhos imediatamente",
+      "Aplicar colírio anestésico"
+    ],
+    answer: "Lavar os olhos abundantemente com água corrente por pelo menos 15 minutos"
+  },
+  {
+    question: "Em vítimas de queimaduras elétricas, qual é o risco imediato mais grave que o socorrista deve monitorar?",
+    options: [
+      "Infecção da pele",
+      "Parada cardiorrespiratória (arritmia cardíaca)",
+      "Hemorragia interna",
+      "Desidratação"
+    ],
+    answer: "Parada cardiorrespiratória (arritmia cardíaca)"
+  },
+  // --- Fraturas e Imobilização ---
+  {
+    question: "Uma fratura onde o osso quebrado perfura a pele, ficando exposto, é chamada de:",
+    options: [
+      "Fratura fechada",
+      "Fratura exposta (ou aberta)",
+      "Luxação",
+      "Entorse"
+    ],
+    answer: "Fratura exposta (ou aberta)"
+  },
+  {
+    question: "Ao imobilizar uma suspeita de fratura em um membro, qual é o princípio correto?",
+    options: [
+      "Tentar realinhar (colocar no lugar) o osso antes de imobilizar",
+      "Imobilizar apenas o ponto exato da fratura",
+      "Imobilizar a articulação acima e a articulação abaixo da lesão",
+      "Aplicar gelo diretamente sobre a fratura exposta"
+    ],
+    answer: "Imobilizar a articulação acima e a articulação abaixo da lesão"
+  },
+  {
+    question: "Em caso de fratura exposta, qual o procedimento correto?",
+    options: [
+      "Empurrar o osso de volta para dentro da pele",
+      "Lavar o osso exposto com álcool",
+      "Cobrir o ferimento com pano limpo ou gaze estéril e controlar o sangramento",
+      "Imobilizar o membro sem cobrir o ferimento"
+    ],
+    answer: "Cobrir o ferimento com pano limpo ou gaze estéril e controlar o sangramento"
+  },
+  {
+    question: "Ao suspeitar de uma fratura na coluna vertebral (lesão raquimedular), qual é o cuidado principal?",
+    options: [
+      "Manter a vítima sentada para facilitar a respiração",
+      "Manter a imobilização total da coluna, especialmente a cervical (pescoço)",
+      "Pedir para a vítima tentar girar a cabeça para checar a dor",
+      "Elevar as pernas da vítima"
+    ],
+    answer: "Manter a imobilização total da coluna, especialmente a cervical (pescoço)"
+  },
+  {
+    question: "A perda de contato entre as superfícies de uma articulação (deslocamento) é chamada de:",
+    options: [
+      "Entorse",
+      "Contusão",
+      "Fratura",
+      "Luxação"
+    ],
+    answer: "Luxação"
+  },
+  {
+    question: "O estiramento ou rompimento dos ligamentos de uma articulação é chamado de:",
+    options: [
+      "Luxação",
+      "Contusão",
+      "Entorse",
+      "Fratura"
+    ],
+    answer: "Entorse"
+  },
+  // --- Obstrução de Vias Aéreas (Engasgo) ---
+  {
+    question: "Em um adulto consciente com Obstrução Grave de Vias Aéreas (não consegue tossir nem falar), qual o procedimento correto?",
+    options: [
+      "Dar tapas nas costas com a vítima em pé",
+      "Oferecer água para ajudar a descer o objeto",
+      "Realizar a Manobra de Heimlich (compressões abdominais)",
+      "Esperar a vítima desmaiar para iniciar RCP"
+    ],
+    answer: "Realizar a Manobra de Heimlich (compressões abdominais)"
+  },
+  {
+    question: "Se uma vítima de engasgo grave (Manobra de Heimlich) ficar inconsciente, qual o procedimento imediato?",
+    options: [
+      "Tentar as compressões abdominais com a vítima deitada",
+      "Deitá-la com cuidado, acionar ajuda e iniciar RCP (compressões torácicas)",
+      "Tentar remover o objeto com os dedos (varredura digital)",
+      "Aplicar ventilações imediatamente"
+    ],
+    answer: "Deitá-la com cuidado, acionar ajuda e iniciar RCP (compressões torácicas)"
+  },
+  {
+    question: "Em gestantes ou pessoas obesas com engasgo grave, as compressões da Manobra de Heimlich devem ser aplicadas:",
+    options: [
+      "Na altura do abdômen (umbigo), como em um adulto normal",
+      "Na altura do tórax (esterno)",
+      "Apenas tapas nas costas",
+      "Não se aplica a manobra"
+    ],
+    answer: "Na altura do tórax (esterno)"
+  },
+  {
+    question: "Em um bebê (lactente) consciente e engasgado, qual o procedimento?",
+    options: [
+      "Compressões abdominais (Heimlich)",
+      "Segurá-lo de bruços, apoiado no antebraço, e aplicar 5 tapas nas costas; virar e aplicar 5 compressões torácicas",
+      "Segurá-lo de cabeça para baixo pelos pés",
+      "Oferecer água"
+    ],
+    answer: "Segurá-lo de bruços, apoiado no antebraço, e aplicar 5 tapas nas costas; virar e aplicar 5 compressões torácicas"
+  },
+  {
+    question: "Ao iniciar a RCP em uma vítima que ficou inconsciente por engasgo, o que o socorrista deve fazer antes de tentar ventilar?",
+    options: [
+      "Procurar o objeto na boca e tentar removê-lo (apenas se visível)",
+      "Aplicar 30 compressões primeiro",
+      "Checar o pulso",
+      "Administrar um choque com o DEA"
+    ],
+    answer: "Procurar o objeto na boca e tentar removê-lo (apenas se visível)"
+  },
+  // --- Estado de Choque, Desmaio e Convulsão ---
+  {
+    question: "Palidez, pele fria e pegajosa, sudorese, pulso rápido e fraco, e confusão mental são sinais clássicos de:",
+    options: [
+      "Estado de Choque (Hipovolêmico)",
+      "Hiperventilação",
+      "Hipóxia",
+      "Convulsão"
+    ],
+    answer: "Estado de Choque (Hipovolêmico)"
+  },
+  {
+    question: "Qual o procedimento de primeiros socorros para uma vítima em estado de choque (sem trauma abdominal ou de membros inferiores)?",
+    options: [
+      "Sentar a vítima e oferecer líquidos açucarados",
+      "Deitar a vítima, elevar suas pernas e mantê-la aquecida",
+      "Manter a vítima em pé e caminhando para estimular a circulação",
+      "Aplicar compressas frias"
+    ],
+    answer: "Deitar a vítima, elevar suas pernas e mantê-la aquecida"
+  },
+  {
+    question: "A perda súbita e breve da consciência, com recuperação rápida, geralmente causada por diminuição do fluxo sanguíneo cerebral, é chamada de:",
+    options: [
+      "Convulsão",
+      "Síncope (Desmaio)",
+      "AVC",
+      "Estado de choque"
+    ],
+    answer: "Síncope (Desmaio)"
+  },
+  {
+    question: "Ao atender uma vítima que desmaiou (síncope), qual o procedimento correto?",
+    options: [
+      "Dar tapas no rosto e jogar água fria",
+      "Deitar a vítima e elevar suas pernas (se não houver trauma)",
+      "Oferecer álcool para cheirar",
+      "Sentar a vítima imediatamente"
+    ],
+    answer: "Deitar a vítima e elevar suas pernas (se não houver trauma)"
+  },
+  {
+    question: "Durante uma crise convulsiva (movimentos tônico-clônicos), qual deve ser a ação prioritária do socorrista?",
+    options: [
+      "Segurar os braços e pernas da vítima para parar os movimentos",
+      "Tentar abrir a boca da vítima e segurar a língua",
+      "Proteger a cabeça da vítima contra impactos e afastar objetos perigosos",
+      "Jogar água fria no rosto da vítima"
+    ],
+    answer: "Proteger a cabeça da vítima contra impactos e afastar objetos perigosos"
+  },
+  {
+    question: "Após o término de uma crise convulsiva, em que posição a vítima deve ser colocada enquanto recupera a consciência?",
+    options: [
+      "Sentada, com a cabeça entre os joelhos",
+      "Deitada de barriga para cima (decúbito dorsal)",
+      "Em Posição Lateral de Segurança (PLS)",
+      "Deitada com as pernas elevadas"
+    ],
+    answer: "Em Posição Lateral de Segurança (PLS)"
+  },
+  // --- Mal Súbito (IAM, AVC) e Outros ---
+  {
+    question: "Dor súbita ou desconforto no peito que irradia para o braço esquerdo, pescoço ou mandíbula, acompanhada de suor frio e náusea, é um sinal clássico de:",
+    options: [
+      "Ataque de pânico",
+      "Infarto Agudo do Miocárdio (IAM)",
+      "Ataque de asma",
+      "Engasgo"
+    ],
+    answer: "Infarto Agudo do Miocárdio (IAM)"
+  },
+  {
+    question: "Ao suspeitar de um Infarto (IAM) em um passageiro consciente, qual o procedimento recomendado a bordo?",
+    options: [
+      "Fazer a vítima caminhar pelo corredor",
+      "Oferecer água com açúcar",
+      "Manter a vítima em repouso (sentada ou semi-sentada), afrouxar roupas e administrar oxigênio (se disponível)",
+      "Iniciar RCP imediatamente"
+    ],
+    answer: "Manter a vítima em repouso (sentada ou semi-sentada), afrouxar roupas e administrar oxigênio (se disponível)"
+  },
+  {
+    question: "Dificuldade súbita para falar, perda de força em um lado do corpo (rosto, braço, perna) e confusão mental são sinais sugestivos de:",
+    options: [
+      "Infarto Agudo do Miocárdio (IAM)",
+      "Acidente Vascular Cerebral (AVC)",
+      "Crise de hipoglicemia",
+      "Síncope"
+    ],
+    answer: "Acidente Vascular Cerebral (AVC)"
+  },
+  {
+    question: "O mnemônico 'SAMU' (ou 'FAST' em inglês) é usado para identificar rapidamente os sinais de qual emergência?",
+    options: [
+      "Infarto (IAM)",
+      "Parada Cardíaca (PCR)",
+      "Acidente Vascular Cerebral (AVC)",
+      "Estado de Choque"
+    ],
+    answer: "Acidente Vascular Cerebral (AVC)"
+  },
+  {
+    question: "O procedimento de transporte de uma vítima com suspeita de trauma que necessita ser movida (ex: saída de local perigoso) deve ser feito, preferencialmente, através de:",
+    options: [
+      "Movimentação rápida, arrastando pelos braços",
+      "Movimentação em bloco (rolamento 90º) para uma prancha rígida",
+      "Pedindo para a vítima andar apoiada",
+      "Movimentação em 'cadeirinha'"
+    ],
+    answer: "Movimentação em bloco (rolamento 90º) para uma prancha rígida"
+  },
+  {
+    question: "Qual o objetivo da Posição Lateral de Segurança (PLS)?",
+    options: [
+      "Facilitar a RCP",
+      "Manter a coluna alinhada em caso de fratura",
+      "Manter as vias aéreas livres e prevenir aspiração de vômito em vítima inconsciente que respira",
+      "Elevar as pernas para tratar o estado de choque"
+    ],
+    answer: "Manter as vias aéreas livres e prevenir aspiração de vômito em vítima inconsciente que respira"
+  },
+  {
+    question: "Em um parto de emergência a bordo, se o cordão umbilical estiver enrolado no pescoço do bebê (circular de cordão), qual o procedimento?",
+    options: [
+      "Puxar o bebê rapidamente para desenrolar",
+      "Tentar deslizar o cordão suavemente por cima da cabeça do bebê ou, se não for possível, pinçar e cortar",
+      "Ignorar o cordão e focar na saída dos ombros",
+      "Puxar o cordão umbilical para acelerar o parto"
+    ],
+    answer: "Tentar deslizar o cordão suavemente por cima da cabeça do bebê ou, se não for possível, pinçar e cortar"
+  },
+  {
+    question: "Após o nascimento do bebê em um parto a bordo, qual a prioridade imediata?",
+    options: [
+      "Cortar o cordão umbilical",
+      "Limpar, secar e aquecer o bebê, garantindo que ele esteja respirando",
+      "Pesar o bebê",
+      "Aguardar a saída da placenta"
+    ],
+    answer: "Limpar, secar e aquecer o bebê, garantindo que ele esteja respirando"
+  },
+  {
+    question: "Um passageiro diabético, consciente, relata mal-estar e apresenta tremores, sudorese fria, palidez e confusão mental. Qual o procedimento imediato de primeiros socorros?",
+    options: [
+      "Administrar oxigênio imediatamente, pois é hipóxia",
+      "Oferecer um alimento ou bebida açucarada (ex: suco de laranja, refrigerante não-diet)",
+      "Deitá-lo com as pernas elevadas para tratar o estado de choque",
+      "Solicitar que respire dentro de um saco, pois é hiperventilação"
+    ],
+    answer: "Oferecer um alimento ou bebida açucarada (ex: suco de laranja, refrigerante não-diet)"
+  }
+];

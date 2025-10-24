@@ -148,6 +148,20 @@ function startQuiz(level) {
             quizHeader.className = 'sobrevivencia level-6';
             progressBar.className = 'sobrevivencia level-6';
             break;
+        case 'fisiologia_avancada':
+            currentQuizData = quizDataAspectosFisiologicosN1;
+            quizTitle.innerHTML = `Fisiologia <span>Módulo de Princípios de Fisiologia ANAC</span>`;
+            resultsTitle.innerText = "Quiz de Fisiologia Finalizado!";
+            quizHeader.className = 'fisiologia-anac';
+            progressBar.className = 'fisiologia-anac';
+            break;
+        case 'fisiologia_avancada_2':
+            currentQuizData = quizDataPrimeirosSocorrosN2;
+            quizTitle.innerHTML = `Primeiros Socorros <span>Módulo de Princípios de Primeiros Socorros ANAC</span>`;
+            resultsTitle.innerText = "Quiz de Primeiros socorros Finalizado!";
+            quizHeader.className = 'fisiologia-anac_2';
+            progressBar.className = 'fisiologia-anac_2';
+            break;
     }
 
     menuContainer.classList.add('hidden');
